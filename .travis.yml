@@ -1,0 +1,13 @@
+language: elixir
+elixir:
+  - 1.8
+otp_release:
+  - 21.0
+sudo: false
+before_script:
+  - docker-compose up -d
+  - mix deps.get
+script:
+  - mix test
+after_script:
+  - MIX_ENV=docs mix inch.report
