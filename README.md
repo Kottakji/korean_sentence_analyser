@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/JorisKok/korean_sentence_analyser.svg?branch=master)](https://travis-ci.org/JorisKok/korean_sentence_analyser)
 [![Hex pm](http://img.shields.io/hexpm/v/korean_sentence_analyser.svg?style=flat)](https://hex.pm/packages/korean_sentence_analyser)
 
-Docs: [https://hexdocs.pm/chinese_dictionary](https://hexdocs.pm/korean_sentence_analyser).
+Docs: [https://hexdocs.pm/korean_sentence_analyser](https://hexdocs.pm/korean_sentence_analyser).
 
 ## How to use
 
