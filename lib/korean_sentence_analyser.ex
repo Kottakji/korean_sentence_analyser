@@ -63,8 +63,8 @@ defmodule KoreanSentenceAnalyser do
     {:ok, response} = HTTPoison.post @url, body, @headers
 
     case Jason.decode!(response.body) do
-      %{"tokens" => [token_map]} -> token_map["token"]
       %{"tokens" => []} -> nil
+      %{"tokens" => token_map} -> hd(token_map)["token"]
     end
   end
 end

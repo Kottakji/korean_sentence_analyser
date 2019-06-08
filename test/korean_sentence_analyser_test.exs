@@ -60,6 +60,10 @@ defmodule KoreanSentenceAnalyserTest do
       assert_value KoreanSentenceAnalyser.get_the_stem_of_a_word("미치겠네") == "미치다"
     end
 
+    test "한자ㅋ" do
+      assert_value KoreanSentenceAnalyser.get_the_stem_of_a_word("한자ㅋ") == "한자"
+    end
+
     test "Wrong input" do
       assert_value KoreanSentenceAnalyser.get_the_stem_of_a_word("Omg") == "omg"
     end
