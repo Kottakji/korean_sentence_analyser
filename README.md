@@ -12,17 +12,14 @@ Add to mix.exs
 ```elixir
 def deps do
   [
-    {:korean_sentence_analyser, "~> 0.1.1"}
+    {:korean_sentence_analyser, "~> 0.1.2"}
   ]
 end
 ```
 
-Start elastic search via docker compose
+Start the python flask interface (mini api)
 
 ```docker-compose up -d```
-
-You can use the dockerfile and docker compose file in this project, and start it however you like.
-Just note that the `version of elasticsearch` has to be `6.1.1`
 
 
 ##### For sentence analysis
@@ -32,31 +29,13 @@ KoreanSentenceAnalyser.analyse_sentence("한국어 배우기가 재미있어용"
 ```
 Which will return a map, or nil if nothing is found
 ```elixir
-      %{
-      "tokens" => [
-        %{
-          "end_offset" => 3,
-          "position" => 0,
-          "start_offset" => 0,
-          "token" => "한국어",
-          "type" => "Noun"
-        },
-        %{
-          "end_offset" => 8,
-          "position" => 1,
-          "start_offset" => 4,
-          "token" => "배우다",
-          "type" => "Verb"
-        },
-        %{
-          "end_offset" => 14,
-          "position" => 2,
-          "start_offset" => 9,
-          "token" => "재미있다",
-          "type" => "Adjective"
-        }
-      ]
-      }
+%{
+    "tokens" => [
+        %{"token" => "한국어", "type" => "Noun"},
+        %{"token" => "배우다", "type" => "Verb"},
+        %{"token" => "재미있다", "type" => "Adjective"}
+    ]
+}
 ```
 
 ##### For a single word analysis
@@ -69,9 +48,15 @@ which will return a string, or nil if empty
 "완벽하다"
 ```
 
-## Troubleshooting
+#### KoNLPy
 
-In case Elasticsearch shuts down because of not enough virtual memory
+Docs can be found at http://konlpy.org/en/latest/api
 
-```sudo sysctl -w vm.max_map_count=262144```
+#### Debugging
+
+Turn on debug=True in `app.py`
+
+####  Note: Elasticsearch version
+
+If you want to use the elasticsearch version, use the 1.0.0 tagged release on github, and 0.1.1 on Hex.pm
 

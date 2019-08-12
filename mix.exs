@@ -4,8 +4,8 @@ defmodule KoreanSentenceAnalyser.MixProject do
   def project do
     [
       app: :korean_sentence_analyser,
-      version: "0.1.1",
-      elixir: "~> 1.9-rc",
+      version: "0.1.2",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),

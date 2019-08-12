@@ -1,5 +1,23 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.1
+FROM ubuntu:16.04
 
-RUN bin/elasticsearch-plugin install https://github.com/open-korean-text/elasticsearch-analysis-openkoreantext/releases/download/6.1.1/elasticsearch-analysis-openkoreantext-6.1.1.2-plugin.zip
+RUN apt-get update
+RUN apt-get install -y g++ openjdk-8-jdk python3 python3-dev python3-pip curl
+RUN apt-get install -y wget build-essential autotools-dev automake libmecab2 libmecab-dev git
+RUN pip3 install konlpy bottle gunicorn
+RUN apt-get install -y python-dev
+RUN apt-get install -y python-pip
 
-CMD ["eswrapper"]
+RUN curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh | bash
+
+RUN pip3 install Flask
+
+EXPOSE 5000
+
+ENV FLASK_APP=sever.py
+
+COPY . /app
+WORKDIR /app
+
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
+
