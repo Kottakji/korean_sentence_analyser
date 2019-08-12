@@ -1,7 +1,8 @@
 defmodule KoreanSentenceAnalyser do
   @url "http://localhost:5000/analyse/"
   @headers [{"Content-Type", "application/json"}]
-  
+  @options [timeout: 50_000, recv_timeout: 50_000]
+
   @moduledoc """
   Analyses Korean text
   Returns their stem/base form and additional information, like whether it's a noun
@@ -36,7 +37,7 @@ defmodule KoreanSentenceAnalyser do
   
   def analyse_sentence(sentence) do
     HTTPoison.start
-    %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(sentence), @headers
+    %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(sentence), @headers, @options
     
     %{
       "tokens" =>
@@ -58,7 +59,7 @@ defmodule KoreanSentenceAnalyser do
   
   def get_the_stem_of_a_word(word) do
     HTTPoison.start
-    %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(word), @headers
+    %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(word), @headers, @options
     
     case Jason.decode!(body) do
       [] -> nil
