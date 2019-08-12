@@ -61,7 +61,7 @@ defmodule KoreanSentenceAnalyser do
     %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(word), @headers
     
     case Jason.decode!(body) do
-      [] -> ""
+      [] -> nil
       result when is_list(result) ->
         hd(hd(result))
     end
