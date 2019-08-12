@@ -1,8 +1,7 @@
 version: '2.2'
 services:
   analyser:
-    build:
-      context: .
+    image: joriskok/korean_sentence_analyser:1.0.0
     container_name: analyser
     ports:
       - 5000:5000
