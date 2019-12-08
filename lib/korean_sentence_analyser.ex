@@ -1,70 +1,50 @@
 defmodule KoreanSentenceAnalyser do
-  @url "http://localhost:5000/analyse/"
-  @headers [{"Content-Type", "application/json"}]
-  @options [timeout: 50_000, recv_timeout: 50_000]
+  alias KoreanSentenceAnalyser.DataTypes.Substantive
+  alias KoreanSentenceAnalyser.DataTypes.Noun
+  alias KoreanSentenceAnalyser.DataTypes.Adverb
+  alias KoreanSentenceAnalyser.DataTypes.Adjective
 
   @moduledoc """
   Analyses Korean text
   Returns their stem/base form and additional information, like whether it's a noun
   """
-  
-  @doc """
-  Analyses a sentence
-  Returns a Map, or nil if nothing found
-  
-  Example response
-      iex> KoreanSentenceAnalyser.analyse_sentence("한국어 배우기가 재미있어용")
-      %{
-      "tokens" => [
-        %{
-          "token" => "한국어",
-          "type" => "Noun"
-        },
-        %{
-          "token" => "배우다",
-          "type" => "Verb"
-        },
-        %{
-          "token" => "재미있다",
-          "type" => "Adjective"
-        }
-      ]
-      }
-  """
+
   def analyse_sentence("") do
     nil
   end
-  
-  def analyse_sentence(sentence) do
-    HTTPoison.start
-    %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(sentence), @headers, @options
-    
-    %{
-      "tokens" =>
-        Jason.decode!(body)
-        |> Enum.map(fn [token, type] -> %{"token" => token, "type" => type} end)
-    }
-  end
-  
-  @doc """
-  Analyse a single word
-  Returns a string with the stem, or nil if empty
-  
-      iex> KoreanSentenceAnalyser.get_the_stem_of_a_word("완벽했지")
-      "완벽하다"
-  """
-  def get_the_stem_of_a_word("") do
+
+  def analyse_sentence(_sentence) do
     nil
   end
-  
-  def get_the_stem_of_a_word(word) do
-    HTTPoison.start
-    %{body: body, status_code: 200} = HTTPoison.get! @url <> URI.encode(word), @headers, @options
-    
-    case Jason.decode!(body) do
-      [] -> nil
-      result when is_list(result) ->
-        hd(hd(result))
-    end
+
+  def analyse_word("") do
+    nil
+  end
+
+  def analyse_word(word) do
+    with nil <- Substantive.given_name(word),
+         nil <- Substantive.family_name(word),
+         nil <- Noun.bible(word),
+         nil <- Noun.brand(word),
+         nil <- Noun.company_name(word),
+         nil <- Noun.congress(word),
+         nil <- Noun.entity(word),
+         nil <- Noun.fashion(word),
+         nil <- Noun.foreign(word),
+         nil <- Noun.geolocation(word),
+         nil <- Noun.kpop(word),
+         nil <- Noun.lol(word),
+         nil <- Noun.name(word),
+         nil <- Noun.neologism(word),
+         nil <- Noun.nouns(word),
+         nil <- Noun.pokemon(word),
+         nil <- Noun.profane(word),
+         nil <- Noun.slang(word),
+         nil <- Noun.spam(word),
+         nil <- Noun.twitter(word),
+         nil <- Noun.wikipedia_title_noun(word),
+         nil <- Adverb.adverb(word),
+         nil <- Adjective.adjective(word),
+         do: %{}
   end
 end

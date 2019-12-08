@@ -17,7 +17,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
       docs: [
         main: "KoreanSentenceAnalyser",
         extras: ["README.md"]
-      ],
+      ]
     ]
   end
 

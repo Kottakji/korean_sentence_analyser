@@ -5,7 +5,6 @@ otp_release:
   - 22.0
 sudo: false
 before_script:
-  - docker-compose up -d
   - mix deps.get
 script:
   - mix test
