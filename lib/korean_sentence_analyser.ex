@@ -3,6 +3,7 @@ defmodule KoreanSentenceAnalyser do
   alias KoreanSentenceAnalyser.DataTypes.Noun
   alias KoreanSentenceAnalyser.DataTypes.Adverb
   alias KoreanSentenceAnalyser.DataTypes.Adjective
+  alias KoreanSentenceAnalyser.DataTypes.Verb
 
   @moduledoc """
   Analyses Korean text
@@ -45,6 +46,7 @@ defmodule KoreanSentenceAnalyser do
          nil <- Noun.wikipedia_title_noun(word),
          nil <- Adverb.adverb(word),
          nil <- Adjective.adjective(word),
+         nil <- Verb.verb(word),
          do: %{}
   end
 end
