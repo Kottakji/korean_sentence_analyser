@@ -5,7 +5,8 @@ defmodule KoreanSentenceAnalyser do
   alias KoreanSentenceAnalyser.DataTypes.Adjective
   alias KoreanSentenceAnalyser.DataTypes.Verb
   alias KoreanSentenceAnalyser.DataTypes.Conjunction
-  alias KoreanSentenceAnalyser.KoreanUnicode
+  alias KoreanSentenceAnalyser.DataTypes.Modifier
+  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   
   @moduledoc """
   Analyses Korean text
@@ -31,6 +32,15 @@ defmodule KoreanSentenceAnalyser do
   end
   
   def analyse_word(word) do
+    case find(word) do
+      nil ->
+        find(Modifier.remove(word))
+      match ->
+        match
+    end
+  end
+  
+  defp find(word) do
     with nil <- Substantive.given_name(word),
          nil <- Substantive.family_name(word),
          nil <- Conjunction.conjunction(word),
@@ -56,6 +66,6 @@ defmodule KoreanSentenceAnalyser do
          nil <- Adverb.adverb(word),
          nil <- Adjective.adjective(word),
          nil <- Verb.verb(word),
-         do: %{}
+         do: nil
   end
 end

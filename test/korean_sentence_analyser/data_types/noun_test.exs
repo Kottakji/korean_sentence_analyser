@@ -204,7 +204,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "brand - 폴로" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("폴로이다") == %{
@@ -214,7 +214,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "company name - 한진" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("한진이라고") == %{
@@ -224,7 +224,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "congress - 강강강" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("강강강이라고") == %{
@@ -234,7 +234,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "entity - 가스요금" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("가스요금이라고") == %{
@@ -244,7 +244,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "fashion - 후리스" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("후리스이라고") == %{
@@ -254,7 +254,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "foreign - 고이치" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("고이치이라고") == %{
@@ -264,7 +264,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "geolocation - 호치민" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("호치민이라고") == %{
@@ -274,7 +274,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "kpop - 강수지" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("강수지이라고") == %{
@@ -284,7 +284,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "lol - 노틸러스" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("노틸러스의") == %{
@@ -294,7 +294,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "names - 김유이" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("김유이이라고") == %{
@@ -304,7 +304,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "neologism - 떡코" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("떡코이라고") == %{
@@ -314,7 +314,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "nouns - 객공잡이" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("객공잡이이라고") == %{
@@ -324,7 +324,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "pokemon - 기가이어스" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("기가이어스이라고") == %{
@@ -334,7 +334,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "profane - 로리콘" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("로리콘의") == %{
@@ -344,7 +344,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "slangs - 가까오떡" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("가까오떡의") == %{
@@ -354,7 +354,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "spam - 강원랜드" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("강원랜드의") == %{
@@ -364,7 +364,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "twitter - 해쉬태그" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("해쉬태그의") == %{
@@ -374,7 +374,7 @@ defmodule NounTest do
         }
       )
     end
-  
+    
     test "wikipedia title nouns - 가가미모치" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("가가미모치의") == %{
@@ -384,5 +384,15 @@ defmodule NounTest do
         }
       )
     end
+  end
+  
+  describe "We can find nouns when they have modifiers attached - " do
+    test "한표" do
+      assert_value KoreanSentenceAnalyser.analyse_word("한표") == %{
+                     "specific_type" => "Noun",
+                     "token" => "표",
+                     "type" => "Noun"
+                   }
     end
+  end
 end

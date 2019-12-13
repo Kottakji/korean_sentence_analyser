@@ -23,12 +23,21 @@ defmodule AdjectiveTest do
       )
     end
     
-    @tag :now
     test "소중한" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("소중한") == %{
           "specific_type" => "Adjective",
           "token" => "소중하다",
+          "type" => "Adjective"
+        }
+      )
+    end
+
+    test "감미롭" do
+      assert_value(
+        KoreanSentenceAnalyser.analyse_word("감미롭") == %{
+          "specific_type" => "Adjective",
+          "token" => "감미롭다",
           "type" => "Adjective"
         }
       )

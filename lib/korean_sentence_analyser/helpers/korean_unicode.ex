@@ -1,4 +1,4 @@
-defmodule KoreanSentenceAnalyser.KoreanUnicode do
+defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
   @moduledoc """
   Contains functions helpful in dealing with Hangul
   """

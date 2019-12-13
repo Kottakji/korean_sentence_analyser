@@ -3,11 +3,13 @@ defmodule ExampleTweetsTest do
   import AssertValue
 
   describe "Example tweets -" do
-    @tag :current
-    # 소중한 fix for adjectives
-    # 한표, dunno what that is
     test "투표......당신의 소중한  한표....ㅋㅋ" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("투표....... 당신의 소중한  한표 .... ㅋㅋ")
+      assert_value KoreanSentenceAnalyser.analyse_sentence("투표....... 당신의 소중한  한표 .... ㅋㅋ") == [
+                     %{"specific_type" => "Noun", "token" => "투표", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "당신", "type" => "Noun"},
+                     %{"specific_type" => "Adjective", "token" => "소중하다", "type" => "Adjective"},
+                     %{"specific_type" => "Noun", "token" => "표", "type" => "Noun"}
+                   ]
     end
   end
 end

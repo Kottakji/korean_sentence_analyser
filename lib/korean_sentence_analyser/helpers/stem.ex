@@ -1,4 +1,4 @@
-defmodule KoreanSentenceAnalyser.Stem do
+defmodule KoreanSentenceAnalyser.Helpers.Stem do
   @moduledoc """
   We use unicode to find the base of the character
   This way we can turn 냈 into 내
@@ -9,7 +9,7 @@ defmodule KoreanSentenceAnalyser.Stem do
   @start_location_in_unicode 44032
   @characters_per_initial 588
   @characters_per_medial 28
-  
+
   @doc """
   This method can be destructive
   늘다 can be turned into 느다

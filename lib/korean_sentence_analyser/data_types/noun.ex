@@ -1,6 +1,7 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Noun do
-  import KoreanSentenceAnalyser.DataAnalyser
-  alias KoreanSentenceAnalyser.Josa
+  alias KoreanSentenceAnalyser.DataTypes.Josa
+  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Noun"
   
   def bible(word) do
@@ -80,19 +81,21 @@ defmodule KoreanSentenceAnalyser.DataTypes.Noun do
   end
   
   defp find(word, file, type) do
-    # Try to find without removing the Josa
-    result = word
-             |> find_in_file(file)
-             |> print_result(@data_type, type)
-    
-    case result do
-      nil ->
-        # Try to find with removing the Josa
-        word
-        |> Josa.remove()
-        |> find_in_file(file)
-        |> print_result(@data_type, type)
-      result -> result
-    end
+    with nil <- find_basic(word, file, type),
+         nil <- find_with_removing_josa(word, file, type),
+         do: nil
+  end
+  
+  defp find_basic(word, file, type) do
+    word
+    |> Dict.find_in_file(file)
+    |> Formatter.print_result(@data_type, type)
+  end
+  
+  defp find_with_removing_josa(word, file, type) do
+    word
+    |> Josa.remove()
+    |> Dict.find_in_file(file)
+    |> Formatter.print_result(@data_type, type)
   end
 end

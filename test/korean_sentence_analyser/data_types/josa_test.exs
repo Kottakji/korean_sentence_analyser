@@ -1,7 +1,7 @@
 defmodule JosaTest do
   use ExUnit.Case
   import AssertValue
-  import KoreanSentenceAnalyser.Josa
+  import KoreanSentenceAnalyser.DataTypes.Josa
   
   describe "We can remove Josa's from the end of words - " do
     test "밥의" do

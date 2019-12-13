@@ -1,7 +1,7 @@
 defmodule KoreanUnicodeTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.KoreanUnicode
+  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   
   describe "We can split a sentence - " do
     test "투표......당신의 소중한  한표....ㅋㅋ" do

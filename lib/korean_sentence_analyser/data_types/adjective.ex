@@ -1,12 +1,26 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
-  import KoreanSentenceAnalyser.DataAnalyser
+  alias KoreanSentenceAnalyser.DataAnalyser
+  alias KoreanSentenceAnalyser.DataTypes.Josa
+  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Adjective"
-
+  
   def adjective(word) do
-    # TODO we just need to remove the josa from the end, and see if we have a result
-    # TODO else we need to recursively normalize
-    # TODO then we can remove stem.ex
-    # TODO refactor
-    find_recursive_with_normalize("data/adjective/adjective.txt", word, @data_type)
+    new_word = Josa.remove(word)
+    case new_word === word do
+      true ->
+        DataAnalyser.remove_eomi_recursively(word, "data/adjective/adjective.txt", @data_type)
+        |> Formatter.add_ending("다")
+        |> Formatter.print_result(@data_type)
+      false ->
+        result = case Dict.find_in_file(new_word, "data/adjective/adjective.txt") do
+          nil -> Dict.find_in_file(new_word <> "하", "data/adjective/adjective.txt")
+          word -> word
+        end
+        
+        result
+        |> Formatter.add_ending("다")
+        |> Formatter.print_result(@data_type)
+    end
   end
 end

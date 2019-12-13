@@ -1,8 +1,11 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Verb do
-  import KoreanSentenceAnalyser.DataAnalyser
+  alias KoreanSentenceAnalyser.DataAnalyser
+  alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Verb"
   
   def verb(word) do
-    find_recursive_with_normalize("data/verb/verb.txt", word, @data_type)
+    DataAnalyser.remove_eomi_recursively(word, "data/verb/verb.txt", @data_type)
+    |> Formatter.add_ending("다")
+    |> Formatter.print_result(@data_type)
   end
 end
