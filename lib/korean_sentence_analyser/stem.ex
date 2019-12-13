@@ -14,6 +14,7 @@ defmodule KoreanSentenceAnalyser.Stem do
   This method can be destructive
   늘다 can be turned into 느다
   So, always check if the verb/adjective is already valid, before stemming
+  TODO remove this
   """
   def stem(word) do
     last_char = String.last(word)

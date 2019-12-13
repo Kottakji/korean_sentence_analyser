@@ -24,7 +24,7 @@ defmodule KoreanSentenceAnalyser.DataAnalyser do
   @doc """
   Find a word in a file
   """
-  def find_in_file(file, word) do
+  def find_in_file(word, file) do
     File.read!(file)
     |> String.split("\n")
     |> Enum.find(fn x -> x == word end)
@@ -59,7 +59,7 @@ defmodule KoreanSentenceAnalyser.DataAnalyser do
   If we can't normalize anymore, we try to stem it and if that doesn't work we return the word (stem = use unicode to find base)
   """
   def find_recursive_with_normalize(file, word, data_type) do
-    case find_in_file(file, word) do
+    case find_in_file(word, file) do
       nil ->
         new_word = normalize(word)
         cond do
@@ -69,7 +69,12 @@ defmodule KoreanSentenceAnalyser.DataAnalyser do
           new_word == word ->
             # It's the same one, do not keep looking for a word
             # We can try the stem as a final resort
-            find_in_file(file, stem(word))
+            IO.inspect word
+            IO.inspect stem(word)
+            
+            word
+            |> stem
+            |> find_in_file(file)
             |> add_ending("다")
             |> print_result(data_type, data_type)
           true ->

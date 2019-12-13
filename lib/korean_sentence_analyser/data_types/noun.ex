@@ -1,99 +1,98 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Noun do
   import KoreanSentenceAnalyser.DataAnalyser
+  alias KoreanSentenceAnalyser.Josa
   @data_type "Noun"
-
+  
   def bible(word) do
-    find_in_file("data/noun/bible.txt", word)
-    |> print_result(@data_type, "Bible")
+    find(word, "data/noun/bible.txt", "Bible")
   end
-
+  
   def brand(word) do
-    find_in_file("data/noun/brand.txt", word)
-    |> print_result(@data_type, "Brand")
+    find(word, "data/noun/brand.txt", "Brand")
   end
-
+  
   def company_name(word) do
-    find_in_file("data/noun/company_names.txt", word)
-    |> print_result(@data_type, "Company name")
+    find(word, "data/noun/company_names.txt", "Company name")
   end
-
+  
   def congress(word) do
-    find_in_file("data/noun/congress.txt", word)
-    |> print_result(@data_type, "Congress")
+    find(word, "data/noun/congress.txt", "Congress")
   end
-
+  
   def entity(word) do
-    find_in_file("data/noun/entities.txt", word)
-    |> print_result(@data_type, "Entities")
+    find(word, "data/noun/entities.txt", "Entities")
   end
-
+  
   def fashion(word) do
-    find_in_file("data/noun/fashion.txt", word)
-    |> print_result(@data_type, "Fashion")
+    find(word, "data/noun/fashion.txt", "Fashion")
   end
-
+  
   def foreign(word) do
-    find_in_file("data/noun/foreign.txt", word)
-    |> print_result(@data_type, "Foreign")
+    find(word, "data/noun/foreign.txt", "Foreign")
   end
-
+  
   def geolocation(word) do
-    find_in_file("data/noun/geolocations.txt", word)
-    |> print_result(@data_type, "Geolocation")
+    find(word, "data/noun/geolocations.txt", "Geolocation")
   end
-
+  
   def kpop(word) do
-    find_in_file("data/noun/kpop.txt", word)
-    |> print_result(@data_type, "K-pop")
+    find(word, "data/noun/kpop.txt", "K-pop")
   end
-
+  
   def lol(word) do
-    find_in_file("data/noun/lol.txt", word)
-    |> print_result(@data_type, "Lol")
+    find(word, "data/noun/lol.txt", "Lol")
   end
-
+  
   def name(word) do
-    find_in_file("data/noun/names.txt", word)
-    |> print_result(@data_type, "Name")
+    find(word, "data/noun/names.txt", "Name")
   end
-
+  
   def neologism(word) do
-    find_in_file("data/noun/neologism.txt", word)
-    |> print_result(@data_type, "Neologism")
+    find(word, "data/noun/neologism.txt", "Neologism")
   end
-
+  
   def nouns(word) do
-    find_in_file("data/noun/nouns.txt", word)
-    |> print_result(@data_type, "Noun")
+    find(word, "data/noun/nouns.txt", "Noun")
   end
-
+  
   def pokemon(word) do
-    find_in_file("data/noun/pokemon.txt", word)
-    |> print_result(@data_type, "Pokemon")
+    find(word, "data/noun/pokemon.txt", "Pokemon")
   end
-
+  
   def profane(word) do
-    find_in_file("data/noun/profane.txt", word)
-    |> print_result(@data_type, "Profane")
+    find(word, "data/noun/profane.txt", "Profane")
   end
-
+  
   def slang(word) do
-    find_in_file("data/noun/slangs.txt", word)
-    |> print_result(@data_type, "Slang")
+    find(word, "data/noun/slangs.txt", "Slang")
   end
-
+  
   def spam(word) do
-    find_in_file("data/noun/spam.txt", word)
-    |> print_result(@data_type, "Spam")
+    find(word, "data/noun/spam.txt", "Spam")
   end
-
+  
   def twitter(word) do
-    find_in_file("data/noun/twitter.txt", word)
-    |> print_result(@data_type, "Twitter")
+    find(word, "data/noun/twitter.txt", "Twitter")
   end
-
+  
   def wikipedia_title_noun(word) do
-    find_in_file("data/noun/wikipedia_title_nouns.txt", word)
-    |> print_result(@data_type, "Wikipedia title noun")
+    find(word, "data/noun/wikipedia_title_nouns.txt", "Wikipedia title noun")
+  end
+  
+  defp find(word, file, type) do
+    # Try to find without removing the Josa
+    result = word
+             |> find_in_file(file)
+             |> print_result(@data_type, type)
+    
+    case result do
+      nil ->
+        # Try to find with removing the Josa
+        word
+        |> Josa.remove()
+        |> find_in_file(file)
+        |> print_result(@data_type, type)
+      result -> result
+    end
   end
 end
