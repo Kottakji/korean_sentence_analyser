@@ -4,6 +4,7 @@ defmodule KoreanSentenceAnalyser do
   alias KoreanSentenceAnalyser.DataTypes.Adverb
   alias KoreanSentenceAnalyser.DataTypes.Adjective
   alias KoreanSentenceAnalyser.DataTypes.Verb
+  alias KoreanSentenceAnalyser.DataTypes.Conjunction
   
   @moduledoc """
   Analyses Korean text
@@ -25,6 +26,7 @@ defmodule KoreanSentenceAnalyser do
   def analyse_word(word) do
         with nil <- Substantive.given_name(word),
              nil <- Substantive.family_name(word),
+             nil <- Conjunction.conjunction(word),
              nil <- Noun.bible(word),
              nil <- Noun.brand(word),
              nil <- Noun.company_name(word),
