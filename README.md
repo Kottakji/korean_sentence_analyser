@@ -5,6 +5,10 @@
 
 Docs: [https://hexdocs.pm/korean_sentence_analyser](https://hexdocs.pm/korean_sentence_analyser).
 
+Note: Currently integrating native Elixir support for this package (instead of relying on a python Docker image). You can find the Docker files here:
+https://github.com/JorisKok/korean_sentence_analyser/blob/3391529b369f042cfd916d2a2c8f79f2c2d72c92/Dockerfile
+https://github.com/JorisKok/korean_sentence_analyser/blob/3391529b369f042cfd916d2a2c8f79f2c2d72c92/docker-compose.yml
+
 ## How to use
 
 Add to mix.exs
@@ -20,7 +24,6 @@ end
 Start the python flask interface (mini api)
 
 ```docker-compose up -d```
-
 
 ##### For sentence analysis
 ```elixir
