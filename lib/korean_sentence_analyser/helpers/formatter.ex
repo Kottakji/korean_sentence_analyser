@@ -10,6 +10,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Formatter do
   def add_ending(word, ending) do
     case word do
       nil -> nil
+      "" -> nil
       word -> word <> ending
     end
   end
@@ -24,7 +25,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Formatter do
       value -> %{"token" => value, "type" => type, "specific_type" => specific_type}
     end
   end
-  
+
   def print_result(value, type) do
     print_result(value, type, type)
   end

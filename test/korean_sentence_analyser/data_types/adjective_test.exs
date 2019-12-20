@@ -22,7 +22,7 @@ defmodule AdjectiveTest do
         }
       )
     end
-    
+
     test "소중한" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("소중한") == %{

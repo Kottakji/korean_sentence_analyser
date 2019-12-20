@@ -1,7 +1,7 @@
 defmodule VerbTest do
   use ExUnit.Case
   import AssertValue
-  
+
   describe "We can find verbs - " do
     test "먹다" do
       assert_value(
@@ -12,7 +12,7 @@ defmodule VerbTest do
         }
       )
     end
-    
+
     test "먹어" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("먹어") == %{
@@ -52,7 +52,7 @@ defmodule VerbTest do
         }
       )
     end
-    
+
     test "하시다" do
       assert_value(
         KoreanSentenceAnalyser.analyse_word("하시다") == %{

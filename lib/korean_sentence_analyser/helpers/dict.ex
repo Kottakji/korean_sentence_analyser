@@ -11,7 +11,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Dict do
     |> String.split("\n")
     |> Enum.find(fn x -> x == word end)
   end
-  
+
   @doc """
   Find the ending of a word in a file
   """

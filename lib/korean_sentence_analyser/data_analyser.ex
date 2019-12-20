@@ -1,7 +1,7 @@
 defmodule KoreanSentenceAnalyser.DataAnalyser do
   alias KoreanSentenceAnalyser.DataTypes.Eomi
   alias KoreanSentenceAnalyser.Helpers.Stem
-  
+
   @doc """
   Remove Eomi from the words
   Turn 해요 into 하 etc
@@ -16,7 +16,7 @@ defmodule KoreanSentenceAnalyser.DataAnalyser do
   def remove_eomi_recursively(word, file, data_type) do
     Eomi.remove_recursively(word, file, data_type)
   end
-  
+
   @doc """
   Can remove past/future tense etc
   For example it can help find that 냈(다) is 내

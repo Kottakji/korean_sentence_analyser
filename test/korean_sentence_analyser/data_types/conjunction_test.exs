@@ -22,6 +22,5 @@ defmodule ConjunctionTest do
         }
       )
     end
-  
   end
 end

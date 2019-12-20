@@ -22,5 +22,15 @@ defmodule SubstantiveTest do
         }
       )
     end
+
+    test "성규냐 - which includes a josa" do
+      assert_value(
+        KoreanSentenceAnalyser.analyse_word("성규냐") == %{
+          "specific_type" => "Given name",
+          "token" => "성규",
+          "type" => "Substantive"
+        }
+      )
+    end
   end
 end
