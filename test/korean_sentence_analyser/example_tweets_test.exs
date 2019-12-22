@@ -9,14 +9,14 @@ defmodule ExampleTweetsTest do
           %{"specific_type" => "Noun", "token" => "투표", "type" => "Noun"},
           %{"specific_type" => "Noun", "token" => "당신", "type" => "Noun"},
           %{"specific_type" => "Adjective", "token" => "소중하다", "type" => "Adjective"},
+          %{"specific_type" => "Modifier", "token" => "한", "type" => "Modifier"},
           %{"specific_type" => "Noun", "token" => "표", "type" => "Noun"}
         ]
       )
     end
 
     test "성규목은근길다ㅏ 성열이냐 성규냐.." do
-      # 성규 = name, 목 = noun, 은근 = adjective? , 길다 = verb
-      # TODO 은근 is not a noun, but an adjective
+      # Improvement 은근 is not a noun, but an adjective
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("성규목은근길다ㅏ 성열이냐 성규냐..") == [
           %{"specific_type" => "Given name", "token" => "성규", "type" => "Substantive"},
@@ -82,7 +82,7 @@ defmodule ExampleTweetsTest do
                      "RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com"
                    ) == [
                      %{"specific_type" => "Noun", "token" => "현장", "type" => "Noun"},
-                     # TODO 고열량
+                     %{"specific_type" => "Modifier", "token" => "고", "type" => "Modifier"},
                      %{"specific_type" => "Noun", "token" => "열량", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "표시", "type" => "Noun"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "한정판", "type" => "Noun"},
@@ -91,6 +91,45 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "면", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "안", "type" => "Substantive"},
                      %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
+                   ]
+    end
+    
+    test "@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)") == [
+                     %{"specific_type" => "Noun", "token" => "꽃", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "밭", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "과거", "type" => "Noun"},
+                     %{"specific_type" => "Verb", "token" => "오르다", "type" => "Verb"},
+                     %{"specific_type" => "Noun", "token" => "미래", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "산", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "초면", "type" => "Noun"}
+                   ]
+    end
+    
+    test "@user 싫어. 이거 놔! (소름돋았는지 강하게 발버둥) 놔! 놓으란 말이야!(바둥바둥" do
+      # Improvement correct 바둥바둥 to 버둥버둥
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 싫어. 이거 놔! (소름돋았는지 강하게 발버둥) 놔! 놓으란 말이야!(바둥바둥") == [
+                     %{"specific_type" => "Adjective", "token" => "싫다", "type" => "Adjective"},
+                     %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"},
+                     %{"specific_type" => "Noun", "token" => "소름", "type" => "Noun"},
+                     %{"specific_type" => "Adjective", "token" => "돋다", "type" => "Adjective"},
+                     %{"specific_type" => "Adjective", "token" => "강하다", "type" => "Adjective"},
+                     %{"specific_type" => "Noun", "token" => "발", "type" => "Noun"},
+                     %{"specific_type" => "Verb", "token" => "놓다", "type" => "Verb"},
+                     %{"specific_type" => "Verb", "token" => "말다", "type" => "Verb"},
+                     %{"specific_type" => "Noun", "token" => "바", "type" => "Noun"}
+                   ]
+    end
+
+    test "아놔.ㅋㅋ 중랑구는 뭔데.ㅋㅋ 강남3구에 낀다냐.ㅋㅋㅋ" do
+      # Improvements : 데 should not be here
+      assert_value KoreanSentenceAnalyser.analyse_sentence("아놔.ㅋㅋ 중랑구는 뭔데.ㅋㅋ 강남3구에 낀다냐.ㅋㅋㅋ") == [
+                     %{"specific_type" => "Geolocation", "token" => "중랑구", "type" => "Noun"},
+                     %{"specific_type" => "Modifier", "token" => "뭔", "type" => "Modifier"},
+                     %{"specific_type" => "Noun", "token" => "데", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "강남", "type" => "Noun"},
+                     %{"specific_type" => "Family name", "token" => "구", "type" => "Substantive"},
+                     %{"specific_type" => "Verb", "token" => "끼다", "type" => "Verb"}
                    ]
     end
   end

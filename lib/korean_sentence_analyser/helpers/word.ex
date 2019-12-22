@@ -5,13 +5,14 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   alias KoreanSentenceAnalyser.DataTypes.Adjective
   alias KoreanSentenceAnalyser.DataTypes.Verb
   alias KoreanSentenceAnalyser.DataTypes.Conjunction
-  alias KoreanSentenceAnalyser.DataTypes.Modifier
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
-  alias KoreanSentenceAnalyser.Helpers.SplitWord
 
   @doc """
   Find a word
   """
+  def find("") do
+    nil
+  end
+  
   def find(word) do
     with nil <- Substantive.given_name(word),
          nil <- Substantive.family_name(word),
