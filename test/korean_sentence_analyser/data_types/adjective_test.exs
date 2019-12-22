@@ -43,4 +43,14 @@ defmodule AdjectiveTest do
       )
     end
   end
+
+  describe "We can find adjectives after removing the modifier - " do
+    test "없어요" do
+      assert_value KoreanSentenceAnalyser.analyse_word("없어요") == %{
+                     "specific_type" => "Adjective",
+                     "token" => "없다",
+                     "type" => "Adjective"
+                   }
+    end
+  end
 end
