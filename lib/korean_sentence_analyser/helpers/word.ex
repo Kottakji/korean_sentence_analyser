@@ -12,7 +12,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   def find("") do
     nil
   end
-  
+
   def find(word) do
     with nil <- Substantive.given_name(word),
          nil <- Substantive.family_name(word),

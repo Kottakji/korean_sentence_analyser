@@ -23,11 +23,11 @@ defmodule ModifierTest do
                      %{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}
                    ]
     end
-    
+
     test "3구" do
       assert_value Modifier.find("3구") == %{"specific_type" => "Modifier", "token" => "구", "type" => "Modifier"}
     end
-    
+
     test "중랑구는" do
       # This is not a modifier, so should return nil
       assert_value Modifier.find("중랑구는") == nil
@@ -56,6 +56,5 @@ defmodule ModifierTest do
                      %{"specific_type" => "Family name", "token" => "구", "type" => "Substantive"}
                    ]
     end
-
   end
 end

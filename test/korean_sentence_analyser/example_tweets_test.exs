@@ -54,9 +54,7 @@ defmodule ExampleTweetsTest do
     end
 
     test "Long string ㅋㅋㅋㅋㅋ" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence(
-                     "@user ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ오른ㄴ쪽손엨ㅋㅋㅋㅋ컄ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅁㅋㅋㅋㅋㅋㅋㅇㅋㅇㅋㅌㅌㅋㅋㅋ그거먼ㄴ데옄ㅋㅋㅋㅋㅋㅋㅋ"
-                   ) == [
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ오른ㄴ쪽손엨ㅋㅋㅋㅋ컄ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅁㅋㅋㅋㅋㅋㅋㅇㅋㅇㅋㅌㅌㅋㅋㅋ그거먼ㄴ데옄ㅋㅋㅋㅋㅋㅋㅋ") == [
                      %{"specific_type" => "Noun", "token" => "오른", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "쪽", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "손", "type" => "Substantive"},
@@ -78,9 +76,7 @@ defmodule ExampleTweetsTest do
     end
 
     test "RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence(
-                     "RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com"
-                   ) == [
+      assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com") == [
                      %{"specific_type" => "Noun", "token" => "현장", "type" => "Noun"},
                      %{"specific_type" => "Modifier", "token" => "고", "type" => "Modifier"},
                      %{"specific_type" => "Noun", "token" => "열량", "type" => "Noun"},
@@ -93,7 +89,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
                    ]
     end
-    
+
     test "@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)") == [
                      %{"specific_type" => "Noun", "token" => "꽃", "type" => "Noun"},
@@ -105,7 +101,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "초면", "type" => "Noun"}
                    ]
     end
-    
+
     test "@user 싫어. 이거 놔! (소름돋았는지 강하게 발버둥) 놔! 놓으란 말이야!(바둥바둥" do
       # Improvement correct 바둥바둥 to 버둥버둥
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 싫어. 이거 놔! (소름돋았는지 강하게 발버둥) 놔! 놓으란 말이야!(바둥바둥") == [
