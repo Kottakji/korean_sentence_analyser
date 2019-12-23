@@ -128,5 +128,34 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "끼다", "type" => "Verb"}
                    ]
     end
+
+    test "...계단의 핏자욱이..." do
+      # 핏자욱 is a spelling error
+      # 요우 is a co-worker
+      # 생각한다면 is a verb
+      # 수도 is grammar, what to do!?
+      # 당했다 is a verb? 당하다
+      assert_value KoreanSentenceAnalyser.analyse_sentence(
+                     "...계단의 핏자욱이 쿠리야마 요우의 것이라고 생각한다면... 왜? 굳이 4층에서 3층으로 내려온걸까? 물론 올라갔을 수도 있지만. 4층에서 내려오던 범인과 마주쳤는데, 급습을 당했다?"
+                   ) == [
+                     %{"specific_type" => "Noun", "token" => "계단", "type" => "Noun"},
+                     %{"specific_type" => "Foreign", "token" => "쿠리야마", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "요우", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "것", "type" => "Noun"},
+                     %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"},
+                     %{"specific_type" => "Noun", "token" => "왜", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "굳이", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "층", "type" => "Noun"},
+                     %{"specific_type" => "Verb", "token" => "내려오다", "type" => "Verb"},
+                     %{"specific_type" => "Adverb", "token" => "물론", "type" => "Adverb"},
+                     %{"specific_type" => "Verb", "token" => "올라가다", "type" => "Verb"},
+                     %{"specific_type" => "Noun", "token" => "수도", "type" => "Noun"},
+                     %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
+                     %{"specific_type" => "Noun", "token" => "범인", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "마주", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "급습", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "당", "type" => "Noun"}
+                   ]
+    end
   end
 end

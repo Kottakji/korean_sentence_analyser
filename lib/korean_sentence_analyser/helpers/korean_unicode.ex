@@ -1,42 +1,49 @@
 defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
   @moduledoc """
   Contains functions helpful in dealing with Hangul
+  
+  Explanation can be found at:
+  https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode
   """
-
+  @jamo_start_location_in_unicode 4352
+  @start_location_in_unicode 44032
+  @characters_per_initial 588
+  @characters_per_medial 28
+  
   @doc """
   Split a sentence into only Korean words
   """
   def split("") do
     ""
   end
-
-  def split(<<decimal_point::utf8, rest::binary>>) do
+  
+  def split(<<decimal_point :: utf8, rest :: binary>>) do
     split(rest, create_from_decimal_point(decimal_point), "")
   end
-
-  defp split(<<decimal_point::utf8, rest::binary>>, nil, acc) do
+  
+  defp split(<<decimal_point :: utf8, rest :: binary>>, nil, acc) do
     acc =
       case String.last(acc) do
         nil -> acc
         " " -> acc
         _character -> acc <> " "
       end
-
+    
     split(rest, create_from_decimal_point(decimal_point), acc)
   end
-
-  defp split(<<decimal_point::utf8, rest::binary>>, character, acc) do
+  
+  defp split(<<decimal_point :: utf8, rest :: binary>>, character, acc) do
     split(rest, create_from_decimal_point(decimal_point), acc <> character)
   end
-
+  
   defp split("", nil, acc) do
     String.split(acc)
   end
-
+  
   defp split("", character, acc) do
     String.split(acc <> character)
   end
-
+  
   @doc """
   Create a Hangul character from a decimal point
   If it's not a valid Hangul character, we return a whitespace
@@ -44,10 +51,69 @@ defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
   """
   def create_from_decimal_point(decimal_point)
       when decimal_point <= 55209 and decimal_point >= 44032 do
-    <<decimal_point::utf8>>
+    <<decimal_point :: utf8>>
   end
-
+  
   def create_from_decimal_point(_decimal_point) do
     nil
+  end
+  
+  @doc """
+  Does it start with a certain hangul?
+  https://en.wikipedia.org/wiki/Hangul
+  """
+  def starts_with?("", _match) do
+    false
+  end
+
+  def starts_with?(nil, _match) do
+    false
+  end
+  
+  def starts_with?(word, match) do
+    deduct_jamo_start(get_unicode_decimal_value(match)) == Float.floor(deduct_start(get_unicode_decimal_value(String.first(word))) / @characters_per_initial)
+  end
+  
+  def get_unicode_decimal_value(<<decimal_value :: utf8>>) do
+    decimal_value
+  end
+  
+  def deduct_jamo_start(decimal_value) do
+    decimal_value - @jamo_start_location_in_unicode
+  end
+  
+  def deduct_start(decimal_value) do
+    decimal_value - @start_location_in_unicode
+  end
+  
+  def get_initial_consonant(decimal_value) do
+    (decimal_value / @characters_per_initial)
+    |> floor
+  end
+
+  def get_medial_vowel(decimal_value) do
+    decimal_value = decimal_value - get_initial_consonant(decimal_value) * @characters_per_initial
+  
+    (decimal_value / @characters_per_medial)
+    |> floor
+  end
+
+  def get_final_consonant(decimal_value) do
+    decimal_value = decimal_value - get_initial_consonant(decimal_value) * @characters_per_initial
+  
+    (decimal_value - get_medial_vowel(decimal_value) * @characters_per_medial)
+    |> floor
+  end
+
+  def create_character(
+         initial_consonant_decimal_value,
+         medial_vowel_decimal_value,
+         final_consonant_decimal_value
+       ) do
+    decimal =
+      @start_location_in_unicode + initial_consonant_decimal_value * @characters_per_initial +
+        medial_vowel_decimal_value * @characters_per_medial + final_consonant_decimal_value
+  
+    <<decimal::utf8>>
   end
 end

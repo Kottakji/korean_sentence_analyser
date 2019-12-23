@@ -22,7 +22,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
 
   defp find_at_beginning(word) do
     with modifier_match when not is_nil(modifier_match) <- Dict.find_beginning_in_file(word, "data/substantives/modifier.txt"),
-         remaining when not is_nil(remaining) <- get_remaining_word_remove_from_beginning(word, modifier_match),
+         remaining when not is_nil(remaining) <- Word.get_remaining(word, modifier_match),
          remaining_match when not is_nil(remaining_match) <- Word.find(remaining),
          do: [
            Formatter.print_result(modifier_match, @data_type),
@@ -32,7 +32,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
 
   defp find_at_ending(word) do
     with modifier_match when not is_nil(modifier_match) <- Dict.find_ending_in_file(word, "data/substantives/modifier.txt"),
-         remaining when not is_nil(remaining) <- get_remaining_word_remove_from_ending(word, modifier_match),
+         remaining when not is_nil(remaining) <- Word.get_remaining(word, modifier_match),
          remaining_match when not is_nil(remaining_match) <- Word.find(remaining),
          do: [
            remaining_match,
@@ -60,21 +60,8 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
 
       match ->
         # Return the remaining word
-        get_remaining_word_remove_from_beginning(word, match)
+        Word.get_remaining(word, match)
     end
   end
 
-  defp get_remaining_word_remove_from_beginning(word, match) do
-    case Regex.replace(Regex.compile!("^" <> match, "u"), word, "") do
-      "" -> nil
-      string -> string
-    end
-  end
-
-  defp get_remaining_word_remove_from_ending(word, match) do
-    case Regex.replace(Regex.compile!(match <> "$", "u"), word, "") do
-      "" -> nil
-      string -> string
-    end
-  end
 end

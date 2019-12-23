@@ -22,4 +22,30 @@ defmodule KoreanUnicodeTest do
       assert_value(KoreanUnicode.split("") == "")
     end
   end
+
+  describe "We can find if the character starts with a certain hangul - " do
+    test "가" do
+      assert_value(KoreanUnicode.starts_with?("가", "ᄀ") == true)
+    end
+
+    test "하" do
+      assert_value(KoreanUnicode.starts_with?("하", "ᄒ") == true)
+    end
+
+    test "되" do
+      assert_value(KoreanUnicode.starts_with?("되", "ᄃ") == true)
+    end
+
+    test "ᄄ" do
+      assert_value(KoreanUnicode.starts_with?("되", "ᄄ") == false)
+    end
+
+    test "ㅎ" do
+      assert_value(KoreanUnicode.starts_with?("ㅋ", "ㅎ") == false)
+    end
+
+    test "싸" do
+      assert_value(KoreanUnicode.starts_with?("싸", "ᄊ") == true)
+    end
+  end
 end
