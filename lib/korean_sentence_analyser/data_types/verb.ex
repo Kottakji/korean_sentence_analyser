@@ -1,11 +1,38 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Verb do
   alias KoreanSentenceAnalyser.DataTypes.Eomi
   alias KoreanSentenceAnalyser.Helpers.Formatter
+  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias KoreanSentenceAnalyser.Helpers.Stem
   @data_type "Verb"
-
-  def verb(word) do
-    Eomi.remove_recursively(word, "data/verb/verb.txt", @data_type)
+  
+  def find(word) do
+    word
+    |> find("data/verb/verb.txt")
     |> Formatter.add_ending("다")
     |> Formatter.print_result(@data_type)
+  end
+
+  defp find(nil, _) do
+    nil
+  end
+
+  defp find("", _) do
+    nil
+  end
+  
+  defp find(word, file) do
+    case Dict.find_in_file(word, file) do
+      nil ->
+        case Eomi.remove(word) do
+          new_word when new_word != word ->
+            find(new_word, file)
+          _ ->
+            word
+            |> Stem.stem
+            |> Dict.find_in_file(file)
+        end
+      match ->
+        match
+    end
   end
 end

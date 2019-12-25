@@ -14,6 +14,10 @@ defmodule StemTest do
     test "할" do
       assert_value(stem("할") == "하")
     end
+    
+    test "했" do
+      assert_value(stem("했") == "하")
+    end
 
     test "냈다" do
       assert_value(stem("냈") == "내")

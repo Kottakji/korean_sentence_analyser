@@ -10,6 +10,10 @@ defmodule ModifiedNounTest do
           %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
       )
     end
+    
+    test "당했다" do
+      assert_value ModifiedNoun.find("당했다") == %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
+    end
   end
 
   describe "We can find adjectives from nouns directly - " do

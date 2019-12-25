@@ -11,7 +11,8 @@ defmodule KoreanSentenceAnalyser.Helpers.Formatter do
     case word do
       nil -> nil
       "" -> nil
-      word -> word <> ending
+      word ->
+        word <> ending
     end
   end
 

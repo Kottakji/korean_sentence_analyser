@@ -61,7 +61,13 @@ defmodule KoreanSentenceAnalyser.Helpers.Stem do
           )
         
         # Replace the last character
-        String.replace_suffix(word, last_char, character)
+        word = String.replace_suffix(word, last_char, character)
+        
+        case conjugate(word, character) do # Conjugate again for 했 etc
+          nil -> word
+          match -> match
+        end
+        
       
       false ->
         # No need to replace anything

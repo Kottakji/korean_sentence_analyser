@@ -28,36 +28,6 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
     end
   end
 
-  @doc """
-  Remove Eomi recursively
-  """
-  def remove_recursively(word, file, data_type) do
-    case Dict.find_in_file(word, file) do
-      nil ->
-        new_word = remove(word)
-
-        cond do
-          new_word == "" ->
-            # Stop when the string is emptied
-            nil
-
-          new_word == word ->
-            # It's the same one, do not keep looking for a word
-            # We can try the stem as a final resort
-            word
-            |> Stem.stem()
-            |> Dict.find_in_file(file)
-
-          true ->
-            # Keep trying to find a word,
-            remove_recursively(new_word, file, data_type)
-        end
-
-      word ->
-        word
-    end
-  end
-
   defp remove_ending(word) do
     case find_ending(word) do
       nil ->
@@ -66,10 +36,13 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
 
       match ->
         # Replace the match, so we can create the stem
-        Regex.replace(Regex.compile!(match <> "$", "u"), word, "")
+        case Regex.replace(Regex.compile!(match <> "$", "u"), word, "") do
+          "" -> nil
+          match -> match
+        end
     end
   end
-
+  
   defp find_ending(word) do
     cond do
       # Those that do not appear in the eomi list
