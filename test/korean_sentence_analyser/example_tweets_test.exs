@@ -55,11 +55,8 @@ defmodule ExampleTweetsTest do
 
     test "Long string ㅋㅋㅋㅋㅋ" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ오른ㄴ쪽손엨ㅋㅋㅋㅋ컄ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅁㅋㅋㅋㅋㅋㅋㅇㅋㅇㅋㅌㅌㅋㅋㅋ그거먼ㄴ데옄ㅋㅋㅋㅋㅋㅋㅋ") == [
-                     %{"specific_type" => "Noun", "token" => "오른", "type" => "Noun"},
-                     %{"specific_type" => "Noun", "token" => "쪽", "type" => "Noun"},
-                     %{"specific_type" => "Family name", "token" => "손", "type" => "Substantive"},
-                     %{"specific_type" => "Noun", "token" => "그거", "type" => "Noun"},
-                     %{"specific_type" => "Noun", "token" => "데", "type" => "Noun"}
+                     %{"specific_type" => "Noun", "token" => "오른쪽", "type" => "Noun"},
+                     %{"specific_type" => "Family name", "token" => "손", "type" => "Substantive"}
                    ]
     end
 
@@ -118,7 +115,6 @@ defmodule ExampleTweetsTest do
     end
 
     test "아놔.ㅋㅋ 중랑구는 뭔데.ㅋㅋ 강남3구에 낀다냐.ㅋㅋㅋ" do
-      # Improvements : 데 should not be here
       assert_value KoreanSentenceAnalyser.analyse_sentence("아놔.ㅋㅋ 중랑구는 뭔데.ㅋㅋ 강남3구에 낀다냐.ㅋㅋㅋ") == [
                      %{"specific_type" => "Geolocation", "token" => "중랑구", "type" => "Noun"},
                      %{"specific_type" => "Modifier", "token" => "뭔", "type" => "Modifier"},
@@ -155,6 +151,15 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "마주", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "급습", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
+                   ]
+    end
+
+    test "@user 십ㅂ알 궁상맞잖아! 걍 먹어!" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 십ㅂ알 궁상맞잖아! 걍 먹어!") == [
+                     %{"specific_type" => "Profane", "token" => "씨발", "type" => "Noun"},
+                     %{"specific_type" => "Adjective", "token" => "궁상맞다", "type" => "Adjective"},
+                     %{"specific_type" => "Adverb", "token" => "걍", "type" => "Adverb"},
+                     %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
                    ]
     end
   end

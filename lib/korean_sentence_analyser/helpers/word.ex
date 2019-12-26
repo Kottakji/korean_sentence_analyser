@@ -6,6 +6,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   alias KoreanSentenceAnalyser.DataTypes.Verb
   alias KoreanSentenceAnalyser.DataTypes.Conjunction
   alias KoreanSentenceAnalyser.DataTypes.ModifiedNoun
+  alias KoreanSentenceAnalyser.Helpers.Typo
 
   @doc """
   Find a word and get their type (verb, noun etc)
@@ -15,6 +16,8 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   end
 
   def find(word) do
+    word = Typo.find(word)
+    
     with nil <- Substantive.given_name(word),
          nil <- Substantive.family_name(word),
          nil <- Conjunction.conjunction(word),
