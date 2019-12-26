@@ -2,7 +2,7 @@ defmodule KoreanSentenceAnalyser.Helpers.SplitWord do
   @moduledoc """
   Helpful module when dealing with words that do not have proper spacing
   """
-  
+
   alias KoreanSentenceAnalyser.Helpers.Word
 
   @doc """

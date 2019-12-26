@@ -1,6 +1,6 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Adverb do
   @moduledoc false
-  
+
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Adverb"

@@ -5,7 +5,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Substantive do
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Substantive"
-  
+
   @doc """
   Find if the word is a substantive
   """

@@ -22,8 +22,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
   end
 
   defp description do
-    "A tool to analyse Korean sentences\n
-     to get the stem/base of the words."
+    "A tool to analyse Korean sentences"
   end
 
   defp package do
@@ -38,6 +37,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {KoreanSentenceAnalyser, []},
       extra_applications: [:logger]
     ]
   end

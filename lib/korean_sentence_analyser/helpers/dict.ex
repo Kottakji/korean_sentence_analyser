@@ -2,22 +2,15 @@ defmodule KoreanSentenceAnalyser.Helpers.Dict do
   @moduledoc """
   Use our local dictionary to see if words exist
   """
-  
+
+  alias KoreanSentenceAnalyser.ETS.DictFile
   alias KoreanSentenceAnalyser.DataTypes.Josa
 
   @doc """
   Find a word in a file
   """
   def find_in_file(word, file) do
-    result =
-      File.read!(file)
-      |> String.split("\n")
-      |> Enum.find(fn x -> x == word end)
-
-    case result do
-      "" -> nil
-      match -> match
-    end
+    DictFile.find(word, file)
   end
 
   @doc """
@@ -35,33 +28,39 @@ defmodule KoreanSentenceAnalyser.Helpers.Dict do
   end
 
   @doc """
-  Find the ending of a word in a file
+  Finds the biggest word from the beginning of the word in the file
+  It does this going of the words in a dictionary file, that are ordered by length DESC
+  If the dictionary word matches at the start of the search word, it's a match
+  Because it's ordered, it will always find the biggest word at the start
+  For example:
+  Search on 한국대사관 will match 한국 (the biggest word from the start)
   """
-  def find_ending_in_file(word, file) do
-    result =
-      File.read!(file)
-      |> String.split("\n")
-      |> Enum.sort(&(String.length(&1) >= String.length(&2)))
-      |> Enum.find(fn x -> Regex.match?(Regex.compile!(x <> "$", "u"), word) end)
+  def find_beginning_in_file("", _file) do
+    nil
+  end
 
-    case result do
-      "" -> nil
+  def find_beginning_in_file(word, file) do
+    case DictFile.find(word, file) do
+      nil -> find_beginning_in_file(String.slice(word, 0..-2), file)
       match -> match
     end
   end
 
   @doc """
-  Find the beginning of a word in a file
+  Finds the biggest word from the ending of the word in the file
+  It does this going of the words in a dictionary file, that are ordered by length DESC
+  If the dictionary word matches at the end of the search word, it's a match
+  Because it's ordered, it will always find the biggest word at the end
+  For example:
+  Search on 한국대사관 will match 대사관 (the biggest word from the end)
   """
-  def find_beginning_in_file(word, file) do
-    result =
-      File.read!(file)
-      |> String.split("\n")
-      |> Enum.sort(&(String.length(&1) >= String.length(&2)))
-      |> Enum.find(fn x -> Regex.match?(Regex.compile!("^" <> x, "u"), word) end)
+  def find_ending_in_file("", _file) do
+    nil
+  end
 
-    case result do
-      "" -> nil
+  def find_ending_in_file(word, file) do
+    case DictFile.find(word, file) do
+      nil -> find_ending_in_file(String.slice(word, 1..-1), file)
       match -> match
     end
   end

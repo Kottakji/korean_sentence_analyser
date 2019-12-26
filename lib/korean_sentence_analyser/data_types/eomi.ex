@@ -2,11 +2,9 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
   @moduledoc """
   An Eomi is a conjugation added to Korean words
   """
-  
+
   alias KoreanSentenceAnalyser.DataTypes.PreEomi
   alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Stem
-  alias KoreanSentenceAnalyser.Helpers.Formatter
 
   @doc """
   Remove the Eomi from the word

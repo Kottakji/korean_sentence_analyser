@@ -4,7 +4,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   생각 is a noun, but 생각하다 is a verb
   은근 is a noun, but 은근하다 is an adjective
   """
-  
+
   alias KoreanSentenceAnalyser.DataTypes.Eomi
   alias KoreanSentenceAnalyser.Helpers.Formatter
   alias KoreanSentenceAnalyser.Helpers.Word

@@ -2,11 +2,18 @@ defmodule KoreanSentenceAnalyser do
   @moduledoc """
   Analyse Korean text
   """
+
+  use Application
   alias KoreanSentenceAnalyser.DataTypes.Modifier
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   alias KoreanSentenceAnalyser.Helpers.SplitWord
   alias KoreanSentenceAnalyser.Helpers.Word
+  alias KoreanSentenceAnalyser.ETS.DictFile
 
+  def start(_type, _args) do
+    DictFile.init()
+    Supervisor.start_link([], strategy: :one_for_one)
+  end
 
   @doc """
   Analyse a Korean sentence
