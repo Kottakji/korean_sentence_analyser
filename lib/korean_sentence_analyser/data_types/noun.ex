@@ -1,4 +1,6 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Noun do
+  @moduledoc false
+  
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Noun"

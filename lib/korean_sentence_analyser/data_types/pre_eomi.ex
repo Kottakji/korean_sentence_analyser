@@ -2,6 +2,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.PreEomi do
   @moduledoc """
   A pre-eomi is a conjugation added to Korean words at the beginning
   """
+  
   alias KoreanSentenceAnalyser.Helpers.Dict
   @file_path "data/verb/pre_eomi.txt"
 

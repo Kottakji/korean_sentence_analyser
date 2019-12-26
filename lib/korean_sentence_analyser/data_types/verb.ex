@@ -1,4 +1,6 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Verb do
+  @moduledoc false
+  
   alias KoreanSentenceAnalyser.DataTypes.Eomi
   alias KoreanSentenceAnalyser.Helpers.Formatter
   alias KoreanSentenceAnalyser.Helpers.Dict

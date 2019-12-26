@@ -3,6 +3,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
   A modifier changes, clarifies, qualifies, or limits a particular word in a sentence in order to add emphasis, explanation, or detail.
   For example in 한표 (one ticket), 한 is the modifier, 표 is the noun
   """
+  
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Formatter
   alias KoreanSentenceAnalyser.Helpers.Word
