@@ -4,18 +4,22 @@ defmodule KoreanSentenceAnalyser.DataTypes.Verb do
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Stem
   @data_type "Verb"
+  @file_path  "data/verb/verb.txt"
   
+  @doc """
+  Find if the word is a verb
+  """
   def find(word) do
     word
-    |> find("data/verb/verb.txt")
+    |> find(@file_path)
     |> Formatter.add_ending("다")
     |> Formatter.print_result(@data_type)
   end
-
+  
   defp find(nil, _) do
     nil
   end
-
+  
   defp find("", _) do
     nil
   end
@@ -28,7 +32,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Verb do
             find(new_word, file)
           _ ->
             word
-            |> Stem.stem
+            |> Stem.find
             |> Dict.find_in_file(file)
         end
       match ->

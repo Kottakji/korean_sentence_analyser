@@ -73,24 +73,41 @@ defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
   def starts_with?(word, match) do
     deduct_jamo_start(get_unicode_decimal_value(match)) == Float.floor(deduct_start(get_unicode_decimal_value(String.first(word))) / @characters_per_initial)
   end
-  
+
+  @doc """
+  Get the decimal value of a character
+  """
   def get_unicode_decimal_value(<<decimal_value :: utf8>>) do
     decimal_value
   end
-  
+
+  @doc """
+  Deduct the Jamo (ㅁ,ㅋ,ㄱ,ㅏ etc) start location in unicode from the decimal value
+  """
   def deduct_jamo_start(decimal_value) do
     decimal_value - @jamo_start_location_in_unicode
   end
-  
+
+  @doc """
+  Deduct the start location in unicode from the decimal value
+  """
   def deduct_start(decimal_value) do
     decimal_value - @start_location_in_unicode
   end
-  
+
+  @doc """
+  Get the initial consonant decimal value from a decimal value
+  Make sure to use deduct_start()/1 first
+  """
   def get_initial_consonant(decimal_value) do
     (decimal_value / @characters_per_initial)
     |> floor
   end
 
+  @doc """
+  Get the medial vowel decimal value from the a decimal value
+  Make sure to use deduct_start()/1 first
+  """
   def get_medial_vowel(decimal_value) do
     decimal_value = decimal_value - get_initial_consonant(decimal_value) * @characters_per_initial
   
@@ -98,6 +115,10 @@ defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
     |> floor
   end
 
+  @doc """
+  Get the final consonant decimal value from the a decimal value
+  Make sure to use deduct_start()/1 first
+  """
   def get_final_consonant(decimal_value) do
     decimal_value = decimal_value - get_initial_consonant(decimal_value) * @characters_per_initial
   
@@ -105,6 +126,10 @@ defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
     |> floor
   end
 
+  @doc """
+  Create a character from decimal values
+  The start location is automatically added
+  """
   def create_character(
          initial_consonant_decimal_value,
          medial_vowel_decimal_value,

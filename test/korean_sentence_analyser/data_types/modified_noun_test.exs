@@ -48,9 +48,7 @@ defmodule ModifiedNounTest do
           [%{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}]
       )
     end
-  end
-  
-  describe "We can find adjectives from nouns -" do
+
     test "가능해" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("가능해") == [
@@ -58,6 +56,5 @@ defmodule ModifiedNounTest do
         ]
       )
     end
-  
   end
 end

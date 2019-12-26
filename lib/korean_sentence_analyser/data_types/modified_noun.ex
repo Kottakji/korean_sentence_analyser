@@ -6,10 +6,16 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   alias KoreanSentenceAnalyser.Helpers.Dict
   @data_type "Mix"
+  @file_path "data/noun/nouns.txt"
+  
+  @moduledoc """
+  A modified noun is a verb or an adjective that is based on a noun
+  생각 is a noun, but 생각하다 is a verb
+  은근 is a noun, but 은근하다 is an adjective
+  """
   
   @doc """
-  Find the word when it's a verb of adjective based on a noun
-  For example 생각하다 from 생각
+  Find if the word is a modified noun
   """
   def find(word) do
     find(word, word)
@@ -24,13 +30,13 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   end
   
   defp find(word, original_word) do
-    case Dict.find_in_file(word, "data/noun/nouns.txt") do
+    case Dict.find_in_file(word, @file_path) do
       nil ->
         case Eomi.remove(word) do
           new_word when new_word != word ->
             find(new_word, word)
           no_match ->
-            find_as_last_resort(Stem.stem(no_match))
+            find_as_last_resort(Stem.find(no_match))
         end
       match ->
         remains = Word.get_remaining(original_word, match)
@@ -49,12 +55,12 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
     case String.last(stem) do
       "하" ->
         Word.get_remaining(stem, "하")
-        |> Dict.find_in_file("data/noun/nouns.txt")
+        |> Dict.find_in_file(@file_path)
         |> Formatter.add_ending("하다")
         |> Formatter.print_result(@data_type)
       "되" ->
         Word.get_remaining(stem, "되")
-        |> Dict.find_in_file("data/noun/nouns.txt")
+        |> Dict.find_in_file(@file_path)
         |> Formatter.add_ending("하다")
         |> Formatter.print_result(@data_type)
       _ -> nil

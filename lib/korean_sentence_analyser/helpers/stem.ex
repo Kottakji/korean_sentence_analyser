@@ -1,13 +1,16 @@
 defmodule KoreanSentenceAnalyser.Helpers.Stem do
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
+  @moduledoc """
+  Module that helps with finding the stem of words
+  """
   
   @doc """
-  This method can be destructive
+  Finds the stem of a word
+  Warning: This method can be destructive
   늘다 can be turned into 느다
-  So, always check if the verb/adjective is already valid, before stemming
-  TODO remove this
+  So, always check if the verb/adjective is already valid, before trying to find a stem
   """
-  def stem(word) do
+  def find(word) do
     conjugate(word, String.last(word))
   end
   

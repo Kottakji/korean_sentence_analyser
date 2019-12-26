@@ -5,10 +5,12 @@ defmodule KoreanSentenceAnalyser do
   alias KoreanSentenceAnalyser.Helpers.Word
 
   @moduledoc """
-  Analyses Korean text
-  Returns their stem/base form and additional information, like whether it's a noun
+  Analyse Korean text
   """
 
+  @doc """
+  Analyse a Korean sentence
+  """
   def analyse_sentence("") do
     nil
   end

@@ -5,12 +5,13 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
   alias KoreanSentenceAnalyser.Helpers.Formatter
 
   @moduledoc """
-  We can try to normalize words by removing their eomi/pre-eomi
+  An Eomi is a conjugation added to Korean words
   """
 
   @doc """
-  Removes the eomi endings
-  Can be called multiple times to remove pre-eomi endings as well
+  Remove the Eomi from the word
+  Can (should) be called recursively
+  If the result is not the same word or nil, you can lookup the word, or call this method again to remove more
   """
   def remove(word) do
     # Remove the eomi ending

@@ -1,7 +1,7 @@
 defmodule KoreanSentenceAnalyser.Helpers.SplitWord do
   alias KoreanSentenceAnalyser.Helpers.Word
-
   @moduledoc """
+  Helpful module when dealing with words that do not have proper spacing
   """
 
   @doc """
@@ -14,11 +14,11 @@ defmodule KoreanSentenceAnalyser.Helpers.SplitWord do
     |> find(word, [])
   end
 
-  def find([], _word, result) do
+  defp find([], _word, result) do
     result
   end
 
-  def find(word_list, word, result) when is_list(word_list) do
+  defp find(word_list, word, result) when is_list(word_list) do
     case word_list
          |> Enum.reduce(fn x, acc -> acc <> x end)
          |> Word.find() do
