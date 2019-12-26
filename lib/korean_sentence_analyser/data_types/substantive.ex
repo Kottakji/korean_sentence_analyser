@@ -1,11 +1,11 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Substantive do
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Formatter
-  @data_type "Substantive"
   @moduledoc """
   A substantive can be a given name, or a family name
   """
-
+  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias KoreanSentenceAnalyser.Helpers.Formatter
+  @data_type "Substantive"
+  
   @doc """
   Find if the word is a substantive
   """

@@ -1,9 +1,9 @@
 defmodule KoreanSentenceAnalyser.Helpers.Dict do
-  alias KoreanSentenceAnalyser.DataTypes.Josa
-
   @moduledoc """
   Use our local dictionary to see if words exist
   """
+  alias KoreanSentenceAnalyser.DataTypes.Josa
+
 
   @doc """
   Find a word in a file

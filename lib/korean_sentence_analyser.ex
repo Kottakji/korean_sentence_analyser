@@ -1,12 +1,12 @@
 defmodule KoreanSentenceAnalyser do
+  @moduledoc """
+  Analyse Korean text
+  """
   alias KoreanSentenceAnalyser.DataTypes.Modifier
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   alias KoreanSentenceAnalyser.Helpers.SplitWord
   alias KoreanSentenceAnalyser.Helpers.Word
 
-  @moduledoc """
-  Analyse Korean text
-  """
 
   @doc """
   Analyse a Korean sentence

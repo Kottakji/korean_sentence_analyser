@@ -1,14 +1,14 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
+  @moduledoc """
+  A modifier changes, clarifies, qualifies, or limits a particular word in a sentence in order to add emphasis, explanation, or detail.
+  For example in 한표 (one ticket), 한 is the modifier, 표 is the noun
+  """
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Formatter
   alias KoreanSentenceAnalyser.Helpers.Word
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   @data_type "Modifier"
   @file_path "data/substantives/modifier.txt"
-  @moduledoc """
-  A modifier changes, clarifies, qualifies, or limits a particular word in a sentence in order to add emphasis, explanation, or detail.
-  For example in 한표 (one ticket), 한 is the modifier, 표 is the noun
-  """
 
   @doc """
   Find if the word is a modifier

@@ -1,9 +1,9 @@
 defmodule KoreanSentenceAnalyser.Helpers.Stem do
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
-
   @moduledoc """
   Module that helps with finding the stem of words
   """
+  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
+
 
   @doc """
   Finds the stem of a word

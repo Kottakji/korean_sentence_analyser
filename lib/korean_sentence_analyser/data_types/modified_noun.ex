@@ -1,4 +1,9 @@
 defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
+  @moduledoc """
+  A modified noun is a verb or an adjective that is based on a noun
+  생각 is a noun, but 생각하다 is a verb
+  은근 is a noun, but 은근하다 is an adjective
+  """
   alias KoreanSentenceAnalyser.DataTypes.Eomi
   alias KoreanSentenceAnalyser.Helpers.Formatter
   alias KoreanSentenceAnalyser.Helpers.Word
@@ -7,12 +12,6 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   alias KoreanSentenceAnalyser.Helpers.Dict
   @data_type "Mix"
   @file_path "data/noun/nouns.txt"
-
-  @moduledoc """
-  A modified noun is a verb or an adjective that is based on a noun
-  생각 is a noun, but 생각하다 is a verb
-  은근 is a noun, but 은근하다 is an adjective
-  """
 
   @doc """
   Find if the word is a modified noun
