@@ -32,7 +32,7 @@ defmodule ExampleTweetsTest do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("@user 어....없어요? 성이 형님...") == [
           %{"specific_type" => "Adjective", "token" => "없다", "type" => "Adjective"},
-          %{"specific_type" => "Adjective", "token" => "성하다", "type" => "Adjective"},
+          %{"specific_type" => "Noun", "token" => "성", "type" => "Noun"},
           %{"specific_type" => "Noun", "token" => "형님", "type" => "Noun"}
         ]
       )
@@ -154,7 +154,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "범인", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "마주", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "급습", "type" => "Noun"},
-                     %{"specific_type" => "Noun", "token" => "당", "type" => "Noun"}
+                     %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
                    ]
     end
   end
