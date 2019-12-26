@@ -1,5 +1,6 @@
 defmodule KoreanSentenceAnalyser.Helpers.SplitWord do
   alias KoreanSentenceAnalyser.Helpers.Word
+
   @moduledoc """
   Helpful module when dealing with words that do not have proper spacing
   """

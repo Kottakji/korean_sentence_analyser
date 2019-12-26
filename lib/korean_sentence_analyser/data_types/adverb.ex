@@ -3,7 +3,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adverb do
   alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Adverb"
   @file_path "data/adverb/adverb.txt"
-  
+
   @doc """
   Find if the word is an adverb
   """

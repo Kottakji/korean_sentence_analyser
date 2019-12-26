@@ -6,14 +6,14 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   alias KoreanSentenceAnalyser.DataTypes.Verb
   alias KoreanSentenceAnalyser.DataTypes.Conjunction
   alias KoreanSentenceAnalyser.DataTypes.ModifiedNoun
-  
+
   @doc """
   Find a word and get their type (verb, noun etc)
   """
   def find("") do
     nil
   end
-  
+
   def find(word) do
     with nil <- Substantive.given_name(word),
          nil <- Substantive.family_name(word),
@@ -28,7 +28,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
          nil <- ModifiedNoun.find(word),
          do: nil
   end
-  
+
   @doc """
   Get the remaining part of the word, removing the match from either the beginning or the end
   """
@@ -39,12 +39,15 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
           "" -> nil
           result -> result
         end
+
       String.ends_with?(word, match) ->
         case Regex.replace(Regex.compile!(match <> "$", "u"), word, "") do
           "" -> nil
           result -> result
         end
-      true -> nil
+
+      true ->
+        nil
     end
   end
 end

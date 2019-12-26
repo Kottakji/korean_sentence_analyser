@@ -31,7 +31,8 @@ defmodule KoreanSentenceAnalyser do
 
   defp analyse_word(word) do
     with nil <- Word.find(word),
-         nil <- Modifier.find(word), # Outside of Word.find(), because it calls Word.find()
+         # Outside of Word.find(), because it calls Word.find()
+         nil <- Modifier.find(word),
          nil <- Word.find(Modifier.remove(word)),
          nil <- SplitWord.find(word),
          do: nil

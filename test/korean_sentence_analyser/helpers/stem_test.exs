@@ -14,7 +14,7 @@ defmodule StemTest do
     test "할" do
       assert_value(Stem.find("할") == "하")
     end
-    
+
     test "했" do
       assert_value(Stem.find("했") == "하")
     end

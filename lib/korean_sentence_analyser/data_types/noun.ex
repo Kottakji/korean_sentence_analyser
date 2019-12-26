@@ -1,5 +1,4 @@
 defmodule KoreanSentenceAnalyser.DataTypes.Noun do
-  alias KoreanSentenceAnalyser.DataTypes.Josa
   alias KoreanSentenceAnalyser.Helpers.Dict
   alias KoreanSentenceAnalyser.Helpers.Formatter
   @data_type "Noun"
@@ -60,152 +59,151 @@ defmodule KoreanSentenceAnalyser.DataTypes.Noun do
   Find if the word is a bible word
   """
   def bible(word, remove_josa \\ false) do
-    find(word, "data/noun/bible.txt", "Bible", remove_josa)
+    Dict.find_in_file(word, "data/noun/bible.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Bible")
   end
 
   @doc """
   Find if the word is a brand name
   """
   def brand(word, remove_josa \\ false) do
-    find(word, "data/noun/brand.txt", "Brand", remove_josa)
+    Dict.find_in_file(word, "data/noun/brand.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Brand")
   end
 
   @doc """
   Find if the word is a company name
   """
   def company_name(word, remove_josa \\ false) do
-    find(word, "data/noun/company_names.txt", "Company name", remove_josa)
+    Dict.find_in_file(word, "data/noun/company_names.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Company name")
   end
 
   @doc """
   Find if the word is the name of a congress
   """
   def congress(word, remove_josa \\ false) do
-    find(word, "data/noun/congress.txt", "Congress", remove_josa)
+    Dict.find_in_file(word, "data/noun/congress.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Congress")
   end
 
   @doc """
   Find if the word is an entity
   """
   def entity(word, remove_josa \\ false) do
-    find(word, "data/noun/entities.txt", "Entities", remove_josa)
+    Dict.find_in_file(word, "data/noun/entities.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Entities")
   end
 
   @doc """
   Find if the word is a fashion name
   """
   def fashion(word, remove_josa \\ false) do
-    find(word, "data/noun/fashion.txt", "Fashion", remove_josa)
+    Dict.find_in_file(word, "data/noun/fashion.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Fashion")
   end
 
   @doc """
   Find if the word is a foreign name
   """
   def foreign(word, remove_josa \\ false) do
-    find(word, "data/noun/foreign.txt", "Foreign", remove_josa)
+    Dict.find_in_file(word, "data/noun/foreign.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Foreign")
   end
 
   @doc """
   Find if the word is a location name
   """
   def geolocation(word, remove_josa \\ false) do
-    find(word, "data/noun/geolocations.txt", "Geolocation", remove_josa)
+    Dict.find_in_file(word, "data/noun/geolocations.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Geolocation")
   end
 
   @doc """
-  Find if the word is a kpop name
+  Find if the word is a k-pop name
   """
   def kpop(word, remove_josa \\ false) do
-    find(word, "data/noun/kpop.txt", "K-pop", remove_josa)
+    Dict.find_in_file(word, "data/noun/kpop.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "K-pop")
   end
 
   @doc """
   Find if the word is a league of legends (game) name
   """
   def lol(word, remove_josa \\ false) do
-    find(word, "data/noun/lol.txt", "Lol", remove_josa)
+    Dict.find_in_file(word, "data/noun/lol.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Lol")
   end
 
   @doc """
   Find if the word is a name
   """
   def name(word, remove_josa \\ false) do
-    find(word, "data/noun/names.txt", "Name", remove_josa)
+    Dict.find_in_file(word, "data/noun/names.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Name")
   end
 
   @doc """
   Find if the word is a neologism (recent word, not yet official)
   """
   def neologism(word, remove_josa \\ false) do
-    find(word, "data/noun/neologism.txt", "Neologism", remove_josa)
+    Dict.find_in_file(word, "data/noun/neologism.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Neologism")
   end
 
   @doc """
   Find if the word is a general noun
   """
   def nouns(word, remove_josa \\ false) do
-    find(word, "data/noun/nouns.txt", "Noun", remove_josa)
+    Dict.find_in_file(word, "data/noun/nouns.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Noun")
   end
 
   @doc """
   Find if the word is a Pokemon word
   """
   def pokemon(word, remove_josa \\ false) do
-    find(word, "data/noun/pokemon.txt", "Pokemon", remove_josa)
+    Dict.find_in_file(word, "data/noun/pokemon.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Pokemon")
   end
 
   @doc """
   Find if the word is a profane word
   """
   def profane(word, remove_josa \\ false) do
-    find(word, "data/noun/profane.txt", "Profane", remove_josa)
+    Dict.find_in_file(word, "data/noun/profane.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Profane")
   end
 
   @doc """
   Find if the word is slang
   """
   def slang(word, remove_josa \\ false) do
-    find(word, "data/noun/slangs.txt", "Slang", remove_josa)
+    Dict.find_in_file(word, "data/noun/slangs.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Slang")
   end
 
   @doc """
   Find if the word is spam
   """
   def spam(word, remove_josa \\ false) do
-    find(word, "data/noun/spam.txt", "Spam", remove_josa)
+    Dict.find_in_file(word, "data/noun/spam.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Spam")
   end
 
   @doc """
   Find if the word is a twitter word
   """
   def twitter(word, remove_josa \\ false) do
-    find(word, "data/noun/twitter.txt", "Twitter", remove_josa)
+    Dict.find_in_file(word, "data/noun/twitter.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Twitter")
   end
 
   @doc """
   Find if the word is a wikipedia title
   """
   def wikipedia_title_noun(word, remove_josa \\ false) do
-    find(word, "data/noun/wikipedia_title_nouns.txt", "Wikipedia title noun", remove_josa)
-  end
-
-  defp find(word, file, type, remove_josa) do
-    case remove_josa do
-      true -> find_with_removing_josa(word, file, type)
-      false -> find_basic(word, file, type)
-    end
-  end
-
-  defp find_basic(word, file, type) do
-    word
-    |> Dict.find_in_file(file)
-    |> Formatter.print_result(@data_type, type)
-  end
-
-  defp find_with_removing_josa(word, file, type) do
-    word
-    |> Josa.remove()
-    |> Dict.find_in_file(file)
-    |> Formatter.print_result(@data_type, type)
+    Dict.find_in_file(word, "data/noun/wikipedia_title_nouns.txt", remove_josa)
+    |> Formatter.print_result(@data_type, "Wikipedia title noun")
   end
 end

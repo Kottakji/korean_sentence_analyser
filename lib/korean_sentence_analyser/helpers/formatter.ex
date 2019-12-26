@@ -9,8 +9,12 @@ defmodule KoreanSentenceAnalyser.Helpers.Formatter do
   """
   def add_ending(word, ending) do
     case word do
-      nil -> nil
-      "" -> nil
+      nil ->
+        nil
+
+      "" ->
+        nil
+
       word ->
         word <> ending
     end

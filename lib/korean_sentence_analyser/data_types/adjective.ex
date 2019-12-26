@@ -15,21 +15,22 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
     |> Formatter.add_ending("다")
     |> Formatter.print_result(@data_type)
   end
-  
+
   defp find(nil, _) do
     nil
   end
-  
+
   defp find("", _) do
     nil
   end
-  
+
   defp find(word, original_word) do
     case Dict.find_in_file(word, @file_path) do
       nil ->
         case Eomi.remove(word) do
           new_word when new_word != word ->
             find(new_word, original_word)
+
           _ ->
             case Dict.find_in_file(word, @file_path) do
               nil ->
@@ -39,9 +40,12 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
                   false -> nil
                   true -> find(word <> "하", word)
                 end
-              match -> match
+
+              match ->
+                match
             end
         end
+
       match ->
         match
     end

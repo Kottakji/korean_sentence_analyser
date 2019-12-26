@@ -1,4 +1,6 @@
 defmodule KoreanSentenceAnalyser.Helpers.Dict do
+  alias KoreanSentenceAnalyser.DataTypes.Josa
+
   @moduledoc """
   Use our local dictionary to see if words exist
   """
@@ -16,6 +18,20 @@ defmodule KoreanSentenceAnalyser.Helpers.Dict do
       "" -> nil
       match -> match
     end
+  end
+
+  @doc """
+  Find a word in a file, and does not remove the josa
+  """
+  def find_in_file(word, file, false) do
+    find_in_file(word, file)
+  end
+
+  @doc """
+  Find a word in a file, but removes the josa
+  """
+  def find_in_file(word, file, true) do
+    find_in_file(Josa.remove(word), file)
   end
 
   @doc """

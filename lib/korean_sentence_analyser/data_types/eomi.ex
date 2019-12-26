@@ -43,7 +43,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
         end
     end
   end
-  
+
   defp find_ending(word) do
     cond do
       # Those that do not appear in the eomi list

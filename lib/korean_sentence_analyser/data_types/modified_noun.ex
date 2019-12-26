@@ -7,20 +7,20 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   alias KoreanSentenceAnalyser.Helpers.Dict
   @data_type "Mix"
   @file_path "data/noun/nouns.txt"
-  
+
   @moduledoc """
   A modified noun is a verb or an adjective that is based on a noun
   생각 is a noun, but 생각하다 is a verb
   은근 is a noun, but 은근하다 is an adjective
   """
-  
+
   @doc """
   Find if the word is a modified noun
   """
   def find(word) do
     find(word, word)
   end
-  
+
   defp find(nil, _) do
     nil
   end
@@ -28,29 +28,31 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   defp find("", _) do
     nil
   end
-  
+
   defp find(word, original_word) do
     case Dict.find_in_file(word, @file_path) do
       nil ->
         case Eomi.remove(word) do
           new_word when new_word != word ->
             find(new_word, word)
+
           no_match ->
             find_as_last_resort(Stem.find(no_match))
         end
+
       match ->
         remains = Word.get_remaining(original_word, match)
-        
+
         with nil <- add_ending(match, remains, "ᄒ"),
              nil <- add_ending(match, remains, "ᄃ"),
              do: nil
     end
   end
-  
+
   defp find_as_last_resort(nil) do
     nil
   end
-  
+
   defp find_as_last_resort(stem) do
     case String.last(stem) do
       "하" ->
@@ -58,12 +60,15 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
         |> Dict.find_in_file(@file_path)
         |> Formatter.add_ending("하다")
         |> Formatter.print_result(@data_type)
+
       "되" ->
         Word.get_remaining(stem, "되")
         |> Dict.find_in_file(@file_path)
         |> Formatter.add_ending("하다")
         |> Formatter.print_result(@data_type)
-      _ -> nil
+
+      _ ->
+        nil
     end
   end
 
@@ -75,22 +80,27 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
 
   defp add_ending(word, remains, "ᄒ") do
     case KoreanUnicode.starts_with?(remains, "ᄒ") do
-      true -> word
-              |> String.replace(remains, "")
-              |> Formatter.add_ending("하다")
-              |> Formatter.print_result(@data_type)
-      false -> nil
-    end
-  end
-  
-  defp add_ending(word, remains, "ᄃ") do
-    case KoreanUnicode.starts_with?(remains, "ᄃ") do
-      true -> word
-              |> String.replace(remains, "")
-              |> Formatter.add_ending("되")
-              |> Formatter.print_result(@data_type)
-      false -> nil
+      true ->
+        word
+        |> String.replace(remains, "")
+        |> Formatter.add_ending("하다")
+        |> Formatter.print_result(@data_type)
+
+      false ->
+        nil
     end
   end
 
+  defp add_ending(word, remains, "ᄃ") do
+    case KoreanUnicode.starts_with?(remains, "ᄃ") do
+      true ->
+        word
+        |> String.replace(remains, "")
+        |> Formatter.add_ending("되")
+        |> Formatter.print_result(@data_type)
+
+      false ->
+        nil
+    end
+  end
 end
