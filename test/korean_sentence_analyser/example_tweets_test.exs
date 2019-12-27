@@ -234,13 +234,11 @@ defmodule ExampleTweetsTest do
                    ]
     end
 
-    @tag :current
     test "#팁 #매드라이프 노란 로봇장난감을 주면 뭔가를 잘 물어옵니다." do
       assert_value KoreanSentenceAnalyser.analyse_sentence("#팁 #매드라이프 노란 로봇장난감을 주면 뭔가를 잘 물어옵니다.") == [
                      %{"specific_type" => "Foreign", "token" => "팁", "type" => "Noun"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "매드라이프", "type" => "Noun"},
-                     %{"specific_type" => "Family name", "token" => "노", "type" => "Substantive"},
-                     %{"specific_type" => "Noun", "token" => "란", "type" => "Noun"},
+                     %{"specific_type" => "Adjective", "token" => "노랗다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "로봇", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "장난감", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "주다", "type" => "Verb"},

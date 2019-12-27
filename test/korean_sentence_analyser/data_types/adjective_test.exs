@@ -27,6 +27,14 @@ defmodule AdjectiveTest do
         ]
       )
     end
+
+    test "노랗" do
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("노랗") == [%{"specific_type" => "Adjective", "token" => "노랗다", "type" => "Adjective"}])
+    end
+
+    test "노란" do
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("노란") == [%{"specific_type" => "Adjective", "token" => "노랗다", "type" => "Adjective"}])
+    end
   end
 
   describe "We can find adjectives after removing the modifier - " do
