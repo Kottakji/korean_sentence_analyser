@@ -63,7 +63,7 @@ defmodule ExampleTweetsTest do
     test "@user 젠장 나는 이나라에 살아서 받는게 도대체 무엇이야" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 젠장 나는 이나라에 살아서 받는게 도대체 무엇이야") == [
                      %{"specific_type" => "Noun", "token" => "젠장", "type" => "Noun"},
-                     %{"specific_type" => "Verb", "token" => "나다", "type" => "Verb"},
+                     %{"specific_type" => "Determiner", "token" => "나", "type" => "Determiner"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "이나라", "type" => "Noun"},
                      %{"specific_type" => "Adjective", "token" => "살다", "type" => "Adjective"},
                      %{"specific_type" => "Verb", "token" => "받다", "type" => "Verb"},
@@ -192,7 +192,6 @@ defmodule ExampleTweetsTest do
                    ]
     end
 
-    @tag :current
     test "아빠가 ..." do
       assert_value KoreanSentenceAnalyser.analyse_sentence(
                      "아빠가 새 휴대 전화를 구입하고 그 충전기는 아이폰이다~~ 그래서 아빠 감사합니다♥내가 그녀의 휴대 전화 케이스에 핑크 색상을 싫어하지만ㅎㅎ 하지만 나는 그것을 사용합니다ㅋㅋㅋㅋㅋㅋㅋㅋㅋ http://link.com"
@@ -202,7 +201,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "휴대", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "전화", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "구입", "type" => "Noun"},
-                     %{"specific_type" => "Noun", "token" => "그", "type" => "Noun"},
+                     %{"specific_type" => "Determiner", "token" => "그", "type" => "Determiner"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "충전기", "type" => "Noun"},
                      %{"specific_type" => "Entities", "token" => "아이폰", "type" => "Noun"},
                      %{"specific_type" => "Conjunction", "token" => "그래서", "type" => "Conjunction"},
@@ -213,7 +212,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "색상", "type" => "Noun"},
                      %{"specific_type" => "Adjective", "token" => "싫어하다", "type" => "Adjective"},
                      %{"specific_type" => "Conjunction", "token" => "하지만", "type" => "Conjunction"},
-                     %{"specific_type" => "Verb", "token" => "나다", "type" => "Verb"},
+                     %{"specific_type" => "Determiner", "token" => "나", "type" => "Determiner"},
                      %{"specific_type" => "Noun", "token" => "그것", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "사용하다", "type" => "Mix"}
                    ]
