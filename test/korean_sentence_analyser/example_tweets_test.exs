@@ -217,9 +217,22 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Mix", "token" => "사용하다", "type" => "Mix"}
                    ]
     end
-#    test "@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?" do
-#      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?")
-#    end
+    
+    test "@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?") == [
+                     %{"specific_type" => "Adjective", "token" => "아니다", "type" => "Adjective"},
+                     %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"},
+                     %{"specific_type" => "Noun", "token" => "제", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "잘못", "type" => "Noun"},
+                     %{"specific_type" => "Verb", "token" => "가져오다", "type" => "Verb"},
+                     %{"specific_type" => "Adjective", "token" => "같다", "type" => "Adjective"},
+                     %{"specific_type" => "Noun", "token" => "입학", "type" => "Noun"},
+                     %{"specific_type" => "Entities", "token" => "찍기", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "방어", "type" => "Noun"},
+                     %{"specific_type" => "Wikipedia title noun", "token" => "이속", "type" => "Noun"},
+                     %{"specific_type" => "Family name", "token" => "공", "type" => "Substantive"}
+                   ]
+    end
 #    test "#팁 #매드라이프 노란 로봇장난감을 주면 뭔가를 잘 물어옵니다." do
 #      assert_value KoreanSentenceAnalyser.analyse_sentence("#팁 #매드라이프 노란 로봇장난감을 주면 뭔가를 잘 물어옵니다.")
 #    end

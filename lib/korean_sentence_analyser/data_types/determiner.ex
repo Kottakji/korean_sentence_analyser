@@ -13,7 +13,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Determiner do
   @doc """
   Find if the word is a determiner
   """
-  def find(word) when byte_size(word) > 1 do
+  def find(word) when byte_size(word) > 3 do
     word = case String.last(word) do
       "가" -> Word.get_remaining(word, "가")
       "이" -> Word.get_remaining(word, "이")

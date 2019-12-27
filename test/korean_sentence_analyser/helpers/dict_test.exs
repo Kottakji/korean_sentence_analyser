@@ -32,4 +32,10 @@ defmodule DictTest do
       assert_value Dict.find_ending_in_file("한국아아앙국제선", "data/noun/nouns.txt") == "국제선"
     end
   end
+
+  describe "We can find the smallest ending with -" do
+    test "아니다" do
+      assert_value Dict.find_smallest_ending_in_file("아니다", "data/verb/eomi.txt") == "다"
+    end
+  end
 end

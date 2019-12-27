@@ -3,20 +3,12 @@ defmodule SubstantiveTest do
   import AssertValue
 
   describe "We can find substantives - " do
-    test "예진" do
-      assert_value(
-        KoreanSentenceAnalyser.analyse_sentence("예진") == [
-          %{"specific_type" => "Given name", "token" => "예진", "type" => "Substantive"}
-        ]
-      )
+    test "경수" do
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("경수") == [%{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}])
     end
 
-    test "이" do
-      assert_value(
-        KoreanSentenceAnalyser.analyse_sentence("이") == [
-          %{"specific_type" => "Family name", "token" => "이", "type" => "Substantive"}
-        ]
-      )
+    test "박" do
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("박") == [%{"specific_type" => "Family name", "token" => "박", "type" => "Substantive"}])
     end
 
     test "성규냐 - which includes a josa" do
