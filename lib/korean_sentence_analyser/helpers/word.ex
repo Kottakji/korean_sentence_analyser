@@ -7,6 +7,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   alias KoreanSentenceAnalyser.DataTypes.Conjunction
   alias KoreanSentenceAnalyser.DataTypes.ModifiedNoun
   alias KoreanSentenceAnalyser.DataTypes.Determiner
+  alias KoreanSentenceAnalyser.DataTypes.Modifier
   alias KoreanSentenceAnalyser.Helpers.Typo
 
   @doc """
@@ -24,11 +25,12 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
          nil <- Substantive.family_name(word),
          nil <- Conjunction.conjunction(word),
          nil <- Noun.find(word),
+         nil <- Noun.find_without_determiner(word),
          nil <- Adverb.find(word),
          nil <- Adjective.find(word),
          nil <- Verb.find(word),
-         nil <- Substantive.given_name(word, true),
-         nil <- Substantive.family_name(word, true),
+         nil <- Substantive.given_name(word, :remove_josa),
+         nil <- Substantive.family_name(word, :remove_josa),
          nil <- Noun.find_without_josa(word),
          nil <- ModifiedNoun.find(word),
          do: nil

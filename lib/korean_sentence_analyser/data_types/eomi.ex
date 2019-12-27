@@ -58,7 +58,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
 
       Regex.match?(~r/돼$/u, word) ->
         ""
-
+        
       true ->
         Dict.find_ending_in_file(word, "data/verb/eomi.txt")
     end

@@ -32,6 +32,13 @@ defmodule ModifierTest do
       # This is not a modifier, so should return nil
       assert_value Modifier.find("중랑구는") == nil
     end
+
+    test "세개" do
+      assert_value Modifier.find("세개") == [
+                     %{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},
+                     %{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}
+                   ]
+    end
   end
 
   describe "Can we find modifiers - " do
@@ -54,6 +61,23 @@ defmodule ModifierTest do
       # Do we mind if it's not correctly found? Can we even?
       assert_value KoreanSentenceAnalyser.analyse_sentence("3구") == [
                      %{"specific_type" => "Family name", "token" => "구", "type" => "Substantive"}
+                   ]
+    end
+
+    test "세개를다섞는다" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("세개를다섞는다") == [
+                     %{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},
+                     %{"specific_type" => "Noun", "token" => "개", "type" => "Noun"},
+                     %{"specific_type" => "Adverb", "token" => "다", "type" => "Adverb"},
+                     %{"specific_type" => "Verb", "token" => "섞다", "type" => "Verb"}
+                   ]
+    end
+    
+    test "이말입니가" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("이말입니가") == [
+                     %{"specific_type" => "Determiner", "token" => "이", "type" => "Determiner"},
+                     %{"specific_type" => "Noun", "token" => "말", "type" => "Noun"},
+                     %{"specific_type" => "Verb", "token" => "입니다", "type" => "Verb"}
                    ]
     end
   end

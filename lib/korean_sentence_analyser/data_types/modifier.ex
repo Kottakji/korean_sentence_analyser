@@ -25,6 +25,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
          nil <- find_as_whole(word),
          do: nil
   end
+  
 
   @doc """
   Remove the modifier from a word

@@ -6,6 +6,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
   alias KoreanSentenceAnalyser.Helpers.Formatter
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   alias KoreanSentenceAnalyser.Helpers.Word
+  
   @data_type "Adjective"
   @file_path "data/adjective/adjective.txt"
   
@@ -28,6 +29,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
   end
   
   defp find(word, original_word) do
+    
     with nil <- Dict.find_in_file(word, @file_path),
          nil <- find_with_changing_final_consonant(original_word),
          nil <- find_with_removing_da(word, original_word),

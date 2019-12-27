@@ -40,6 +40,10 @@ defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
        when decimal_point > @jamo_initial_start_location_in_unicode and decimal_point < @start_location_in_unicode do
     split(rest, character, acc)
   end
+
+  defp split(<<decimal_point :: utf8, rest :: binary>>, "를", acc) do
+    split(rest, create_hangul_from_decimal_value(decimal_point), acc <> " ")
+  end
   
   defp split(<<decimal_point :: utf8, rest :: binary>>, character, acc) do
     split(rest, create_hangul_from_decimal_value(decimal_point), acc <> character)
