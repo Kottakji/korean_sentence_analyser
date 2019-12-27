@@ -2,7 +2,7 @@ defmodule KoreanSentenceAnalyser.ETS.DictFile do
   @moduledoc """
   Use ETS to access dictionary files
   """
-  
+
   @doc """
   Initiate the dictionaries into ETS
   """
@@ -45,47 +45,44 @@ defmodule KoreanSentenceAnalyser.ETS.DictFile do
     ]
     |> Enum.each(fn file -> init_dict_from_file(file) end)
   end
-  
+
   @doc """
   Initiate a dictionary from a file
   """
   def init_dict_from_file(file) when file == "data/typos/typos.txt" do
     :ets.new(String.to_atom(file), [:ordered_set, :protected, :named_table])
-    
+
     File.stream!(file)
-    |> Stream.map(
-         fn x ->
-           [key, value] = String.split(x)
-           insert(key, value, file)
-         end
-       )
+    |> Stream.map(fn x ->
+      [key, value] = String.split(x)
+      insert(key, value, file)
+    end)
     |> Stream.run()
-  
   end
-  
+
   def init_dict_from_file(file) do
     :ets.new(String.to_atom(file), [:ordered_set, :protected, :named_table])
-    
+
     File.stream!(file)
     |> Stream.map(fn x -> insert(x, x, file) end)
     |> Stream.run()
   end
-  
+
   @doc """
   Insert a key and value for a file in the ETS dictionary
   """
   def insert(key, value, file) do
     key = String.replace(key, "\n", "")
     value = String.replace(value, "\n", "")
-    
+
     :ets.insert(String.to_atom(file), {key, value})
   end
-  
+
   @doc """
   Find a word in the dictionary file
   """
   def find(word, file) do
-    case :ets.select(String.to_atom(file), [{{word, :"_"}, [], [:"$_"]}]) do
+    case :ets.select(String.to_atom(file), [{{word, :_}, [], [:"$_"]}]) do
       [{key, value}] -> value
       _ -> nil
     end

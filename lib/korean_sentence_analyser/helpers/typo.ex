@@ -5,7 +5,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Typo do
 
   alias KoreanSentenceAnalyser.Helpers.Dict
   @file_path "data/typos/typos.txt"
-  
+
   @doc """
   Find a typo and return the new word if found
   """

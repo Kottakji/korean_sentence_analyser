@@ -35,12 +35,11 @@ defmodule AdjectiveTest do
                      %{"specific_type" => "Adjective", "token" => "없다", "type" => "Adjective"}
                    ]
     end
-    
+
     test "아니야" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("아니야") == [%{"specific_type" => "Adjective", "token" => "아니다", "type" => "Adjective"}]
     end
 
-    @tag :now
     test "아니다" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("아니다") == [%{"specific_type" => "Adjective", "token" => "아니다", "type" => "Adjective"}]
     end
