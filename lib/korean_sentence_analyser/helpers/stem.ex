@@ -20,6 +20,11 @@ defmodule KoreanSentenceAnalyser.Helpers.Stem do
     String.replace_suffix(word, "해", "하")
   end
 
+  defp conjugate(word, "합") do
+    # Special ending of the word 하다
+    String.replace_suffix(word, "합", "하")
+  end
+
   defp conjugate(word, "돼") do
     # Special ending of the word 되다
     String.replace_suffix(word, "돼", "되")

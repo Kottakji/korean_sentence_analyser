@@ -66,5 +66,9 @@ defmodule VerbTest do
         ]
       )
     end
+    
+    test "감사합니다" do
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("감사합니다") == [%{"specific_type" => "Verb", "token" => "감사하다", "type" => "Verb"}])
+    end
   end
 end
