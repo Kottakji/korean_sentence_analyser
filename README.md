@@ -34,3 +34,7 @@ Which will return a map, or nil if nothing is found
 ]
 ```
 
+#### Unicode for Korean
+
+More helpful functions are available in https://hexdocs.pm/korean_sentence_analyser/KoreanUnicode.html on how to deal with Unicode for Hangul.
+
