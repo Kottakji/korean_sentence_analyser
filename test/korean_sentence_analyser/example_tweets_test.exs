@@ -125,7 +125,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Modifier", "token" => "뭔", "type" => "Modifier"},
                      %{"specific_type" => "Noun", "token" => "데", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "강남", "type" => "Noun"},
-                     %{"specific_type" => "Family name", "token" => "구", "type" => "Substantive"},
+                     %{"specific_type" => "Noun", "token" => "구", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "끼다", "type" => "Verb"}
                    ]
     end
