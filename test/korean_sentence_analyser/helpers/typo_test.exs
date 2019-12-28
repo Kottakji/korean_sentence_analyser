@@ -1,7 +1,7 @@
 defmodule TypoTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.Helpers.Typo
+  alias Typo
 
   describe "We can transform typo's - " do
     test "십알" do

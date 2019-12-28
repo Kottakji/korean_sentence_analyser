@@ -1,9 +1,9 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Substantive do
+defmodule Substantive do
   @moduledoc """
   A substantive can be a given name, or a family name
   """
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Formatter
+  alias LocalDict
+  alias Formatter
   @data_type "Substantive"
 
   @doc """
@@ -28,7 +28,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Substantive do
   Find if the word is a given name
   """
   def given_name(word, option \\ nil) do
-    Dict.find_in_file(word, "data/substantives/given_names.txt", option)
+    LocalDict.find_in_file(word, "data/substantives/given_names.txt", option)
     |> Formatter.print_result(@data_type, "Given name")
   end
 
@@ -36,7 +36,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Substantive do
   Find if the word is a family name
   """
   def family_name(word, option \\ nil) do
-    Dict.find_in_file(word, "data/substantives/family_names.txt", option)
+    LocalDict.find_in_file(word, "data/substantives/family_names.txt", option)
     |> Formatter.print_result(@data_type, "Family name")
   end
 end

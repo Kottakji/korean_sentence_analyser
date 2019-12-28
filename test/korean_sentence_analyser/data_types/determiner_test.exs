@@ -1,7 +1,7 @@
 defmodule DeterminerTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.DataTypes.Determiner
+  alias Determiner
 
   describe "We can find determiners - " do
     test "나" do

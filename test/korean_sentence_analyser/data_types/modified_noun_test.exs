@@ -1,7 +1,7 @@
 defmodule ModifiedNounTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.DataTypes.ModifiedNoun
+  alias ModifiedNoun
 
   describe "We can find verbs from nouns directly - " do
     test "생각한다면" do

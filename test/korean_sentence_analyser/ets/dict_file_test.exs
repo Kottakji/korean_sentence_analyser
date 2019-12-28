@@ -1,7 +1,7 @@
 defmodule DictFileTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.ETS.DictFile
+  alias DictFile
 
   describe "We can find values in the dictionaries - " do
     test "화염레오" do

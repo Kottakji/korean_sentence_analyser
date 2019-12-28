@@ -1,13 +1,13 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
+defmodule Modifier do
   @moduledoc """
   A modifier changes, clarifies, qualifies, or limits a particular word in a sentence in order to add emphasis, explanation, or detail.
   For example in 한표 (one ticket), 한 is the modifier, 표 is the noun
   """
 
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Formatter
-  alias KoreanSentenceAnalyser.Helpers.Word
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
+  alias LocalDict
+  alias Formatter
+  alias Word
+  alias KoreanUnicode
   @data_type "Modifier"
   @file_path "data/substantives/modifier.txt"
 
@@ -31,7 +31,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
   Remove the modifier from a word
   """
   def remove(word) do
-    case Dict.find_beginning_in_file(word, @file_path) do
+    case LocalDict.find_beginning_in_file(word, @file_path) do
       nil ->
         # Just return the original word
         word
@@ -43,7 +43,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
   end
 
   defp find_at_beginning(word) do
-    with modifier_match when not is_nil(modifier_match) <- Dict.find_beginning_in_file(word, @file_path),
+    with modifier_match when not is_nil(modifier_match) <- LocalDict.find_beginning_in_file(word, @file_path),
          remaining when not is_nil(remaining) <- Word.get_remaining(word, modifier_match),
          remaining_match when not is_nil(remaining_match) <- Word.find(remaining),
          do: [
@@ -53,7 +53,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
   end
 
   defp find_at_ending(word) do
-    with modifier_match when not is_nil(modifier_match) <- Dict.find_ending_in_file(word, @file_path),
+    with modifier_match when not is_nil(modifier_match) <- LocalDict.find_ending_in_file(word, @file_path),
          remaining when not is_nil(remaining) <- Word.get_remaining(word, modifier_match),
          remaining_match when not is_nil(remaining_match) <- Word.find(remaining),
          do: [
@@ -64,7 +64,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Modifier do
 
   defp find_as_whole(word) do
     word
-    |> Dict.find_in_file(@file_path)
+    |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
 end

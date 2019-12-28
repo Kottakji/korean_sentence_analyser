@@ -1,16 +1,16 @@
-defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
+defmodule ModifiedNoun do
   @moduledoc """
   A modified noun is a verb or an adjective that is based on a noun
   생각 is a noun, but 생각하다 is a verb
   은근 is a noun, but 은근하다 is an adjective
   """
 
-  alias KoreanSentenceAnalyser.DataTypes.Eomi
-  alias KoreanSentenceAnalyser.Helpers.Formatter
-  alias KoreanSentenceAnalyser.Helpers.Word
-  alias KoreanSentenceAnalyser.Helpers.Stem
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
-  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias Eomi
+  alias Formatter
+  alias Word
+  alias Stem
+  alias KoreanUnicode
+  alias LocalDict
   @data_type "Mix"
   @file_path "data/noun/nouns.txt"
 
@@ -30,7 +30,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
   end
 
   defp find(word, original_word) do
-    case Dict.find_in_file(word, @file_path) do
+    case LocalDict.find_in_file(word, @file_path) do
       nil ->
         case Eomi.remove(word) do
           new_word when new_word != word ->
@@ -57,13 +57,13 @@ defmodule KoreanSentenceAnalyser.DataTypes.ModifiedNoun do
     case String.last(stem) do
       "하" ->
         Word.get_remaining(stem, "하")
-        |> Dict.find_in_file(@file_path)
+        |> LocalDict.find_in_file(@file_path)
         |> Formatter.add_ending("하다")
         |> Formatter.print_result(@data_type)
 
       "되" ->
         Word.get_remaining(stem, "되")
-        |> Dict.find_in_file(@file_path)
+        |> LocalDict.find_in_file(@file_path)
         |> Formatter.add_ending("하다")
         |> Formatter.print_result(@data_type)
 

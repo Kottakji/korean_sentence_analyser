@@ -1,4 +1,4 @@
-defmodule KoreanSentenceAnalyser.Helpers.Formatter do
+defmodule Formatter do
   @moduledoc """
   Formats the data
   """

@@ -1,11 +1,11 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
+defmodule Adjective do
   @moduledoc false
   
-  alias KoreanSentenceAnalyser.DataTypes.Eomi
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Formatter
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
-  alias KoreanSentenceAnalyser.Helpers.Word
+  alias Eomi
+  alias LocalDict
+  alias Formatter
+  alias KoreanUnicode
+  alias Word
   
   @data_type "Adjective"
   @file_path "data/adjective/adjective.txt"
@@ -30,7 +30,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
   
   defp find(word, original_word) do
     
-    with nil <- Dict.find_in_file(word, @file_path),
+    with nil <- LocalDict.find_in_file(word, @file_path),
          nil <- find_with_changing_final_consonant(original_word),
          nil <- find_with_removing_da(word, original_word),
          nil <- find_with_removing_eomi(word, original_word),
@@ -46,14 +46,14 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
       true ->
         word
         |> KoreanUnicode.change_final_consonant("ᇂ")
-        |> Dict.find_in_file(@file_path)
+        |> LocalDict.find_in_file(@file_path)
       false -> nil
     end
   end
   
   defp find_with_removing_da(word, original_word) when byte_size(word) > 3 do
     case String.last(word) do
-      "다" -> Dict.find_in_file(Word.get_remaining(word, "다"), @file_path)
+      "다" -> LocalDict.find_in_file(Word.get_remaining(word, "다"), @file_path)
       _ -> find_with_removing_eomi(word, original_word)
     end
   end
@@ -68,7 +68,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adjective do
         find(new_word, original_word)
       
       _ ->
-        case Dict.find_in_file(word, @file_path) do
+        case LocalDict.find_in_file(word, @file_path) do
           nil ->
             with remains when remains != nil <- Word.get_remaining(original_word, word),
                  last when last != nil <- String.last(remains),

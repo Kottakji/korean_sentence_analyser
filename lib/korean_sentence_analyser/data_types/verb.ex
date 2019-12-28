@@ -1,12 +1,12 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Verb do
+defmodule Verb do
   @moduledoc false
   
-  alias KoreanSentenceAnalyser.DataTypes.Eomi
-  alias KoreanSentenceAnalyser.Helpers.Formatter
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Stem
-  alias KoreanSentenceAnalyser.Helpers.Word
+  alias Eomi
+  alias Formatter
+  alias KoreanUnicode
+  alias LocalDict
+  alias Stem
+  alias Word
   
   @data_type "Verb"
   @file_path "data/verb/verb.txt"
@@ -38,7 +38,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Verb do
   end
   
   defp find(word, file) do
-    case Dict.find_in_file(word, file) do
+    case LocalDict.find_in_file(word, file) do
       nil ->
         case Eomi.remove(word) do
           new_word when new_word != word ->
@@ -47,7 +47,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Verb do
           _ ->
             word
             |> Stem.find()
-            |> Dict.find_in_file(file)
+            |> LocalDict.find_in_file(file)
         end
       
       match ->

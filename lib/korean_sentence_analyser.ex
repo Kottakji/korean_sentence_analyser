@@ -4,12 +4,12 @@ defmodule KoreanSentenceAnalyser do
   """
   
   use Application
-  alias KoreanSentenceAnalyser.DataTypes.VerbPattern
-  alias KoreanSentenceAnalyser.DataTypes.Modifier
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
-  alias KoreanSentenceAnalyser.Helpers.SplitWord
-  alias KoreanSentenceAnalyser.Helpers.Word
-  alias KoreanSentenceAnalyser.ETS.DictFile
+  alias VerbPattern
+  alias Modifier
+  alias KoreanUnicode
+  alias SplitWord
+  alias Word
+  alias DictFile
   
   def start(_type, _args) do
     DictFile.init()

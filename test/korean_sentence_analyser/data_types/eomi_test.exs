@@ -1,8 +1,8 @@
 defmodule EomiTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.DataTypes.Eomi
-  alias KoreanSentenceAnalyser.Helpers.Stem
+  alias Eomi
+  alias Stem
 
   describe "We can remove Eomi from words - " do
     test "가능하다" do

@@ -1,4 +1,4 @@
-defmodule KoreanSentenceAnalyser.ETS.DictFile do
+defmodule DictFile do
   @moduledoc """
   Use ETS to access dictionary files
   """

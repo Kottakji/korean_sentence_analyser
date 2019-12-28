@@ -1,9 +1,9 @@
-defmodule KoreanSentenceAnalyser.DataTypes.VerbPattern do
+defmodule VerbPattern do
   @moduledoc """
   There are certain verb patterns that do not get matched by our other modules
   """
-  alias KoreanSentenceAnalyser.Helpers.Word
-  alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
+  alias Word
+  alias KoreanUnicode
   
   @doc """
   halsuisdda certain verb patterns that otherwise wouldn't match

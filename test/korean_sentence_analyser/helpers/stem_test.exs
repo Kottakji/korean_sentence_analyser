@@ -1,7 +1,7 @@
 defmodule StemTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.Helpers.Stem
+  alias Stem
 
   # Note that we are trying to recreate the stem
   # So the input here is after we removed the eomi

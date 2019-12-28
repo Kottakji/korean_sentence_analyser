@@ -1,12 +1,12 @@
-defmodule KoreanSentenceAnalyser.Helpers.Dict do
+defmodule LocalDict do
   @moduledoc """
   Use our local dictionary to see if words exist
   """
   
-  alias KoreanSentenceAnalyser.DataTypes.Josa
-  alias KoreanSentenceAnalyser.DataTypes.Determiner
-  alias KoreanSentenceAnalyser.Helpers.Word
-  alias KoreanSentenceAnalyser.ETS.DictFile
+  alias Josa
+  alias Determiner
+  alias Word
+  alias DictFile
   
   @doc """
   Find a word in a file

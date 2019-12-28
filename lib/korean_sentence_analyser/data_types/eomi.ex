@@ -1,10 +1,10 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
+defmodule Eomi do
   @moduledoc """
   An Eomi is a conjugation added to Korean words
   """
 
-  alias KoreanSentenceAnalyser.DataTypes.PreEomi
-  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias PreEomi
+  alias LocalDict
 
   @doc """
   Remove the Eomi from the word
@@ -60,7 +60,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Eomi do
         ""
         
       true ->
-        Dict.find_ending_in_file(word, "data/verb/eomi.txt")
+        LocalDict.find_ending_in_file(word, "data/verb/eomi.txt")
     end
   end
 end

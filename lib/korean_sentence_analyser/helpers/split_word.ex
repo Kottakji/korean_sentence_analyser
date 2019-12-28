@@ -1,9 +1,9 @@
-defmodule KoreanSentenceAnalyser.Helpers.SplitWord do
+defmodule SplitWord do
   @moduledoc """
   Helpful module when dealing with words that do not have proper spacing
   """
   
-  alias KoreanSentenceAnalyser.Helpers.Word
+  alias Word
   
   @doc """
   Find the words when a word contains multiple words without spacing in between

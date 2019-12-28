@@ -1,7 +1,7 @@
 defmodule VerbPatternTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.DataTypes.VerbPattern
+  alias VerbPattern
 
   describe "We can remove certain verb patters - " do
     test "마실 수 있다" do

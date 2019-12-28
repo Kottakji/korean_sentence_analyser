@@ -1,11 +1,11 @@
-defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
+defmodule KoreanUnicode do
   @moduledoc """
   Contains functions helpful in dealing with Hangul
   
   Explanation can be found at:
   https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode
   """
-  alias KoreanSentenceAnalyser.Helpers.Word
+  alias Word
   
   @jamo_initial_start_location_in_unicode 4352
   @jamo_medial_start_location_in_unicode 4449

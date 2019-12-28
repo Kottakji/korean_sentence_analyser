@@ -1,11 +1,11 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Determiner do
+defmodule Determiner do
   @moduledoc """
   A determiner can be me, you, this, that etc
   """
   
-  alias KoreanSentenceAnalyser.Helpers.Word
-  alias KoreanSentenceAnalyser.Helpers.Formatter
-  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias Word
+  alias Formatter
+  alias LocalDict
   
   @data_type "Determiner"
   @file_path "data/auxiliary/determiner.txt"
@@ -27,13 +27,13 @@ defmodule KoreanSentenceAnalyser.DataTypes.Determiner do
       end
     
     word
-    |> Dict.find_in_file(@file_path)
+    |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
   
   def find(word) do
     word
-    |> Dict.find_in_file(@file_path)
+    |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
   
@@ -41,7 +41,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Determiner do
   Removes a determiner (if present)
   """
   def remove(word) do
-    case Dict.find_in_file(String.first(word), @file_path) do
+    case LocalDict.find_in_file(String.first(word), @file_path) do
       nil -> word
       match -> Word.get_remaining(word, match)
     end

@@ -1,8 +1,8 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Adverb do
+defmodule Adverb do
   @moduledoc false
 
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Formatter
+  alias LocalDict
+  alias Formatter
   @data_type "Adverb"
   @file_path "data/adverb/adverb.txt"
 
@@ -11,7 +11,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Adverb do
   """
   def find(word) do
     word
-    |> Dict.find_in_file(@file_path)
+    |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
 end

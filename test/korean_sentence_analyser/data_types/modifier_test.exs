@@ -1,7 +1,7 @@
 defmodule ModifierTest do
   use ExUnit.Case
   import AssertValue
-  alias KoreanSentenceAnalyser.DataTypes.Modifier
+  alias Modifier
 
   describe "We can remove modifiers - " do
     test "한표" do

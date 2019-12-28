@@ -1,8 +1,8 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Conjunction do
+defmodule Conjunction do
   @moduledoc false
 
-  alias KoreanSentenceAnalyser.Helpers.Dict
-  alias KoreanSentenceAnalyser.Helpers.Formatter
+  alias LocalDict
+  alias Formatter
   @data_type "Conjunction"
   @file_path "data/auxiliary/conjunctions.txt"
 
@@ -11,7 +11,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Conjunction do
   """
   def conjunction(word) do
     word
-    |> Dict.find_in_file(@file_path)
+    |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
 end

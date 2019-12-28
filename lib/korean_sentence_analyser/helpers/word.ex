@@ -1,13 +1,13 @@
-defmodule KoreanSentenceAnalyser.Helpers.Word do
-  alias KoreanSentenceAnalyser.DataTypes.Substantive
-  alias KoreanSentenceAnalyser.DataTypes.Noun
-  alias KoreanSentenceAnalyser.DataTypes.Adverb
-  alias KoreanSentenceAnalyser.DataTypes.Adjective
-  alias KoreanSentenceAnalyser.DataTypes.Verb
-  alias KoreanSentenceAnalyser.DataTypes.Conjunction
-  alias KoreanSentenceAnalyser.DataTypes.ModifiedNoun
-  alias KoreanSentenceAnalyser.DataTypes.Determiner
-  alias KoreanSentenceAnalyser.Helpers.Typo
+defmodule Word do
+  alias Substantive
+  alias Noun
+  alias Adverb
+  alias Adjective
+  alias Verb
+  alias Conjunction
+  alias ModifiedNoun
+  alias Determiner
+  alias Typo
 
   @doc """
   Find a word and get their type (verb, noun etc)

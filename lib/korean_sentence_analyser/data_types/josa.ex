@@ -1,16 +1,16 @@
-defmodule KoreanSentenceAnalyser.DataTypes.Josa do
+defmodule Josa do
   @moduledoc """
   A Josa is grammar particle that can be added to words
   """
 
-  alias KoreanSentenceAnalyser.Helpers.Dict
+  alias LocalDict
   @file_path "data/josa/josa.txt"
 
   @doc """
   Remove a Josa ending
   """
   def remove(word) do
-    case Dict.find_ending_in_file(word, @file_path) do
+    case LocalDict.find_ending_in_file(word, @file_path) do
       nil ->
         word
 
