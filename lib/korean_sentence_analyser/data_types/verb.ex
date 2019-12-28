@@ -76,7 +76,7 @@ defmodule KoreanSentenceAnalyser.DataTypes.Verb do
     list
   end
   
-  defp remove_verb_patterns(list, index, total) do
+  defp remove_verb_patterns(list, index, _total) do
     starts_with_rieul = list
                         |> Enum.at(index - 1)
                         |> String.last()

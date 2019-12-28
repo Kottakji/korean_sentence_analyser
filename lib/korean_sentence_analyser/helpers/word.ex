@@ -7,7 +7,6 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   alias KoreanSentenceAnalyser.DataTypes.Conjunction
   alias KoreanSentenceAnalyser.DataTypes.ModifiedNoun
   alias KoreanSentenceAnalyser.DataTypes.Determiner
-  alias KoreanSentenceAnalyser.DataTypes.Modifier
   alias KoreanSentenceAnalyser.Helpers.Typo
 
   @doc """
