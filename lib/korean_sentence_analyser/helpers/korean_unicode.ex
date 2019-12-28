@@ -157,6 +157,23 @@ defmodule KoreanSentenceAnalyser.Helpers.KoreanUnicode do
   end
 
   @doc """
+  Remove a final consonant and return the string without it
+  """
+  def remove_final_consonant(word) when byte_size(word) > 3 do
+    last = String.last(word)
+    remains = Word.get_remaining(word, last)
+    remains <> remove_final_consonant(last)
+  end
+  
+  def remove_final_consonant(character) do
+    create_from_code_points(
+      get_initial_code_point(character),
+      get_medial_code_point(character),
+      0
+    )
+  end
+
+  @doc """
   Get the initial consonant code point
   https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode
   """

@@ -28,6 +28,14 @@ defmodule KoreanSentenceAnalyser.Helpers.Dict do
   def find_in_file(word, file, :remove_josa) do
     find_in_file(Josa.remove(word), file)
   end
+
+  @doc """
+  Find a word in a file, but removes certain grammar
+  """
+  def find_in_file(word, file, :remove_grammar) do
+    Regex.replace(~r/(으로|로|을|를|에|에서)$/, word, "")
+    |> find_in_file(file)
+  end
   
   @doc """
   Find a word in a file, but removes the determiner

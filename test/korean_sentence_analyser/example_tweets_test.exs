@@ -184,9 +184,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "커피", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "나무", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "달성하다", "type" => "Mix"},
-                     %{"specific_type" => "Mix", "token" => "완료하다", "type" => "Mix"},
-                     %{"specific_type" => "Noun", "token" => "수", "type" => "Noun"},
-                     %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"}
+                     %{"specific_type" => "Mix", "token" => "완료하다", "type" => "Mix"}
                    ]
     end
     
@@ -225,7 +223,9 @@ defmodule ExampleTweetsTest do
     end
     
     test "@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?") == [
+      assert_value KoreanSentenceAnalyser.analyse_sentence(
+                     "@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?"
+                   ) == [
                      %{"specific_type" => "Adjective", "token" => "아니다", "type" => "Adjective"},
                      %{"specific_type" => "Determiner", "token" => "이", "type" => "Determiner"},
                      %{"specific_type" => "Noun", "token" => "거", "type" => "Noun"},
@@ -264,7 +264,6 @@ defmodule ExampleTweetsTest do
                    ]
     end
     
-    @tag :current
     test "@user ㅇㅁㅇ..?세개를다섞는다..이말입니가..?" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user ㅇㅁㅇ..?세개를다섞는다..이말입니가..?") == [
                      %{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},
@@ -276,9 +275,10 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "입니다", "type" => "Verb"}
                    ]
     end
-    #    test "RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com" do
-    #      assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com")
-    #    end
+    
+#    test "RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com" do
+#      assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com")
+#    end
     #    test "@user @user 누나다! 누나 안아줘어-" do
     #      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 누나다! 누나 안아줘어-")
     #    end

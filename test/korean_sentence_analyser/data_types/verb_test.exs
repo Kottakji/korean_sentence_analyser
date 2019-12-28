@@ -1,7 +1,7 @@
 defmodule VerbTest do
   use ExUnit.Case
   import AssertValue
-
+  
   describe "We can find verbs - " do
     test "먹다" do
       assert_value(
@@ -10,7 +10,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "먹어" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("먹어") == [
@@ -18,7 +18,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "냈어" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("냈어") == [
@@ -26,7 +26,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "늘다" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("늘다") == [
@@ -34,7 +34,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "해놓다" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("해놓다") == [
@@ -42,7 +42,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "하시다" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("하시다") == [
@@ -50,7 +50,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "하시겠어요" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("하시겠어요") == [
@@ -58,7 +58,7 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "하시지오" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("하시지오") == [
@@ -66,9 +66,13 @@ defmodule VerbTest do
         ]
       )
     end
-
+    
     test "감사합니다" do
-      assert_value(KoreanSentenceAnalyser.analyse_sentence("감사합니다") == [%{"specific_type" => "Verb", "token" => "감사하다", "type" => "Verb"}])
+      assert_value(
+        KoreanSentenceAnalyser.analyse_sentence("감사합니다") == [
+          %{"specific_type" => "Verb", "token" => "감사하다", "type" => "Verb"}
+        ]
+      )
     end
   end
 end

@@ -26,6 +26,7 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
          nil <- Conjunction.conjunction(word),
          nil <- Noun.find(word),
          nil <- Noun.find_without_determiner(word),
+         nil <- Noun.find_without_grammar(word),
          nil <- Adverb.find(word),
          nil <- Adjective.find(word),
          nil <- Verb.find(word),
@@ -41,20 +42,10 @@ defmodule KoreanSentenceAnalyser.Helpers.Word do
   """
   def get_remaining(word, match) do
     cond do
-      String.starts_with?(word, match) ->
-        case Regex.replace(Regex.compile!("^" <> match, "u"), word, "") do
-          "" -> nil
-          result -> result
-        end
-
-      String.ends_with?(word, match) ->
-        case Regex.replace(Regex.compile!(match <> "$", "u"), word, "") do
-          "" -> nil
-          result -> result
-        end
-
+      String.starts_with?(word, match) -> Regex.replace(Regex.compile!("^" <> match, "u"), word, "")
+      String.ends_with?(word, match) -> Regex.replace(Regex.compile!(match <> "$", "u"), word, "")
       true ->
-        nil
+        ""
     end
   end
 end

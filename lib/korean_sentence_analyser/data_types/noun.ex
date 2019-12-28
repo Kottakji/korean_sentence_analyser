@@ -92,6 +92,31 @@ defmodule KoreanSentenceAnalyser.DataTypes.Noun do
     end
   end
   
+  @doc """
+  Find if the word is a noun, removing any grammar attached to the word
+  """
+  def find_without_grammar(word) do
+    with nil <- bible(word, :remove_grammar),
+         nil <- brand(word, :remove_grammar),
+         nil <- company_name(word, :remove_grammar),
+         nil <- congress(word, :remove_grammar),
+         nil <- entity(word, :remove_grammar),
+         nil <- fashion(word, :remove_grammar),
+         nil <- foreign(word, :remove_grammar),
+         nil <- geolocation(word, :remove_grammar),
+         nil <- kpop(word, :remove_grammar),
+         nil <- lol(word, :remove_grammar),
+         nil <- name(word, :remove_grammar),
+         nil <- neologism(word, :remove_grammar),
+         nil <- nouns(word, :remove_grammar),
+         nil <- pokemon(word, :remove_grammar),
+         nil <- profane(word, :remove_grammar),
+         nil <- slang(word, :remove_grammar),
+         nil <- spam(word, :remove_grammar),
+         nil <- twitter(word, :remove_grammar),
+         nil <- wikipedia_title_noun(word, :remove_grammar),
+         do: nil
+  end
   
   @doc """
   Find if the word is a bible word

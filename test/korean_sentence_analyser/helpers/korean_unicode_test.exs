@@ -23,6 +23,12 @@ defmodule KoreanUnicodeTest do
       assert_value KoreanUnicode.change_final_consonant("노랗", "ᆫ") == "노란"
     end
   end
+
+  describe "We can remove the final character in a word - " do
+    test "마실" do
+      assert_value KoreanUnicode.remove_final_consonant("마실") == "마시"
+    end
+  end
   
   describe "We can split a sentence - " do
     test "투표......당신의 소중한  한표....ㅋㅋ" do

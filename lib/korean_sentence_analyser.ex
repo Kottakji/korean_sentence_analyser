@@ -4,6 +4,7 @@ defmodule KoreanSentenceAnalyser do
   """
   
   use Application
+  alias KoreanSentenceAnalyser.DataTypes.VerbPattern
   alias KoreanSentenceAnalyser.DataTypes.Modifier
   alias KoreanSentenceAnalyser.Helpers.KoreanUnicode
   alias KoreanSentenceAnalyser.Helpers.SplitWord
@@ -25,6 +26,7 @@ defmodule KoreanSentenceAnalyser do
   def analyse_sentence(sentence) do
     sentence
     |> KoreanUnicode.split()
+    |> VerbPattern.remove()
     |> Enum.map(
          fn x ->
            analyse_word(x)
