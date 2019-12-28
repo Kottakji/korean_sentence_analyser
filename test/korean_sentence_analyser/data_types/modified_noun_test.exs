@@ -2,6 +2,7 @@ defmodule ModifiedNounTest do
   use ExUnit.Case
   import AssertValue
   alias ModifiedNoun
+  doctest ModifiedNoun
 
   describe "We can find verbs from nouns directly - " do
     test "생각한다면" do

@@ -3,6 +3,7 @@ defmodule EomiTest do
   import AssertValue
   alias Eomi
   alias Stem
+  doctest Eomi
 
   describe "We can remove Eomi from words - " do
     test "가능하다" do

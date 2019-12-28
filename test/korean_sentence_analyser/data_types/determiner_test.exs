@@ -2,6 +2,7 @@ defmodule DeterminerTest do
   use ExUnit.Case
   import AssertValue
   alias Determiner
+  doctest Determiner
 
   describe "We can find determiners - " do
     test "나" do

@@ -2,6 +2,7 @@ defmodule VerbPatternTest do
   use ExUnit.Case
   import AssertValue
   alias VerbPattern
+  doctest VerbPattern
 
   describe "We can remove certain verb patters - " do
     test "마실 수 있다" do
@@ -20,7 +21,6 @@ defmodule VerbPatternTest do
       assert_value VerbPattern.remove(["할", "수"]) == ["할", "수"]
     end
   
-    @tag :now
     test "한다" do
       assert_value VerbPattern.remove(["한다"]) == ["하다"]
     end

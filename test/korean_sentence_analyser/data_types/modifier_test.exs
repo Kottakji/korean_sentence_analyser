@@ -2,6 +2,7 @@ defmodule ModifierTest do
   use ExUnit.Case
   import AssertValue
   alias Modifier
+  doctest Modifier
 
   describe "We can remove modifiers - " do
     test "한표" do

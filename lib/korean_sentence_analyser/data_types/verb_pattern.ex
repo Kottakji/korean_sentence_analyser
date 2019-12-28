@@ -2,12 +2,15 @@ defmodule VerbPattern do
   @moduledoc """
   There are certain verb patterns that do not get matched by our other modules
   """
+  
   alias Word
   alias KoreanUnicode
   
   @doc """
-  halsuisdda certain verb patterns that otherwise wouldn't match
-  For example: 할 수 있다, should not match on 하다, 수 and 있다, but only on 하다
+  Remove certain verb patterns that otherwise wouldn't match
+  
+    iex> VerbPattern.remove(["마실", "수", "있다"])
+    ["마시"]
   """
   def remove(list) when is_list(list) do
     list

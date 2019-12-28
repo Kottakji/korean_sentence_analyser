@@ -2,6 +2,7 @@ defmodule KoreanUnicodeTest do
   use ExUnit.Case
   import AssertValue
   alias KoreanUnicode
+  doctest KoreanUnicode
   
   # See https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode
   describe "We can create a character from code points - " do

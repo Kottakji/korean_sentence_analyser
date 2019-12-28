@@ -2,12 +2,18 @@ defmodule Substantive do
   @moduledoc """
   A substantive can be a given name, or a family name
   """
+  
   alias LocalDict
   alias Formatter
+  
   @data_type "Substantive"
 
   @doc """
   Find if the word is a substantive
+  
+    iex> Substantive.find("경수")
+    %{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}
+    
   """
   def find(word) do
     with nil <- given_name(word),

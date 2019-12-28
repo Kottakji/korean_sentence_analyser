@@ -1,6 +1,7 @@
 defmodule VerbTest do
   use ExUnit.Case
   import AssertValue
+  doctest Verb
   
   describe "We can find verbs - " do
     test "먹다" do

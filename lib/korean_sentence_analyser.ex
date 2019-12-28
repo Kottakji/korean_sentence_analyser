@@ -11,6 +11,7 @@ defmodule KoreanSentenceAnalyser do
   alias Word
   alias DictFile
   
+  @doc false
   def start(_type, _args) do
     DictFile.init()
     Supervisor.start_link([], strategy: :one_for_one)
@@ -18,6 +19,9 @@ defmodule KoreanSentenceAnalyser do
   
   @doc """
   Analyse a Korean sentence
+  
+    iex> KoreanSentenceAnalyser.analyse_sentence("한국은 동아시아의 한반도에 위치하고 있다")
+    [%{"specific_type" => "Noun", "token" => "한국", "type" => "Noun"},%{"specific_type" => "Wikipedia title noun","token" => "동아시아","type" => "Noun"},%{"specific_type" => "Entities", "token" => "한반도", "type" => "Noun"},%{"specific_type" => "Noun", "token" => "위치", "type" => "Noun"},%{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"}]
   """
   def analyse_sentence("") do
     nil

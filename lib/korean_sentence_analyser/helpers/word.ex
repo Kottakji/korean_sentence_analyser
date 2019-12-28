@@ -22,7 +22,7 @@ defmodule Word do
     with nil <- Determiner.find(word),
          nil <- Substantive.given_name(word),
          nil <- Substantive.family_name(word),
-         nil <- Conjunction.conjunction(word),
+         nil <- Conjunction.find(word),
          nil <- Noun.find(word),
          nil <- Noun.find_without_determiner(word),
          nil <- Noun.find_without_grammar(word),

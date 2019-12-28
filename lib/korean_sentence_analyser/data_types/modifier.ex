@@ -8,11 +8,16 @@ defmodule Modifier do
   alias Formatter
   alias Word
   alias KoreanUnicode
+  
   @data_type "Modifier"
   @file_path "data/substantives/modifier.txt"
 
   @doc """
   Find if the word is a modifier
+  
+    iex> Modifier.find("세개")
+    [%{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},%{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}]
+  
   """
   def find(word) do
     word =

@@ -7,6 +7,11 @@ defmodule SplitWord do
   
   @doc """
   Find the words when a word contains multiple words without spacing in between
+  
+    iex> SplitWord.find("성열이냐")
+    [%{"specific_type" => "Given name", "token" => "성열", "type" => "Substantive"}, %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}]
+    
+    
   """
   def find(word) when is_binary(word) do
     word

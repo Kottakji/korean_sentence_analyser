@@ -11,11 +11,16 @@ defmodule ModifiedNoun do
   alias Stem
   alias KoreanUnicode
   alias LocalDict
+  
   @data_type "Mix"
   @file_path "data/noun/nouns.txt"
 
   @doc """
   Find if the word is a modified noun
+  
+    iex> ModifiedNoun.find("생각한다면")
+    %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
+    
   """
   def find(word) do
     find(word, word)

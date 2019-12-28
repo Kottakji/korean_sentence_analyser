@@ -9,6 +9,10 @@ defmodule Noun do
   
   @doc """
   Find if the word is a noun
+  
+    iex> Noun.find("단발")
+    %{"specific_type" => "Fashion", "token" => "단발", "type" => "Noun"}
+    
   """
   def find(word) do
     with nil <- bible(word),

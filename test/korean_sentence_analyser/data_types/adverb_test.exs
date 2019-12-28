@@ -1,6 +1,7 @@
 defmodule AdverbTest do
   use ExUnit.Case
   import AssertValue
+  doctest Adverb
 
   describe "We can find adverbs - " do
     test "가강히" do

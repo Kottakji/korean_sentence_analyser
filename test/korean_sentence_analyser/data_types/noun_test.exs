@@ -1,6 +1,7 @@
 defmodule NounTest do
   use ExUnit.Case
   import AssertValue
+  doctest Noun
 
   describe "We can find nouns - " do
     test "bible - 압살롬" do

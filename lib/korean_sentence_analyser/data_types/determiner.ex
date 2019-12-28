@@ -12,6 +12,9 @@ defmodule Determiner do
   
   @doc """
   Find if the word is a determiner
+  
+    iex> Determiner.find("그")
+    %{"specific_type" => "Determiner", "token" => "그", "type" => "Determiner"}
   """
   def find(word) when byte_size(word) > 3 do
     word =

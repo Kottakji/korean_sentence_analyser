@@ -1,6 +1,7 @@
 defmodule ConjunctionTest do
   use ExUnit.Case
   import AssertValue
+  doctest Conjunction
 
   describe "We can find conjunctions - " do
     test "그럼" do

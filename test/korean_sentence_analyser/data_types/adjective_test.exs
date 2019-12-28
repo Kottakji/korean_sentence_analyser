@@ -2,6 +2,7 @@ defmodule AdjectiveTest do
   use ExUnit.Case
   import AssertValue
   alias Adjective
+  doctest Adjective
 
   describe "We can find adjectives - " do
     test "가능하다" do
