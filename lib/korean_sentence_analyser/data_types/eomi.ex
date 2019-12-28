@@ -7,12 +7,12 @@ defmodule Eomi do
   alias LocalDict
 
   @doc """
-  Remove the Eomi from the word
-  Can (should) be called recursively
-  If the result is not the same word or nil, you can lookup the word, or call this method again to remove more
+  Remove the Eomi from the word.
+  Can (should) be called recursively.
+  If the result is not the same word or nil, you can lookup the word, or call this method again to remove more.
   
-    iex> Eomi.remove("가능하다")
-    "가능하"
+      iex> Eomi.remove("가능하다")
+      "가능하"
   """
   def remove(word) do
     # Remove the eomi ending

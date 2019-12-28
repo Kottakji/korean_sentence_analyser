@@ -2,6 +2,7 @@ defmodule TypoTest do
   use ExUnit.Case
   import AssertValue
   alias Typo
+  doctest Typo
 
   describe "We can transform typo's - " do
     test "십알" do

@@ -4,8 +4,8 @@ defmodule Formatter do
   """
 
   @doc """
-  Add an ending to a word
-  In case no word is found, we return nil
+  Add an ending to a word.
+  In case no word is found, we return nil.
   """
   def add_ending(word, ending) do
     case word do
@@ -21,8 +21,8 @@ defmodule Formatter do
   end
 
   @doc """
-  Print the result in token format
-  Or nil if nothing is found
+  Print the result in token format.
+  Returns nil if nothing is found.
   """
   def print_result(value, type, specific_type) do
     case value do
@@ -31,6 +31,10 @@ defmodule Formatter do
     end
   end
 
+  @doc """
+  Print the result in token format.
+  Returns nil if nothing is found.
+  """
   def print_result(value, type) do
     print_result(value, type, type)
   end

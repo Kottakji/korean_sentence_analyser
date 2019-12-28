@@ -9,8 +9,8 @@ defmodule VerbPattern do
   @doc """
   Remove certain verb patterns that otherwise wouldn't match
   
-    iex> VerbPattern.remove(["마실", "수", "있다"])
-    ["마시"]
+      iex> VerbPattern.remove(["마실", "수", "있다"])
+      ["마시"]
   """
   def remove(list) when is_list(list) do
     list

@@ -1,6 +1,7 @@
 defmodule Modifier do
   @moduledoc """
   A modifier changes, clarifies, qualifies, or limits a particular word in a sentence in order to add emphasis, explanation, or detail.
+  
   For example in 한표 (one ticket), 한 is the modifier, 표 is the noun
   """
 
@@ -15,8 +16,11 @@ defmodule Modifier do
   @doc """
   Find if the word is a modifier
   
-    iex> Modifier.find("세개")
-    [%{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},%{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}]
+      iex> Modifier.find("세개")
+      [
+        %{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},
+        %{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}
+      ]
   
   """
   def find(word) do

@@ -276,9 +276,15 @@ defmodule ExampleTweetsTest do
                    ]
     end
     
-#    test "RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com" do
-#      assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com")
-#    end
+    @tag :now
+    test "RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com") == [
+                     %{"specific_type" => "Noun", "token" => "악", "type" => "Noun"},
+                     %{"specific_type" => "Foreign", "token" => "이진기", "type" => "Noun"},
+                     %{"specific_type" => "Modifier", "token" => "조", "type" => "Modifier"},
+                     %{"specific_type" => "Wikipedia title noun", "token" => "아해", "type" => "Noun"}
+                   ]
+    end
     #    test "@user @user 누나다! 누나 안아줘어-" do
     #      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 누나다! 누나 안아줘어-")
     #    end

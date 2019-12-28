@@ -4,10 +4,15 @@ defmodule Typo do
   """
 
   alias LocalDict
+  
   @file_path "data/typos/typos.txt"
 
   @doc """
   Find a typo and return the new word if found
+  
+      iex> Typo.find("십알")
+      "씨발"
+    
   """
   def find(word) do
     case LocalDict.find_in_file(word, @file_path) do

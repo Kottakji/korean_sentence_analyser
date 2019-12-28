@@ -1,6 +1,6 @@
 defmodule LocalDict do
   @moduledoc """
-  Use our local dictionary to see if words exist
+  Use our local dictionary to verify words
   """
   
   alias Josa
@@ -16,30 +16,23 @@ defmodule LocalDict do
   end
   
   @doc """
-  Find a word in a file, and does not remove the josa
+  Find a word in a file
+  
+  Options available: :remove_josa, :remove_grammar, :remove_determiner
   """
   def find_in_file(word, file, nil) do
     find_in_file(word, file)
   end
   
-  @doc """
-  Find a word in a file, but removes the josa
-  """
   def find_in_file(word, file, :remove_josa) do
     find_in_file(Josa.remove(word), file)
   end
 
-  @doc """
-  Find a word in a file, but removes certain grammar
-  """
   def find_in_file(word, file, :remove_grammar) do
     Regex.replace(~r/(으로|로|을|를|에|에서)$/, word, "")
     |> find_in_file(file)
   end
   
-  @doc """
-  Find a word in a file, but removes the determiner
-  """
   def find_in_file(word, file, :remove_determiner) do
     case Determiner.remove(word) do
       match when match != word ->
@@ -50,12 +43,13 @@ defmodule LocalDict do
   end
   
   @doc """
-  Finds the biggest word from the beginning of the word in the file
-  It does this going of the words in a dictionary file, that are ordered by length DESC
-  If the dictionary word matches at the start of the search word, it's a match
-  Because it's ordered, it will always find the biggest word at the start
-  For example:
-  Search on 한국대사관 will match 한국 (the biggest word from the start)
+  Finds the biggest word from the beginning of the word in the file.
+  It does this going of the words in a dictionary file, that are ordered by length DESC.
+  If the dictionary word matches at the start of the search word, it's a match.
+  
+  Because it's ordered, it will always find the biggest word at the start.
+  
+  Example: search on 한국대사관 will match 한국 (the biggest word from the start).
   """
   def find_beginning_in_file("", _file) do
     nil
@@ -69,12 +63,13 @@ defmodule LocalDict do
   end
   
   @doc """
-  Finds the biggest word from the ending of the word in the file
-  It does this going of the words in a dictionary file, that are ordered by length DESC
-  If the dictionary word matches at the end of the search word, it's a match
-  Because it's ordered, it will always find the biggest word at the end
-  For example:
-  Search on 한국대사관 will match 대사관 (the biggest word from the end)
+  Finds the biggest word from the ending of the word in the file.
+  It does this going of the words in a dictionary file, that are ordered by length DESC.
+  If the dictionary word matches at the end of the search word, it's a match.
+  
+  Because it's ordered, it will always find the biggest word at the end.
+  
+  Example: search on 한국대사관 will match 대사관 (the biggest word from the end)
   """
   def find_ending_in_file("", _file) do
     nil
@@ -88,11 +83,12 @@ defmodule LocalDict do
   end
   
   @doc """
-  Finds the smallest word from the ending of the word in the file
-  It does this going of the words in a dictionary file, that are ordered by length DESC
-  If the dictionary word matches at the end of the search word, it's a match
-  For example:
-  Search on 한국 will match 국 (the smallest word from the end)
+  Finds the smallest word from the ending of the word in the file.
+  It does this going of the words in a dictionary file, that are ordered by length DESC.
+  
+  If the dictionary word matches at the end of the search word, it's a match.
+  
+  Example: search on 한국 will match 국 (the smallest word from the end)
   """
   def find_smallest_ending_in_file("", _file) do
     nil

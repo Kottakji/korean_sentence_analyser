@@ -11,8 +11,8 @@ defmodule Substantive do
   @doc """
   Find if the word is a substantive
   
-    iex> Substantive.find("경수")
-    %{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}
+      iex> Substantive.find("경수")
+      %{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}
     
   """
   def find(word) do
@@ -32,6 +32,10 @@ defmodule Substantive do
 
   @doc """
   Find if the word is a given name
+  
+      iex> Substantive.given_name("경수")
+      %{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}
+    
   """
   def given_name(word, option \\ nil) do
     LocalDict.find_in_file(word, "data/substantives/given_names.txt", option)
@@ -40,6 +44,10 @@ defmodule Substantive do
 
   @doc """
   Find if the word is a family name
+  
+      iex> Substantive.family_name("박")
+      %{"specific_type" => "Family name", "token" => "박", "type" => "Substantive"}
+    
   """
   def family_name(word, option \\ nil) do
     LocalDict.find_in_file(word, "data/substantives/family_names.txt", option)

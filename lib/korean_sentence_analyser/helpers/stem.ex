@@ -8,8 +8,10 @@ defmodule Stem do
   @doc """
   Finds the stem of a word
   Warning: This method can be destructive
-  늘다 can be turned into 느다
-  So, always check if the verb/adjective is already valid, before trying to find a stem
+  
+      iex> Stem.find("넣었")
+      "넣"
+    
   """
   def find(word) do
     conjugate(word, String.last(word))

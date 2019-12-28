@@ -9,8 +9,8 @@ defmodule Adverb do
   @doc """
   Find if the word is an adverb
   
-    iex> Adverb.find("가강히")
-    %{"specific_type" => "Adverb", "token" => "가강히", "type" => "Adverb"}
+      iex> Adverb.find("가강히")
+      %{"specific_type" => "Adverb", "token" => "가강히", "type" => "Adverb"}
   """
   def find(word) do
     word

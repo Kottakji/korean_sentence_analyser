@@ -14,8 +14,8 @@ defmodule Verb do
   @doc """
   Find if the word is a verb
   
-    iex> Verb.find("먹다")
-    %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
+      iex> Verb.find("먹다")
+      %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
     
   """
   def find(word) do

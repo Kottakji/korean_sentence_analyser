@@ -9,8 +9,8 @@ defmodule Josa do
   @doc """
   Remove a Josa ending
   
-    iex> Josa.remove("당신의")
-    "당신"
+      iex> Josa.remove("당신의")
+      "당신"
   """
   def remove(word) do
     case LocalDict.find_ending_in_file(word, @file_path) do

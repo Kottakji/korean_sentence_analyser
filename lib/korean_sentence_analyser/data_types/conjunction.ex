@@ -9,8 +9,8 @@ defmodule Conjunction do
   @doc """
   Find if the word is a conjunction
   
-    iex> Conjunction.find("그럼")
-    %{"specific_type" => "Conjunction","token" => "그럼","type" => "Conjunction"}
+      iex> Conjunction.find("그럼")
+      %{"specific_type" => "Conjunction","token" => "그럼","type" => "Conjunction"}
     
   """
   def find(word) do

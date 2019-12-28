@@ -13,8 +13,8 @@ defmodule Adjective do
   @doc """
   Find if the word is an adjective
     
-    iex> Adjective.find("힘들")
-    %{"specific_type" => "Adjective", "token" => "힘들다", "type" => "Adjective"}
+      iex> Adjective.find("힘들")
+      %{"specific_type" => "Adjective", "token" => "힘들다", "type" => "Adjective"}
   """
   def find(word) do
     find(word, word)

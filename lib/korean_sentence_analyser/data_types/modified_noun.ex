@@ -1,8 +1,10 @@
 defmodule ModifiedNoun do
   @moduledoc """
-  A modified noun is a verb or an adjective that is based on a noun
-  생각 is a noun, but 생각하다 is a verb
-  은근 is a noun, but 은근하다 is an adjective
+  A modified noun is a verb or an adjective that is based on a noun.
+  
+  생각 is a noun, but 생각하다 is a verb.
+  
+  은근 is a noun, but 은근하다 is an adjective.
   """
 
   alias Eomi
@@ -18,8 +20,8 @@ defmodule ModifiedNoun do
   @doc """
   Find if the word is a modified noun
   
-    iex> ModifiedNoun.find("생각한다면")
-    %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
+      iex> ModifiedNoun.find("생각한다면")
+      %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
     
   """
   def find(word) do
