@@ -3,13 +3,11 @@ defmodule Typo do
   Can fix certain typo's
   """
 
-  alias LocalDict
-  
-  @file_path "data/typos/typos.txt"
+  @file_path "typos/typos.txt"
 
   @doc """
   Find a typo and return the new word if found
-  
+
       iex> Typo.find("십알")
       "씨발"
     

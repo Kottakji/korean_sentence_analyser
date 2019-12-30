@@ -1,27 +1,22 @@
 defmodule Modifier do
   @moduledoc """
   A modifier changes, clarifies, qualifies, or limits a particular word in a sentence in order to add emphasis, explanation, or detail.
-  
+
   For example in 한표 (one ticket), 한 is the modifier, 표 is the noun
   """
 
-  alias LocalDict
-  alias Formatter
-  alias Word
-  alias KoreanUnicode
-  
   @data_type "Modifier"
-  @file_path "data/substantives/modifier.txt"
+  @file_path "substantives/modifier.txt"
 
   @doc """
   Find if the word is a modifier
-  
+
       iex> Modifier.find("세개")
       [
         %{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},
         %{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}
       ]
-  
+
   """
   def find(word) do
     word =
@@ -34,7 +29,6 @@ defmodule Modifier do
          nil <- find_as_whole(word),
          do: nil
   end
-  
 
   @doc """
   Remove the modifier from a word

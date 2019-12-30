@@ -1,13 +1,5 @@
 defmodule Word do
-  alias Substantive
-  alias Noun
-  alias Adverb
-  alias Adjective
-  alias Verb
-  alias Conjunction
-  alias ModifiedNoun
-  alias Determiner
-  alias Typo
+  @moduledoc false
 
   @doc """
   Find a word and get their type (verb, noun etc)
@@ -41,8 +33,12 @@ defmodule Word do
   """
   def get_remaining(word, match) do
     cond do
-      String.starts_with?(word, match) -> Regex.replace(Regex.compile!("^" <> match, "u"), word, "")
-      String.ends_with?(word, match) -> Regex.replace(Regex.compile!(match <> "$", "u"), word, "")
+      String.starts_with?(word, match) ->
+        Regex.replace(Regex.compile!("^" <> match, "u"), word, "")
+
+      String.ends_with?(word, match) ->
+        Regex.replace(Regex.compile!(match <> "$", "u"), word, "")
+
       true ->
         ""
     end

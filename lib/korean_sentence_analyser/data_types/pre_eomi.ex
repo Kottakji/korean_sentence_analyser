@@ -3,8 +3,7 @@ defmodule PreEomi do
   A pre-eomi is a conjugation added to Korean words at the beginning
   """
 
-  alias LocalDict
-  @file_path "data/verb/pre_eomi.txt"
+  @file_path "verb/pre_eomi.txt"
 
   @doc """
   Removes a pre-eomi

@@ -1,7 +1,7 @@
 defmodule WikipediaTextTest do
   use ExUnit.Case
   import AssertValue
-  
+
   describe "Wikipedia text -" do
     test "음식(飮食) 또는 먹을거리는 먹거나 마실 수 있는 모든 것을 가리키는 말로 요리를 통해 만들기도 한다" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("음식(飮食) 또는 먹을거리는 먹거나 마실 수 있는 모든 것을 가리키는 말로 요리를 통해 만들기도 한다") == [
@@ -19,7 +19,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Verb", "token" => "하다", "type" => "Verb"}
                    ]
     end
-    
+
     test "대부분의 음식은 일부를 제외하고는 모두 식물이나 동물에서 얻을 수 있다" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("대부분의 음식은 일부를 제외하고는 모두 식물이나 동물에서 얻을 수 있다") == [
                      %{"specific_type" => "Noun", "token" => "대부분", "type" => "Noun"},
@@ -32,7 +32,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Verb", "token" => "얻다", "type" => "Verb"}
                    ]
     end
-    
+
     test "동물(動物) 또는 뭍사리는[1] 동물계(動物界, Animalia)로 분류되는 생물의 총칭이다." do
       assert_value KoreanSentenceAnalyser.analyse_sentence("동물(動物) 또는 뭍사리는[1] 동물계(動物界, Animalia)로 분류되는 생물의 총칭이다.") == [
                      %{"specific_type" => "Noun", "token" => "동물", "type" => "Noun"},
@@ -46,7 +46,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "총칭", "type" => "Noun"}
                    ]
     end
-    
+
     test "그는 스승 플라톤이 관념론적 이상주의임에 대하여 경험론적 현실주의자로 지적되고 있으며, 예술에 관해서도 플라톤과 다른 의견을 내세우고 있다" do
       # Improvement: remove 대해/대한
       assert_value KoreanSentenceAnalyser.analyse_sentence("그는 스승 플라톤이 관념론적 이상주의임에 대하여 경험론적 현실주의자로 지적되고 있으며, 예술에 관해서도 플라톤과 다른 의견을 내세우고 있다") == [

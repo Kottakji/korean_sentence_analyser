@@ -73,7 +73,7 @@ defmodule ModifierTest do
                      %{"specific_type" => "Verb", "token" => "섞다", "type" => "Verb"}
                    ]
     end
-    
+
     test "이말입니가" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("이말입니가") == [
                      %{"specific_type" => "Determiner", "token" => "이", "type" => "Determiner"},

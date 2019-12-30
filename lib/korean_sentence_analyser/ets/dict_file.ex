@@ -2,99 +2,97 @@ defmodule DictFile do
   @moduledoc """
   Use ETS to access dictionary files
   """
-  
+
   @doc """
   Initiate the dictionaries into ETS
   """
   def init() do
     [
-      "data/adjective/adjective.txt",
-      "data/adverb/adverb.txt",
-      "data/auxiliary/conjunctions.txt",
-      "data/auxiliary/determiner.txt",
-      "data/auxiliary/exclamation.txt",
-      "data/josa/josa.txt",
-      "data/noun/bible.txt",
-      "data/noun/brand.txt",
-      "data/noun/company_names.txt",
-      "data/noun/congress.txt",
-      "data/noun/entities.txt",
-      "data/noun/fashion.txt",
-      "data/noun/foreign.txt",
-      "data/noun/geolocations.txt",
-      "data/noun/kpop.txt",
-      "data/noun/lol.txt",
-      "data/noun/names.txt",
-      "data/noun/neologism.txt",
-      "data/noun/nouns.txt",
-      "data/noun/pokemon.txt",
-      "data/noun/profane.txt",
-      "data/noun/slangs.txt",
-      "data/noun/spam.txt",
-      "data/noun/twitter.txt",
-      "data/noun/wikipedia_title_nouns.txt",
-      "data/substantives/family_names.txt",
-      "data/substantives/given_names.txt",
-      "data/substantives/modifier.txt",
-      "data/substantives/suffix.txt",
-      "data/typos/typos.txt",
-      "data/verb/eomi.txt",
-      "data/verb/pre_eomi.txt",
-      "data/verb/verb.txt",
-      "data/verb/verb_prefix.txt"
+      "adjective/adjective.txt",
+      "adverb/adverb.txt",
+      "auxiliary/conjunctions.txt",
+      "auxiliary/determiner.txt",
+      "auxiliary/exclamation.txt",
+      "josa/josa.txt",
+      "noun/bible.txt",
+      "noun/brand.txt",
+      "noun/company_names.txt",
+      "noun/congress.txt",
+      "noun/entities.txt",
+      "noun/fashion.txt",
+      "noun/foreign.txt",
+      "noun/geolocations.txt",
+      "noun/kpop.txt",
+      "noun/lol.txt",
+      "noun/names.txt",
+      "noun/neologism.txt",
+      "noun/nouns.txt",
+      "noun/pokemon.txt",
+      "noun/profane.txt",
+      "noun/slangs.txt",
+      "noun/spam.txt",
+      "noun/twitter.txt",
+      "noun/wikipedia_title_nouns.txt",
+      "substantives/family_names.txt",
+      "substantives/given_names.txt",
+      "substantives/modifier.txt",
+      "substantives/suffix.txt",
+      "typos/typos.txt",
+      "verb/eomi.txt",
+      "verb/pre_eomi.txt",
+      "verb/verb.txt",
+      "verb/verb_prefix.txt"
     ]
-    |> Enum.each(fn file -> init_dict_from_file(file) end)
+    |> Enum.each(fn path -> init_dict_from_file(path) end)
   end
-  
+
   @doc """
-  Initiate a dictionary from a file
+  Initiate a dictionary from a path
   """
-  def init_dict_from_file(file) when file == "data/typos/typos.txt" do
-    :ets.new(String.to_atom(file), [:ordered_set, :protected, :named_table])
-    
-    File.stream!(file)
-    |> Stream.map(
-         fn x ->
-           [key, value] = String.split(x)
-           insert(key, value, file)
-         end
-       )
+  def init_dict_from_file(path) when path == "typos/typos.txt" do
+    :ets.new(String.to_atom(path), [:ordered_set, :protected, :named_table])
+
+    Path.join(:code.priv_dir(:korean_sentence_analyser), path)
+    |> File.stream!()
+    |> Stream.map(fn x ->
+      [key, value] = String.split(x)
+      insert(key, value, path)
+    end)
     |> Stream.run()
   end
-  
-  def init_dict_from_file(file) do
-    :ets.new(String.to_atom(file), [:ordered_set, :protected, :named_table])
-    
-    File.stream!(file)
-    |> Stream.map(
-         fn x ->
-           String.replace(x, "\n", "")
-           |> insert(file)
-         end
-       )
+
+  def init_dict_from_file(path) do
+    :ets.new(String.to_atom(path), [:ordered_set, :protected, :named_table])
+
+    Path.join(:code.priv_dir(:korean_sentence_analyser), path)
+    |> File.stream!()
+    |> Stream.map(fn x ->
+      String.replace(x, "\n", "")
+      |> insert(path)
+    end)
     |> Stream.run()
   end
-  
+
   @doc """
-  Insert a key and value for a file in the ETS dictionary
+  Insert a key and value for a path in the ETS dictionary
   """
-  def insert(key, value, file) do
-    :ets.insert(String.to_atom(file), {key, value})
+  def insert(key, value, path) do
+    :ets.insert(String.to_atom(path), {key, value})
   end
-  
+
   @doc """
-  Insert a key and value for a file in a the ETS dictionary
+  Insert a key and value for a path in a the ETS dictionary
   The key will be the same as the value
   """
-  def insert(value, file) do
-    insert(value, value, file)
+  def insert(value, path) do
+    insert(value, value, path)
   end
-  
+
   @doc """
-  Find a word in the dictionary file
+  Find a word in the dictionary path
   """
-  def find(word, file) do
-    case :ets.select(String.to_atom(file), [{{word, :_}, [], [:"$_"]}]) do
+  def find(word, path) do
+    case :ets.select(String.to_atom(path), [{{word, :_}, [], [:"$_"]}]) do
       [{_key, value}] -> value
       _ -> nil
     end

@@ -3,12 +3,11 @@ defmodule Josa do
   A Josa is grammar particle that can be added to words
   """
 
-  alias LocalDict
-  @file_path "data/josa/josa.txt"
+  @file_path "josa/josa.txt"
 
   @doc """
   Remove a Josa ending
-  
+
       iex> Josa.remove("당신의")
       "당신"
   """

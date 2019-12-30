@@ -1,14 +1,12 @@
 defmodule Conjunction do
   @moduledoc false
 
-  alias LocalDict
-  alias Formatter
   @data_type "Conjunction"
-  @file_path "data/auxiliary/conjunctions.txt"
+  @file_path "auxiliary/conjunctions.txt"
 
   @doc """
   Find if the word is a conjunction
-  
+
       iex> Conjunction.find("그럼")
       %{"specific_type" => "Conjunction","token" => "그럼","type" => "Conjunction"}
     

@@ -12,7 +12,7 @@ Add to mix.exs
 ```elixir
 def deps do
   [
-    {:korean_sentence_analyser, "~> 0.2.2"}
+    {:korean_sentence_analyser, "~> 0.2.3"}
   ]
 end
 ```

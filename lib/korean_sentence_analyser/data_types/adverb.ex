@@ -1,14 +1,12 @@
 defmodule Adverb do
   @moduledoc false
 
-  alias LocalDict
-  alias Formatter
   @data_type "Adverb"
-  @file_path "data/adverb/adverb.txt"
+  @file_path "adverb/adverb.txt"
 
   @doc """
   Find if the word is an adverb
-  
+
       iex> Adverb.find("가강히")
       %{"specific_type" => "Adverb", "token" => "가강히", "type" => "Adverb"}
   """

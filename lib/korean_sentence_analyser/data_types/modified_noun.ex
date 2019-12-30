@@ -1,25 +1,18 @@
 defmodule ModifiedNoun do
   @moduledoc """
   A modified noun is a verb or an adjective that is based on a noun.
-  
+
   생각 is a noun, but 생각하다 is a verb.
-  
+
   은근 is a noun, but 은근하다 is an adjective.
   """
 
-  alias Eomi
-  alias Formatter
-  alias Word
-  alias Stem
-  alias KoreanUnicode
-  alias LocalDict
-  
   @data_type "Mix"
-  @file_path "data/noun/nouns.txt"
+  @file_path "noun/nouns.txt"
 
   @doc """
   Find if the word is a modified noun
-  
+
       iex> ModifiedNoun.find("생각한다면")
       %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
     

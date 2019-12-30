@@ -1,15 +1,11 @@
 defmodule Noun do
   @moduledoc false
-  
-  alias LocalDict
-  alias Word
-  alias Formatter
-  
+
   @data_type "Noun"
-  
+
   @doc """
   Find if the word is a noun
-  
+
       iex> Noun.find("단발")
       %{"specific_type" => "Fashion", "token" => "단발", "type" => "Noun"}
     
@@ -36,7 +32,7 @@ defmodule Noun do
          nil <- wikipedia_title_noun(word),
          do: nil
   end
-  
+
   @doc """
   Find if the word is a noun, removing any Josa (grammar) attached to the word
   """
@@ -62,7 +58,7 @@ defmodule Noun do
          nil <- wikipedia_title_noun(word, :remove_josa),
          do: nil
   end
-  
+
   @doc """
   Find if the word is a noun, removing any determiner attached to the word
   """
@@ -91,11 +87,11 @@ defmodule Noun do
       match = %{"token" => token} ->
         [
           Formatter.print_result(Word.get_remaining(word, token), "Determiner"),
-          match,
+          match
         ]
     end
   end
-  
+
   @doc """
   Find if the word is a noun, removing any grammar attached to the word
   """
@@ -121,158 +117,156 @@ defmodule Noun do
          nil <- wikipedia_title_noun(word, :remove_grammar),
          do: nil
   end
-  
+
   @doc """
   Find if the word is a bible word
   """
   def bible(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/bible.txt", option)
+    LocalDict.find_in_file(word, "noun/bible.txt", option)
     |> Formatter.print_result(@data_type, "Bible")
   end
-  
+
   @doc """
   Find if the word is a brand name
   """
   def brand(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/brand.txt", option)
+    LocalDict.find_in_file(word, "noun/brand.txt", option)
     |> Formatter.print_result(@data_type, "Brand")
   end
-  
+
   @doc """
   Find if the word is a company name
   """
   def company_name(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/company_names.txt", option)
+    LocalDict.find_in_file(word, "noun/company_names.txt", option)
     |> Formatter.print_result(@data_type, "Company name")
   end
-  
+
   @doc """
   Find if the word is the name of a congress
   """
   def congress(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/congress.txt", option)
+    LocalDict.find_in_file(word, "noun/congress.txt", option)
     |> Formatter.print_result(@data_type, "Congress")
   end
-  
+
   @doc """
   Find if the word is an entity
   """
   def entity(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/entities.txt", option)
+    LocalDict.find_in_file(word, "noun/entities.txt", option)
     |> Formatter.print_result(@data_type, "Entities")
   end
-  
+
   @doc """
   Find if the word is a fashion name
   """
   def fashion(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/fashion.txt", option)
+    LocalDict.find_in_file(word, "noun/fashion.txt", option)
     |> Formatter.print_result(@data_type, "Fashion")
   end
-  
+
   @doc """
   Find if the word is a foreign name
   """
   def foreign(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/foreign.txt", option)
+    LocalDict.find_in_file(word, "noun/foreign.txt", option)
     |> Formatter.print_result(@data_type, "Foreign")
   end
-  
+
   @doc """
   Find if the word is a location name
   """
   def geolocation(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/geolocations.txt", option)
+    LocalDict.find_in_file(word, "noun/geolocations.txt", option)
     |> Formatter.print_result(@data_type, "Geolocation")
   end
-  
+
   @doc """
   Find if the word is a k-pop name
   """
   def kpop(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/kpop.txt", option)
+    LocalDict.find_in_file(word, "noun/kpop.txt", option)
     |> Formatter.print_result(@data_type, "K-pop")
   end
-  
+
   @doc """
   Find if the word is a league of legends (game) name
   """
   def lol(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/lol.txt", option)
+    LocalDict.find_in_file(word, "noun/lol.txt", option)
     |> Formatter.print_result(@data_type, "Lol")
   end
-  
+
   @doc """
   Find if the word is a name
   """
   def name(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/names.txt", option)
+    LocalDict.find_in_file(word, "noun/names.txt", option)
     |> Formatter.print_result(@data_type, "Name")
   end
-  
+
   @doc """
   Find if the word is a neologism (recent word, not yet official)
   """
   def neologism(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/neologism.txt", option)
+    LocalDict.find_in_file(word, "noun/neologism.txt", option)
     |> Formatter.print_result(@data_type, "Neologism")
   end
-  
+
   @doc """
   Find if the word is a general noun
   """
   def nouns(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/nouns.txt", option)
+    LocalDict.find_in_file(word, "noun/nouns.txt", option)
     |> Formatter.print_result(@data_type, "Noun")
   end
-  
-  
-  
+
   @doc """
   Find if the word is a Pokemon word
   """
   def pokemon(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/pokemon.txt", option)
+    LocalDict.find_in_file(word, "noun/pokemon.txt", option)
     |> Formatter.print_result(@data_type, "Pokemon")
   end
-  
+
   @doc """
   Find if the word is a profane word
   """
   def profane(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/profane.txt", option)
+    LocalDict.find_in_file(word, "noun/profane.txt", option)
     |> Formatter.print_result(@data_type, "Profane")
   end
-  
+
   @doc """
   Find if the word is slang
   """
   def slang(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/slangs.txt", option)
+    LocalDict.find_in_file(word, "noun/slangs.txt", option)
     |> Formatter.print_result(@data_type, "Slang")
   end
-  
+
   @doc """
   Find if the word is spam
   """
   def spam(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/spam.txt", option)
+    LocalDict.find_in_file(word, "noun/spam.txt", option)
     |> Formatter.print_result(@data_type, "Spam")
   end
-  
+
   @doc """
   Find if the word is a twitter word
   """
   def twitter(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/twitter.txt", option)
+    LocalDict.find_in_file(word, "noun/twitter.txt", option)
     |> Formatter.print_result(@data_type, "Twitter")
   end
-  
+
   @doc """
   Find if the word is a wikipedia title
   """
   def wikipedia_title_noun(word, option \\ nil) do
-    LocalDict.find_in_file(word, "data/noun/wikipedia_title_nouns.txt", option)
+    LocalDict.find_in_file(word, "noun/wikipedia_title_nouns.txt", option)
     |> Formatter.print_result(@data_type, "Wikipedia title noun")
   end
 end

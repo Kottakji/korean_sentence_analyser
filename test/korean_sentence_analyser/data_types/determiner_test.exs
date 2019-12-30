@@ -25,7 +25,6 @@ defmodule DeterminerTest do
     end
   end
 
-
   describe "We can remove determiners -" do
     test "이말" do
       assert_value Determiner.remove("이말") == "말"

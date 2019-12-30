@@ -1,7 +1,7 @@
 defmodule ExampleTweetsTest do
   use ExUnit.Case
   import AssertValue
-  
+
   describe "Example tweets -" do
     test "투표......당신의 소중한  한표....ㅋㅋ" do
       assert_value(
@@ -14,7 +14,7 @@ defmodule ExampleTweetsTest do
         ]
       )
     end
-    
+
     test "성규목은근길다ㅏ 성열이냐 성규냐.." do
       # Improvement 은근 is not a noun, but an adjective
       assert_value(
@@ -27,7 +27,7 @@ defmodule ExampleTweetsTest do
         ]
       )
     end
-    
+
     test "@user 어....없어요? 성이 형님..." do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("@user 어....없어요? 성이 형님...") == [
@@ -37,13 +37,13 @@ defmodule ExampleTweetsTest do
         ]
       )
     end
-    
+
     test "@user ㄱ..그냥ㅋㅋㅋ" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user ㄱ..그냥ㅋㅋㅋ") == [
                      %{"specific_type" => "Noun", "token" => "그냥", "type" => "Noun"}
                    ]
     end
-    
+
     test "카세료보다 당신이 더 대단하다고!!!!" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("카세료보다 당신이 더 대단하다고!!!!") == [
                      %{"specific_type" => "Wikipedia title noun", "token" => "카세료", "type" => "Noun"},
@@ -52,16 +52,14 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Adjective", "token" => "대단하다", "type" => "Adjective"}
                    ]
     end
-    
+
     test "Long string ㅋㅋㅋㅋㅋ" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence(
-                     "@user ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ오른ㄴ쪽손엨ㅋㅋㅋㅋ컄ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅁㅋㅋㅋㅋㅋㅋㅇㅋㅇㅋㅌㅌㅋㅋㅋ그거먼ㄴ데옄ㅋㅋㅋㅋㅋㅋㅋ"
-                   ) == [
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ오른ㄴ쪽손엨ㅋㅋㅋㅋ컄ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅁㅋㅋㅋㅋㅋㅋㅇㅋㅇㅋㅌㅌㅋㅋㅋ그거먼ㄴ데옄ㅋㅋㅋㅋㅋㅋㅋ") == [
                      %{"specific_type" => "Noun", "token" => "오른쪽", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "손", "type" => "Substantive"}
                    ]
     end
-    
+
     test "@user 젠장 나는 이나라에 살아서 받는게 도대체 무엇이야" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 젠장 나는 이나라에 살아서 받는게 도대체 무엇이야") == [
                      %{"specific_type" => "Noun", "token" => "젠장", "type" => "Noun"},
@@ -73,11 +71,9 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "무엇", "type" => "Noun"}
                    ]
     end
-    
+
     test "RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence(
-                     "RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com"
-                   ) == [
+      assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: [SS현장] '고열량-無표시' 한정판 햄버거… '알 면 안 먹습니다' http://link.com") == [
                      %{"specific_type" => "Noun", "token" => "현장", "type" => "Noun"},
                      %{"specific_type" => "Modifier", "token" => "고", "type" => "Modifier"},
                      %{"specific_type" => "Noun", "token" => "열량", "type" => "Noun"},
@@ -90,7 +86,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
                    ]
     end
-    
+
     test "@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)") == [
                      %{"specific_type" => "Noun", "token" => "꽃", "type" => "Noun"},
@@ -102,7 +98,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "초면", "type" => "Noun"}
                    ]
     end
-    
+
     test "@user 싫어. 이거 놔! (소름돋았는지 강하게 발버둥) 놔! 놓으란 말이야!(바둥바둥" do
       # Improvement correct 바둥바둥 to 버둥버둥
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 싫어. 이거 놔! (소름돋았는지 강하게 발버둥) 놔! 놓으란 말이야!(바둥바둥") == [
@@ -118,7 +114,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "바", "type" => "Noun"}
                    ]
     end
-    
+
     test "아놔.ㅋㅋ 중랑구는 뭔데.ㅋㅋ 강남3구에 낀다냐.ㅋㅋㅋ" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("아놔.ㅋㅋ 중랑구는 뭔데.ㅋㅋ 강남3구에 낀다냐.ㅋㅋㅋ") == [
                      %{"specific_type" => "Geolocation", "token" => "중랑구", "type" => "Noun"},
@@ -129,7 +125,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "끼다", "type" => "Verb"}
                    ]
     end
-    
+
     test "...계단의 핏자욱이..." do
       # 핏자욱 is a spelling error
       # 요우 is a co-worker
@@ -158,7 +154,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
                    ]
     end
-    
+
     test "@user 십ㅂ알 궁상맞잖아! 걍 먹어!" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 십ㅂ알 궁상맞잖아! 걍 먹어!") == [
                      %{"specific_type" => "Profane", "token" => "씨발", "type" => "Noun"},
@@ -167,13 +163,13 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
                    ]
     end
-    
+
     test "@user 와ㅣ@!!!!!" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 와ㅣ@!!!!!") == [
                      %{"specific_type" => "Adverb", "token" => "와", "type" => "Adverb"}
                    ]
     end
-    
+
     test "iPhone용 The Tribez의 미션 `커피 나무.`을(를) 달성했습니다!  완료할 수 있을까요? http://link.com #iphone, #iphonegames, #gameinsight" do
       assert_value KoreanSentenceAnalyser.analyse_sentence(
                      "iPhone용 The Tribez의 미션 `커피 나무.`을(를) 달성했습니다!  완료할 수 있을까요? http://link.com #iphone, #iphonegames, #gameinsight"
@@ -187,7 +183,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Mix", "token" => "완료하다", "type" => "Mix"}
                    ]
     end
-    
+
     test "4. 지금인상 → 하앜.. 딘.. 하앜" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("4. 지금인상 → 하앜.. 딘.. 하앜") == [
                      %{"specific_type" => "Noun", "token" => "지금", "type" => "Noun"},
@@ -195,7 +191,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "하다", "type" => "Verb"}
                    ]
     end
-    
+
     test "아빠가 ..." do
       assert_value KoreanSentenceAnalyser.analyse_sentence(
                      "아빠가 새 휴대 전화를 구입하고 그 충전기는 아이폰이다~~ 그래서 아빠 감사합니다♥내가 그녀의 휴대 전화 케이스에 핑크 색상을 싫어하지만ㅎㅎ 하지만 나는 그것을 사용합니다ㅋㅋㅋㅋㅋㅋㅋㅋㅋ http://link.com"
@@ -221,11 +217,9 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Mix", "token" => "사용하다", "type" => "Mix"}
                    ]
     end
-    
+
     test "@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence(
-                     "@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?"
-                   ) == [
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 아니다 이거 제가 잘못 가져온것 같아요 입학 찍기 입학 방어 이속 이속 공 이라는데요?") == [
                      %{"specific_type" => "Adjective", "token" => "아니다", "type" => "Adjective"},
                      %{"specific_type" => "Determiner", "token" => "이", "type" => "Determiner"},
                      %{"specific_type" => "Noun", "token" => "거", "type" => "Noun"},
@@ -241,7 +235,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}
                    ]
     end
-    
+
     test "#팁 #매드라이프 노란 로봇장난감을 주면 뭔가를 잘 물어옵니다." do
       assert_value KoreanSentenceAnalyser.analyse_sentence("#팁 #매드라이프 노란 로봇장난감을 주면 뭔가를 잘 물어옵니다.") == [
                      %{"specific_type" => "Foreign", "token" => "팁", "type" => "Noun"},
@@ -255,7 +249,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "물다", "type" => "Verb"}
                    ]
     end
-    
+
     test "@user 파리투나잇~♬♪ (흥얼흥얼)" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 파리투나잇~♬♪ (흥얼흥얼)") == [
                      %{"specific_type" => "Noun", "token" => "파리", "type" => "Noun"},
@@ -263,7 +257,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "흥얼흥얼", "type" => "Noun"}
                    ]
     end
-    
+
     test "@user ㅇㅁㅇ..?세개를다섞는다..이말입니가..?" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user ㅇㅁㅇ..?세개를다섞는다..이말입니가..?") == [
                      %{"specific_type" => "Modifier", "token" => "세", "type" => "Modifier"},
@@ -275,7 +269,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "입니다", "type" => "Verb"}
                    ]
     end
-    
+
     @tag :now
     test "RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("RT @user: 악!!!!!!!! 이진기!!!!!!! 조아해!!!!! http://link.com") == [
@@ -285,6 +279,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Wikipedia title noun", "token" => "아해", "type" => "Noun"}
                    ]
     end
+
     #    test "@user @user 누나다! 누나 안아줘어-" do
     #      assert_value KoreanSentenceAnalyser.analyse_sentence("@user @user 누나다! 누나 안아줘어-")
     #    end

@@ -2,23 +2,19 @@ defmodule Determiner do
   @moduledoc """
   A determiner can be me, you, this, that etc
   """
-  
-  alias Word
-  alias Formatter
-  alias LocalDict
-  
+
   @data_type "Determiner"
-  @file_path "data/auxiliary/determiner.txt"
-  
+  @file_path "auxiliary/determiner.txt"
+
   @doc """
   Find if the word is a determiner
-  
+
       iex> Determiner.find("그")
       %{"specific_type" => "Determiner", "token" => "그", "type" => "Determiner"}
   """
   def find(word) when byte_size(word) > 3 do
     word =
-      case String.last(word)do
+      case String.last(word) do
         "가" -> Word.get_remaining(word, "가")
         "이" -> Word.get_remaining(word, "이")
         "는" -> Word.get_remaining(word, "는")
@@ -28,18 +24,18 @@ defmodule Determiner do
         "의" -> Word.get_remaining(word, "의")
         _ -> word
       end
-    
+
     word
     |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
-  
+
   def find(word) do
     word
     |> LocalDict.find_in_file(@file_path)
     |> Formatter.print_result(@data_type)
   end
-  
+
   @doc """
   Removes a determiner (if present)
   """
