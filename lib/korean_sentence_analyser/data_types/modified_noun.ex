@@ -1,4 +1,4 @@
-defmodule ModifiedNoun do
+defmodule KSA.ModifiedNoun do
   @moduledoc """
   A modified noun is a verb or an adjective that is based on a noun.
 
@@ -13,7 +13,7 @@ defmodule ModifiedNoun do
   @doc """
   Find if the word is a modified noun
 
-      iex> ModifiedNoun.find("생각한다면")
+      iex> KSA.ModifiedNoun.find("생각한다면")
       %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
     
   """
@@ -30,18 +30,18 @@ defmodule ModifiedNoun do
   end
 
   defp find(word, original_word) do
-    case LocalDict.find_in_file(word, @file_path) do
+    case KSA.LocalDict.find_in_file(word, @file_path) do
       nil ->
-        case Eomi.remove(word) do
+        case KSA.Eomi.remove(word) do
           new_word when new_word != word ->
             find(new_word, word)
 
           no_match ->
-            find_as_last_resort(Stem.find(no_match))
+            find_as_last_resort(KSA.Stem.find(no_match))
         end
 
       match ->
-        remains = Word.get_remaining(original_word, match)
+        remains = KSA.Word.get_remaining(original_word, match)
 
         with nil <- add_ending(match, remains, "ᄒ"),
              nil <- add_ending(match, remains, "ᄃ"),
@@ -56,16 +56,16 @@ defmodule ModifiedNoun do
   defp find_as_last_resort(stem) do
     case String.last(stem) do
       "하" ->
-        Word.get_remaining(stem, "하")
-        |> LocalDict.find_in_file(@file_path)
-        |> Formatter.add_ending("하다")
-        |> Formatter.print_result(@data_type)
+        KSA.Word.get_remaining(stem, "하")
+        |> KSA.LocalDict.find_in_file(@file_path)
+        |> KSA.Formatter.add_ending("하다")
+        |> KSA.Formatter.print_result(@data_type)
 
       "되" ->
-        Word.get_remaining(stem, "되")
-        |> LocalDict.find_in_file(@file_path)
-        |> Formatter.add_ending("하다")
-        |> Formatter.print_result(@data_type)
+        KSA.Word.get_remaining(stem, "되")
+        |> KSA.LocalDict.find_in_file(@file_path)
+        |> KSA.Formatter.add_ending("하다")
+        |> KSA.Formatter.print_result(@data_type)
 
       _ ->
         nil
@@ -74,17 +74,17 @@ defmodule ModifiedNoun do
 
   defp add_ending(word, "히", _) do
     word
-    |> Formatter.add_ending("히")
-    |> Formatter.print_result(@data_type)
+    |> KSA.Formatter.add_ending("히")
+    |> KSA.Formatter.print_result(@data_type)
   end
 
   defp add_ending(word, remains, "ᄒ") do
-    case KoreanUnicode.starts_with?(remains, "ᄒ") do
+    case KSA.KoreanUnicode.starts_with?(remains, "ᄒ") do
       true ->
         word
         |> String.replace(remains, "")
-        |> Formatter.add_ending("하다")
-        |> Formatter.print_result(@data_type)
+        |> KSA.Formatter.add_ending("하다")
+        |> KSA.Formatter.print_result(@data_type)
 
       false ->
         nil
@@ -92,12 +92,12 @@ defmodule ModifiedNoun do
   end
 
   defp add_ending(word, remains, "ᄃ") do
-    case KoreanUnicode.starts_with?(remains, "ᄃ") do
+    case KSA.KoreanUnicode.starts_with?(remains, "ᄃ") do
       true ->
         word
         |> String.replace(remains, "")
-        |> Formatter.add_ending("되")
-        |> Formatter.print_result(@data_type)
+        |> KSA.Formatter.add_ending("되")
+        |> KSA.Formatter.print_result(@data_type)
 
       false ->
         nil

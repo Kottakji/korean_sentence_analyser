@@ -4,7 +4,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
   def project do
     [
       app: :korean_sentence_analyser,
-      version: "0.2.3",
+      version: "0.3.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -18,9 +18,23 @@ defmodule KoreanSentenceAnalyser.MixProject do
         main: "KoreanSentenceAnalyser",
         groups_for_modules: [
           Main: [KoreanSentenceAnalyser],
-          "Data Types": [Adjective, Adverb, Conjunction, Determiner, Eomi, Josa, ModifiedNoun, Modifier, Noun, PreEomi, Substantive, Verb, VerbPattern],
-          ETS: [DictFile],
-          Helpers: [Formatter, KoreanUnicode, LocalDict, SplitWord, Stem, Typo, Word]
+          DataTypes: [
+            KSA.Adjective,
+            KSA.Adverb,
+            KSA.Conjunction,
+            KSA.Determiner,
+            KSA.Eomi,
+            KSA.Josa,
+            KSA.ModifiedNoun,
+            KSA.Modifier,
+            KSA.Noun,
+            KSA.PreEomi,
+            KSA.Substantive,
+            KSA.Verb,
+            KSA.VerbPattern
+          ],
+          ETS: [KSA.DictFile],
+          Helpers: [KSA.Formatter, KSA.KoreanUnicode, KSA.LocalDict, KSA.SplitWord, KSA.Stem, KSA.Typo, KSA.Word]
         ],
         extras: ["README.md"]
       ]

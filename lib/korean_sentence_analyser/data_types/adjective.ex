@@ -1,4 +1,4 @@
-defmodule Adjective do
+defmodule KSA.Adjective do
   @moduledoc false
 
   @data_type "Adjective"
@@ -7,13 +7,13 @@ defmodule Adjective do
   @doc """
   Find if the word is an adjective
     
-      iex> Adjective.find("힘들")
+      iex> KSA.Adjective.find("힘들")
       %{"specific_type" => "Adjective", "token" => "힘들다", "type" => "Adjective"}
   """
   def find(word) do
     find(word, word)
-    |> Formatter.add_ending("다")
-    |> Formatter.print_result(@data_type)
+    |> KSA.Formatter.add_ending("다")
+    |> KSA.Formatter.print_result(@data_type)
   end
 
   defp find(nil, _) do
@@ -25,7 +25,7 @@ defmodule Adjective do
   end
 
   defp find(word, original_word) do
-    with nil <- LocalDict.find_in_file(word, @file_path),
+    with nil <- KSA.LocalDict.find_in_file(word, @file_path),
          nil <- find_with_changing_final_consonant(original_word),
          nil <- find_with_removing_da(word, original_word),
          nil <- find_with_removing_eomi(word, original_word),
@@ -37,11 +37,11 @@ defmodule Adjective do
   end
 
   defp find_with_changing_final_consonant(word) do
-    case KoreanUnicode.get_final_consonant(String.last(word)) == "ᆫ" do
+    case KSA.KoreanUnicode.get_final_consonant(String.last(word)) == "ᆫ" do
       true ->
         word
-        |> KoreanUnicode.change_final_consonant("ᇂ")
-        |> LocalDict.find_in_file(@file_path)
+        |> KSA.KoreanUnicode.change_final_consonant("ᇂ")
+        |> KSA.LocalDict.find_in_file(@file_path)
 
       false ->
         nil
@@ -50,7 +50,7 @@ defmodule Adjective do
 
   defp find_with_removing_da(word, original_word) when byte_size(word) > 3 do
     case String.last(word) do
-      "다" -> LocalDict.find_in_file(Word.get_remaining(word, "다"), @file_path)
+      "다" -> KSA.LocalDict.find_in_file(KSA.Word.get_remaining(word, "다"), @file_path)
       _ -> find_with_removing_eomi(word, original_word)
     end
   end
@@ -60,16 +60,16 @@ defmodule Adjective do
   end
 
   defp find_with_removing_eomi(word, original_word) do
-    case Eomi.remove(word) do
+    case KSA.Eomi.remove(word) do
       new_word when new_word != word ->
         find(new_word, original_word)
 
       _ ->
-        case LocalDict.find_in_file(word, @file_path) do
+        case KSA.LocalDict.find_in_file(word, @file_path) do
           nil ->
-            with remains when remains != nil <- Word.get_remaining(original_word, word),
+            with remains when remains != nil <- KSA.Word.get_remaining(original_word, word),
                  last when last != nil <- String.last(remains),
-                 true <- KoreanUnicode.starts_with?(last, "ᄒ") do
+                 true <- KSA.KoreanUnicode.starts_with?(last, "ᄒ") do
               find(word <> "하", word)
             else
               _ -> nil

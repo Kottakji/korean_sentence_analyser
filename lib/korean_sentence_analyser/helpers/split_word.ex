@@ -1,4 +1,4 @@
-defmodule SplitWord do
+defmodule KSA.SplitWord do
   @moduledoc """
   Helpful module when dealing with words that do not have proper spacing
   """
@@ -6,7 +6,7 @@ defmodule SplitWord do
   @doc """
   Find the words when a word contains multiple words without spacing in between
 
-      iex> SplitWord.find("성열이냐")
+      iex> KSA.SplitWord.find("성열이냐")
       [
         %{"specific_type" => "Given name", "token" => "성열", "type" => "Substantive"},
         %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}
@@ -27,7 +27,7 @@ defmodule SplitWord do
   defp find(word_list, word, result) when is_list(word_list) do
     case word_list
          |> Enum.reduce(fn x, acc -> acc <> x end)
-         |> Word.find() do
+         |> KSA.Word.find() do
       nil ->
         word_list
         |> Enum.drop(-1)

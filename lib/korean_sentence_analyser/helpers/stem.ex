@@ -1,4 +1,4 @@
-defmodule Stem do
+defmodule KSA.Stem do
   @moduledoc """
   Module that helps with finding the stem of words
   """
@@ -7,7 +7,7 @@ defmodule Stem do
   Finds the stem of a word
   Warning: This method can be destructive
 
-      iex> Stem.find("넣었")
+      iex> KSA.Stem.find("넣었")
       "넣"
     
   """
@@ -56,13 +56,13 @@ defmodule Stem do
   end
 
   defp conjugate(word, last_char) do
-    case conjugate?(KoreanUnicode.get_final_code_point(last_char)) do
+    case conjugate?(KSA.KoreanUnicode.get_final_code_point(last_char)) do
       true ->
         # Create the base character
         character =
-          KoreanUnicode.create_from_code_points(
-            KoreanUnicode.get_initial_code_point(last_char),
-            KoreanUnicode.get_medial_code_point(last_char),
+          KSA.KoreanUnicode.create_from_code_points(
+            KSA.KoreanUnicode.get_initial_code_point(last_char),
+            KSA.KoreanUnicode.get_medial_code_point(last_char),
             0
           )
 

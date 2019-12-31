@@ -1,4 +1,4 @@
-defmodule Noun do
+defmodule KSA.Noun do
   @moduledoc false
 
   @data_type "Noun"
@@ -6,7 +6,7 @@ defmodule Noun do
   @doc """
   Find if the word is a noun
 
-      iex> Noun.find("단발")
+      iex> KSA.Noun.find("단발")
       %{"specific_type" => "Fashion", "token" => "단발", "type" => "Noun"}
     
   """
@@ -86,7 +86,7 @@ defmodule Noun do
     else
       match = %{"token" => token} ->
         [
-          Formatter.print_result(Word.get_remaining(word, token), "Determiner"),
+          KSA.Formatter.print_result(KSA.Word.get_remaining(word, token), "Determiner"),
           match
         ]
     end
@@ -122,151 +122,151 @@ defmodule Noun do
   Find if the word is a bible word
   """
   def bible(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/bible.txt", option)
-    |> Formatter.print_result(@data_type, "Bible")
+    KSA.LocalDict.find_in_file(word, "noun/bible.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Bible")
   end
 
   @doc """
   Find if the word is a brand name
   """
   def brand(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/brand.txt", option)
-    |> Formatter.print_result(@data_type, "Brand")
+    KSA.LocalDict.find_in_file(word, "noun/brand.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Brand")
   end
 
   @doc """
   Find if the word is a company name
   """
   def company_name(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/company_names.txt", option)
-    |> Formatter.print_result(@data_type, "Company name")
+    KSA.LocalDict.find_in_file(word, "noun/company_names.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Company name")
   end
 
   @doc """
   Find if the word is the name of a congress
   """
   def congress(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/congress.txt", option)
-    |> Formatter.print_result(@data_type, "Congress")
+    KSA.LocalDict.find_in_file(word, "noun/congress.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Congress")
   end
 
   @doc """
   Find if the word is an entity
   """
   def entity(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/entities.txt", option)
-    |> Formatter.print_result(@data_type, "Entities")
+    KSA.LocalDict.find_in_file(word, "noun/entities.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Entities")
   end
 
   @doc """
   Find if the word is a fashion name
   """
   def fashion(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/fashion.txt", option)
-    |> Formatter.print_result(@data_type, "Fashion")
+    KSA.LocalDict.find_in_file(word, "noun/fashion.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Fashion")
   end
 
   @doc """
   Find if the word is a foreign name
   """
   def foreign(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/foreign.txt", option)
-    |> Formatter.print_result(@data_type, "Foreign")
+    KSA.LocalDict.find_in_file(word, "noun/foreign.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Foreign")
   end
 
   @doc """
   Find if the word is a location name
   """
   def geolocation(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/geolocations.txt", option)
-    |> Formatter.print_result(@data_type, "Geolocation")
+    KSA.LocalDict.find_in_file(word, "noun/geolocations.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Geolocation")
   end
 
   @doc """
   Find if the word is a k-pop name
   """
   def kpop(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/kpop.txt", option)
-    |> Formatter.print_result(@data_type, "K-pop")
+    KSA.LocalDict.find_in_file(word, "noun/kpop.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "K-pop")
   end
 
   @doc """
   Find if the word is a league of legends (game) name
   """
   def lol(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/lol.txt", option)
-    |> Formatter.print_result(@data_type, "Lol")
+    KSA.LocalDict.find_in_file(word, "noun/lol.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Lol")
   end
 
   @doc """
   Find if the word is a name
   """
   def name(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/names.txt", option)
-    |> Formatter.print_result(@data_type, "Name")
+    KSA.LocalDict.find_in_file(word, "noun/names.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Name")
   end
 
   @doc """
   Find if the word is a neologism (recent word, not yet official)
   """
   def neologism(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/neologism.txt", option)
-    |> Formatter.print_result(@data_type, "Neologism")
+    KSA.LocalDict.find_in_file(word, "noun/neologism.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Neologism")
   end
 
   @doc """
   Find if the word is a general noun
   """
   def nouns(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/nouns.txt", option)
-    |> Formatter.print_result(@data_type, "Noun")
+    KSA.LocalDict.find_in_file(word, "noun/nouns.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Noun")
   end
 
   @doc """
   Find if the word is a Pokemon word
   """
   def pokemon(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/pokemon.txt", option)
-    |> Formatter.print_result(@data_type, "Pokemon")
+    KSA.LocalDict.find_in_file(word, "noun/pokemon.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Pokemon")
   end
 
   @doc """
   Find if the word is a profane word
   """
   def profane(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/profane.txt", option)
-    |> Formatter.print_result(@data_type, "Profane")
+    KSA.LocalDict.find_in_file(word, "noun/profane.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Profane")
   end
 
   @doc """
   Find if the word is slang
   """
   def slang(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/slangs.txt", option)
-    |> Formatter.print_result(@data_type, "Slang")
+    KSA.LocalDict.find_in_file(word, "noun/slangs.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Slang")
   end
 
   @doc """
   Find if the word is spam
   """
   def spam(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/spam.txt", option)
-    |> Formatter.print_result(@data_type, "Spam")
+    KSA.LocalDict.find_in_file(word, "noun/spam.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Spam")
   end
 
   @doc """
   Find if the word is a twitter word
   """
   def twitter(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/twitter.txt", option)
-    |> Formatter.print_result(@data_type, "Twitter")
+    KSA.LocalDict.find_in_file(word, "noun/twitter.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Twitter")
   end
 
   @doc """
   Find if the word is a wikipedia title
   """
   def wikipedia_title_noun(word, option \\ nil) do
-    LocalDict.find_in_file(word, "noun/wikipedia_title_nouns.txt", option)
-    |> Formatter.print_result(@data_type, "Wikipedia title noun")
+    KSA.LocalDict.find_in_file(word, "noun/wikipedia_title_nouns.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Wikipedia title noun")
   end
 end

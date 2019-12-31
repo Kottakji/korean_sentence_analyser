@@ -1,4 +1,4 @@
-defmodule VerbPattern do
+defmodule KSA.VerbPattern do
   @moduledoc """
   There are certain verb patterns that do not get matched by our other modules
   """
@@ -6,7 +6,7 @@ defmodule VerbPattern do
   @doc """
   Remove certain verb patterns that otherwise wouldn't match
 
-      iex> VerbPattern.remove(["마실", "수", "있다"])
+      iex> KSA.VerbPattern.remove(["마실", "수", "있다"])
       ["마시"]
   """
   def remove(list) when is_list(list) do
@@ -32,7 +32,7 @@ defmodule VerbPattern do
       list
       |> Enum.at(index - 1)
       |> String.last()
-      |> KoreanUnicode.ends_with_final?("ᆯ")
+      |> KSA.KoreanUnicode.ends_with_final?("ᆯ")
 
     ends_with_issda_or_obtda =
       list
@@ -59,7 +59,7 @@ defmodule VerbPattern do
 
   defp remove_rieul(word) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = Word.get_remaining(word, last)
+    remains = KSA.Word.get_remaining(word, last)
     remains <> remove_rieul(last)
   end
 
@@ -68,7 +68,7 @@ defmodule VerbPattern do
   end
 
   defp remove_rieul(character) do
-    KoreanUnicode.remove_final_consonant(character)
+    KSA.KoreanUnicode.remove_final_consonant(character)
   end
 
   defp eunda(list) when is_list(list) do
@@ -78,7 +78,7 @@ defmodule VerbPattern do
 
   defp eunda(word) when byte_size(word) >= 6 do
     last = String.slice(word, -2..-1)
-    remains = Word.get_remaining(word, last)
+    remains = KSA.Word.get_remaining(word, last)
 
     case last do
       "한다" -> remains <> "하다"

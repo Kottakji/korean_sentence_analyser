@@ -1,4 +1,4 @@
-defmodule Substantive do
+defmodule KSA.Substantive do
   @moduledoc """
   A substantive can be a given name, or a family name
   """
@@ -8,7 +8,7 @@ defmodule Substantive do
   @doc """
   Find if the word is a substantive
 
-      iex> Substantive.find("경수")
+      iex> KSA.Substantive.find("경수")
       %{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}
     
   """
@@ -30,24 +30,24 @@ defmodule Substantive do
   @doc """
   Find if the word is a given name
 
-      iex> Substantive.given_name("경수")
+      iex> KSA.Substantive.given_name("경수")
       %{"specific_type" => "Given name", "token" => "경수", "type" => "Substantive"}
     
   """
   def given_name(word, option \\ nil) do
-    LocalDict.find_in_file(word, "substantives/given_names.txt", option)
-    |> Formatter.print_result(@data_type, "Given name")
+    KSA.LocalDict.find_in_file(word, "substantives/given_names.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Given name")
   end
 
   @doc """
   Find if the word is a family name
 
-      iex> Substantive.family_name("박")
+      iex> KSA.Substantive.family_name("박")
       %{"specific_type" => "Family name", "token" => "박", "type" => "Substantive"}
     
   """
   def family_name(word, option \\ nil) do
-    LocalDict.find_in_file(word, "substantives/family_names.txt", option)
-    |> Formatter.print_result(@data_type, "Family name")
+    KSA.LocalDict.find_in_file(word, "substantives/family_names.txt", option)
+    |> KSA.Formatter.print_result(@data_type, "Family name")
   end
 end

@@ -1,4 +1,4 @@
-defmodule KoreanUnicode do
+defmodule KSA.KoreanUnicode do
   @moduledoc """
   Contains functions helpful in dealing with Hangul
 
@@ -18,7 +18,7 @@ defmodule KoreanUnicode do
   @doc """
   Split a sentence into only Korean words
 
-      iex> KoreanUnicode.split("투표......당신의 소중한  한표....ㅋㅋ")
+      iex> KSA.KoreanUnicode.split("투표......당신의 소중한  한표....ㅋㅋ")
       ["투표", "당신의", "소중한", "한표"]
     
   """
@@ -65,7 +65,7 @@ defmodule KoreanUnicode do
   @doc """
   Create a unicode character from a decimal value
     
-      iex> KoreanUnicode.create_from_decimal_value(55200)
+      iex> KSA.KoreanUnicode.create_from_decimal_value(55200)
       "힠"
 
   """
@@ -77,7 +77,7 @@ defmodule KoreanUnicode do
   Create a unicode hangul character from a decimal value\n
   Note: Does not create Jamo, only Hangul
 
-      iex> KoreanUnicode.create_hangul_from_decimal_value(44032)
+      iex> KSA.KoreanUnicode.create_hangul_from_decimal_value(44032)
       "가"
     
   """
@@ -92,7 +92,7 @@ defmodule KoreanUnicode do
   @doc """
   Does it start with a certain Jamo?
 
-      iex> KoreanUnicode.starts_with?("가", "ᄀ")
+      iex> KSA.KoreanUnicode.starts_with?("가", "ᄀ")
       true
   """
   def starts_with?("", _jamo) do
@@ -110,7 +110,7 @@ defmodule KoreanUnicode do
   @doc """
   Does it end with a certain Jamo?
 
-      iex> KoreanUnicode.ends_with_final?("씻", "ᆺ")
+      iex> KSA.KoreanUnicode.ends_with_final?("씻", "ᆺ")
       true
     
   """
@@ -129,7 +129,7 @@ defmodule KoreanUnicode do
   @doc """
   Get the decimal value of a character
 
-      iex> KoreanUnicode.get_unicode_decimal_value("는")
+      iex> KSA.KoreanUnicode.get_unicode_decimal_value("는")
       45716
     
   """
@@ -147,10 +147,10 @@ defmodule KoreanUnicode do
   @doc """
   Create a unicode character from code points
 
-      iex> KoreanUnicode.create_from_code_points(0,0,0)
+      iex> KSA.KoreanUnicode.create_from_code_points(0,0,0)
       "가"
       
-      iex> KoreanUnicode.create_from_code_points(1,0,3)
+      iex> KSA.KoreanUnicode.create_from_code_points(1,0,3)
       "깏"
     
   """
@@ -168,13 +168,13 @@ defmodule KoreanUnicode do
   Change the final consonant of a character
   If you pass in a word, it will change the final consonant of the last character
 
-      iex> KoreanUnicode.change_final_consonant("노랗", "ᆫ")
+      iex> KSA.KoreanUnicode.change_final_consonant("노랗", "ᆫ")
       "노란"
     
   """
   def change_final_consonant(word, new_final_consonant) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = Word.get_remaining(word, last)
+    remains = KSA.Word.get_remaining(word, last)
     remains <> change_final_consonant(last, new_final_consonant)
   end
 
@@ -189,13 +189,13 @@ defmodule KoreanUnicode do
   @doc """
   Remove a final consonant and return the string without it
 
-      iex> KoreanUnicode.remove_final_consonant("마실")
+      iex> KSA.KoreanUnicode.remove_final_consonant("마실")
       "마시"
     
   """
   def remove_final_consonant(word) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = Word.get_remaining(word, last)
+    remains = KSA.Word.get_remaining(word, last)
     remains <> remove_final_consonant(last)
   end
 
@@ -210,7 +210,7 @@ defmodule KoreanUnicode do
   @doc """
   Get the initial consonant code point
 
-      iex> KoreanUnicode.get_initial_code_point("한")
+      iex> KSA.KoreanUnicode.get_initial_code_point("한")
       18
     
   """
@@ -229,7 +229,7 @@ defmodule KoreanUnicode do
   @doc """
   Get the initial consonant decimal value
 
-      iex> KoreanUnicode.get_initial_consonant("한")
+      iex> KSA.KoreanUnicode.get_initial_consonant("한")
       "ᄒ"
     
   """
@@ -245,7 +245,7 @@ defmodule KoreanUnicode do
   @doc """
   Get the medial vowel code point
 
-      iex> KoreanUnicode.get_medial_code_point("한")
+      iex> KSA.KoreanUnicode.get_medial_code_point("한")
       0
     
   """
@@ -265,7 +265,7 @@ defmodule KoreanUnicode do
   @doc """
   Get the medial vowel
 
-      iex> KoreanUnicode.get_medial_vowel("해")
+      iex> KSA.KoreanUnicode.get_medial_vowel("해")
       "ᅢ"
     
   """
@@ -281,10 +281,10 @@ defmodule KoreanUnicode do
   @doc """
   Get the final consonant code point
 
-      iex> KoreanUnicode.get_final_code_point("한")
+      iex> KSA.KoreanUnicode.get_final_code_point("한")
       4
 
-      iex> KoreanUnicode.get_final_code_point("해")
+      iex> KSA.KoreanUnicode.get_final_code_point("해")
       0
     
   """
@@ -304,10 +304,10 @@ defmodule KoreanUnicode do
   @doc """
   Get the final consonant
 
-      iex> KoreanUnicode.get_final_consonant("한")
+      iex> KSA.KoreanUnicode.get_final_consonant("한")
       "ᆫ"
 
-      iex> KoreanUnicode.get_final_consonant("해")
+      iex> KSA.KoreanUnicode.get_final_consonant("해")
       nil
     
   """

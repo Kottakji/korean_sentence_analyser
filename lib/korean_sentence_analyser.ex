@@ -8,7 +8,7 @@ defmodule KoreanSentenceAnalyser do
 
   @doc false
   def start(_type, _args) do
-    DictFile.init()
+    KSA.DictFile.init()
     Supervisor.start_link([], strategy: :one_for_one)
   end
 
@@ -30,8 +30,8 @@ defmodule KoreanSentenceAnalyser do
 
   def analyse_sentence(sentence) do
     sentence
-    |> KoreanUnicode.split()
-    |> VerbPattern.remove()
+    |> KSA.KoreanUnicode.split()
+    |> KSA.VerbPattern.remove()
     |> Enum.map(fn x ->
       analyse_word(x)
     end)
@@ -45,12 +45,12 @@ defmodule KoreanSentenceAnalyser do
   end
 
   defp analyse_word(word) do
-    with nil <- Word.find(word),
+    with nil <- KSA.Word.find(word),
          # Outside of Word.find(), else it would match too easily
-         nil <- Modifier.find(word),
+         nil <- KSA.Modifier.find(word),
          # Outside of Word.find(), because it calls Word.find()
-         nil <- Word.find(Modifier.remove(word)),
-         nil <- SplitWord.find(word),
+         nil <- KSA.Word.find(KSA.Modifier.remove(word)),
+         nil <- KSA.SplitWord.find(word),
          do: nil
   end
 end

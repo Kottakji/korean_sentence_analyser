@@ -1,8 +1,7 @@
 defmodule AdjectiveTest do
   use ExUnit.Case
   import AssertValue
-  alias Adjective
-  doctest Adjective
+  doctest KSA.Adjective
 
   describe "We can find adjectives - " do
     test "가능하다" do
@@ -56,7 +55,7 @@ defmodule AdjectiveTest do
 
   describe "We should not match certain nouns to adjectives - " do
     test "강수지이라고" do
-      assert_value(Adjective.find("강수지이라고") == nil)
+      assert_value(KSA.Adjective.find("강수지이라고") == nil)
     end
   end
 end

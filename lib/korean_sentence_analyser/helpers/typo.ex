@@ -1,4 +1,4 @@
-defmodule Typo do
+defmodule KSA.Typo do
   @moduledoc """
   Can fix certain typo's
   """
@@ -8,12 +8,12 @@ defmodule Typo do
   @doc """
   Find a typo and return the new word if found
 
-      iex> Typo.find("십알")
+      iex> KSA.Typo.find("십알")
       "씨발"
     
   """
   def find(word) do
-    case LocalDict.find_in_file(word, @file_path) do
+    case KSA.LocalDict.find_in_file(word, @file_path) do
       nil -> word
       match -> match
     end

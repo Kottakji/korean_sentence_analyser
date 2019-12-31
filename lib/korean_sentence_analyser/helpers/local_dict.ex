@@ -1,4 +1,4 @@
-defmodule LocalDict do
+defmodule KSA.LocalDict do
   @moduledoc """
   Use our local dictionary to verify words
   """
@@ -7,7 +7,7 @@ defmodule LocalDict do
   Find a word in a file
   """
   def find_in_file(word, file) do
-    DictFile.find(word, file)
+    KSA.DictFile.find(word, file)
   end
 
   @doc """
@@ -20,7 +20,7 @@ defmodule LocalDict do
   end
 
   def find_in_file(word, file, :remove_josa) do
-    find_in_file(Josa.remove(word), file)
+    find_in_file(KSA.Josa.remove(word), file)
   end
 
   def find_in_file(word, file, :remove_grammar) do
@@ -29,7 +29,7 @@ defmodule LocalDict do
   end
 
   def find_in_file(word, file, :remove_determiner) do
-    case Determiner.remove(word) do
+    case KSA.Determiner.remove(word) do
       match when match != word ->
         match
         |> find_in_file(file)
@@ -53,7 +53,7 @@ defmodule LocalDict do
   end
 
   def find_beginning_in_file(word, file) do
-    case DictFile.find(word, file) do
+    case KSA.DictFile.find(word, file) do
       nil -> find_beginning_in_file(String.slice(word, 0..-2), file)
       match -> match
     end
@@ -73,7 +73,7 @@ defmodule LocalDict do
   end
 
   def find_ending_in_file(word, file) do
-    case DictFile.find(word, file) do
+    case KSA.DictFile.find(word, file) do
       nil -> find_ending_in_file(String.slice(word, 1..-1), file)
       match -> match
     end
@@ -101,14 +101,14 @@ defmodule LocalDict do
 
   defp find_smallest_ending_in_file(word, original_word, file)
        when byte_size(word) == 3 or byte_size(original_word) == 3 do
-    DictFile.find(word, file)
+    KSA.DictFile.find(word, file)
   end
 
   defp find_smallest_ending_in_file(word, original_word, file) do
-    case DictFile.find(word, file) do
+    case KSA.DictFile.find(word, file) do
       nil ->
         original_word
-        |> Word.get_remaining(word)
+        |> KSA.Word.get_remaining(word)
         |> String.last()
         |> find_smallest_ending_in_file(original_word, file)
 

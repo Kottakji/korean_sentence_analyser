@@ -1,4 +1,4 @@
-defmodule Word do
+defmodule KSA.Word do
   @moduledoc false
 
   @doc """
@@ -9,22 +9,22 @@ defmodule Word do
   end
 
   def find(word) do
-    word = Typo.find(word)
+    word = KSA.Typo.find(word)
 
-    with nil <- Determiner.find(word),
-         nil <- Substantive.given_name(word),
-         nil <- Substantive.family_name(word),
-         nil <- Conjunction.find(word),
-         nil <- Noun.find(word),
-         nil <- Noun.find_without_determiner(word),
-         nil <- Noun.find_without_grammar(word),
-         nil <- Adverb.find(word),
-         nil <- Adjective.find(word),
-         nil <- Verb.find(word),
-         nil <- Substantive.given_name(word, :remove_josa),
-         nil <- Substantive.family_name(word, :remove_josa),
-         nil <- Noun.find_without_josa(word),
-         nil <- ModifiedNoun.find(word),
+    with nil <- KSA.Determiner.find(word),
+         nil <- KSA.Substantive.given_name(word),
+         nil <- KSA.Substantive.family_name(word),
+         nil <- KSA.Conjunction.find(word),
+         nil <- KSA.Noun.find(word),
+         nil <- KSA.Noun.find_without_determiner(word),
+         nil <- KSA.Noun.find_without_grammar(word),
+         nil <- KSA.Adverb.find(word),
+         nil <- KSA.Adjective.find(word),
+         nil <- KSA.Verb.find(word),
+         nil <- KSA.Substantive.given_name(word, :remove_josa),
+         nil <- KSA.Substantive.family_name(word, :remove_josa),
+         nil <- KSA.Noun.find_without_josa(word),
+         nil <- KSA.ModifiedNoun.find(word),
          do: nil
   end
 

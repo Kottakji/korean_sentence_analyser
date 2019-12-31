@@ -1,4 +1,4 @@
-defmodule PreEomi do
+defmodule KSA.PreEomi do
   @moduledoc """
   A pre-eomi is a conjugation added to Korean words at the beginning
   """
@@ -22,6 +22,6 @@ defmodule PreEomi do
   Find a pre-eomi
   """
   def find(word) do
-    LocalDict.find_ending_in_file(word, @file_path)
+    KSA.LocalDict.find_ending_in_file(word, @file_path)
   end
 end

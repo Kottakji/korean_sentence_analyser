@@ -1,4 +1,4 @@
-defmodule Verb do
+defmodule KSA.Verb do
   @moduledoc false
 
   @data_type "Verb"
@@ -7,15 +7,15 @@ defmodule Verb do
   @doc """
   Find if the word is a verb
 
-      iex> Verb.find("먹다")
+      iex> KSA.Verb.find("먹다")
       %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
     
   """
   def find(word) do
     word
     |> find(@file_path)
-    |> Formatter.add_ending("다")
-    |> Formatter.print_result(@data_type)
+    |> KSA.Formatter.add_ending("다")
+    |> KSA.Formatter.print_result(@data_type)
   end
 
   defp find(nil, _) do
@@ -35,16 +35,16 @@ defmodule Verb do
   end
 
   defp find(word, file) do
-    case LocalDict.find_in_file(word, file) do
+    case KSA.LocalDict.find_in_file(word, file) do
       nil ->
-        case Eomi.remove(word) do
+        case KSA.Eomi.remove(word) do
           new_word when new_word != word ->
             find(new_word, file)
 
           _ ->
             word
-            |> Stem.find()
-            |> LocalDict.find_in_file(file)
+            |> KSA.Stem.find()
+            |> KSA.LocalDict.find_in_file(file)
         end
 
       match ->
@@ -78,7 +78,7 @@ defmodule Verb do
       list
       |> Enum.at(index - 1)
       |> String.last()
-      |> KoreanUnicode.ends_with_final?("ᆯ")
+      |> KSA.KoreanUnicode.ends_with_final?("ᆯ")
 
     ends_with_issda_or_obtda =
       list
@@ -105,7 +105,7 @@ defmodule Verb do
 
   defp remove_rieul(word) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = Word.get_remaining(word, last)
+    remains = KSA.Word.get_remaining(word, last)
     remains <> remove_rieul(last)
   end
 
@@ -114,6 +114,6 @@ defmodule Verb do
   end
 
   defp remove_rieul(character) do
-    KoreanUnicode.remove_final_consonant(character)
+    KSA.KoreanUnicode.remove_final_consonant(character)
   end
 end

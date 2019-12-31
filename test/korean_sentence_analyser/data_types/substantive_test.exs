@@ -1,7 +1,7 @@
 defmodule SubstantiveTest do
   use ExUnit.Case
   import AssertValue
-  doctest Substantive
+  doctest KSA.Substantive
 
   describe "We can find substantives - " do
     test "경수" do

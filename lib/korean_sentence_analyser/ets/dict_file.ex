@@ -1,4 +1,4 @@
-defmodule DictFile do
+defmodule KSA.DictFile do
   @moduledoc """
   Use ETS to access dictionary files
   """

@@ -1,4 +1,4 @@
-defmodule Formatter do
+defmodule KSA.Formatter do
   @moduledoc """
   Formats the data
   """

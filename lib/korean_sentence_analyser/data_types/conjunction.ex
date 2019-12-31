@@ -1,4 +1,4 @@
-defmodule Conjunction do
+defmodule KSA.Conjunction do
   @moduledoc false
 
   @data_type "Conjunction"
@@ -7,13 +7,13 @@ defmodule Conjunction do
   @doc """
   Find if the word is a conjunction
 
-      iex> Conjunction.find("그럼")
+      iex> KSA.Conjunction.find("그럼")
       %{"specific_type" => "Conjunction","token" => "그럼","type" => "Conjunction"}
     
   """
   def find(word) do
     word
-    |> LocalDict.find_in_file(@file_path)
-    |> Formatter.print_result(@data_type)
+    |> KSA.LocalDict.find_in_file(@file_path)
+    |> KSA.Formatter.print_result(@data_type)
   end
 end

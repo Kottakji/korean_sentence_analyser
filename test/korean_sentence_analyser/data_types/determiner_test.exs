@@ -1,8 +1,7 @@
 defmodule DeterminerTest do
   use ExUnit.Case
   import AssertValue
-  alias Determiner
-  doctest Determiner
+  doctest KSA.Determiner
 
   describe "We can find determiners - " do
     test "나" do
@@ -27,7 +26,7 @@ defmodule DeterminerTest do
 
   describe "We can remove determiners -" do
     test "이말" do
-      assert_value Determiner.remove("이말") == "말"
+      assert_value KSA.Determiner.remove("이말") == "말"
     end
   end
 end

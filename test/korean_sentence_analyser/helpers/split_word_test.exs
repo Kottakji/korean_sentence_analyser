@@ -1,7 +1,7 @@
 defmodule SplitWordTest do
   use ExUnit.Case
   import AssertValue
-  doctest SplitWord
+  doctest KSA.SplitWord
 
   describe "We can find long words without spaces - " do
     test "성열이냐" do

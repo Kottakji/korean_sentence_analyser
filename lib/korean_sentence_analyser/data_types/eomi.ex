@@ -1,4 +1,4 @@
-defmodule Eomi do
+defmodule KSA.Eomi do
   @moduledoc """
   An Eomi is a conjugation added to Korean words
   """
@@ -8,7 +8,7 @@ defmodule Eomi do
   Can (should) be called recursively.
   If the result is not the same word or nil, you can lookup the word, or call this method again to remove more.
 
-      iex> Eomi.remove("가능하다")
+      iex> KSA.Eomi.remove("가능하다")
       "가능하"
   """
   def remove(word) do
@@ -20,7 +20,7 @@ defmodule Eomi do
     # Because we need to check if we already have a matching verb/adjective
     case result == word do
       true ->
-        PreEomi.remove(word)
+        KSA.PreEomi.remove(word)
 
       false ->
         result
@@ -60,7 +60,7 @@ defmodule Eomi do
         ""
 
       true ->
-        LocalDict.find_ending_in_file(word, "verb/eomi.txt")
+        KSA.LocalDict.find_ending_in_file(word, "verb/eomi.txt")
     end
   end
 end

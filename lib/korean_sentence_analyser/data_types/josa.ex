@@ -1,4 +1,4 @@
-defmodule Josa do
+defmodule KSA.Josa do
   @moduledoc """
   A Josa is grammar particle that can be added to words
   """
@@ -8,11 +8,11 @@ defmodule Josa do
   @doc """
   Remove a Josa ending
 
-      iex> Josa.remove("당신의")
+      iex> KSA.Josa.remove("당신의")
       "당신"
   """
   def remove(word) do
-    case LocalDict.find_ending_in_file(word, @file_path) do
+    case KSA.LocalDict.find_ending_in_file(word, @file_path) do
       nil ->
         word
 
