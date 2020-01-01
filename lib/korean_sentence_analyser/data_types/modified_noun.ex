@@ -96,7 +96,7 @@ defmodule KSA.ModifiedNoun do
       true ->
         word
         |> String.replace(remains, "")
-        |> KSA.Formatter.add_ending("되")
+        |> KSA.Formatter.add_ending("되다")
         |> KSA.Formatter.print_result(@data_type)
 
       false ->

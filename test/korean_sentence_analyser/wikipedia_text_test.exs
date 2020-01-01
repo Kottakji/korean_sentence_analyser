@@ -41,7 +41,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Verb", "token" => "사리다", "type" => "Verb"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "동물계", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "로", "type" => "Substantive"},
-                     %{"specific_type" => "Mix", "token" => "분류되", "type" => "Mix"},
+                     %{"specific_type" => "Mix", "token" => "분류되다", "type" => "Mix"},
                      %{"specific_type" => "Noun", "token" => "생물", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "총칭", "type" => "Noun"}
                    ]
@@ -62,7 +62,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "현실", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "주의자", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "로", "type" => "Substantive"},
-                     %{"specific_type" => "Mix", "token" => "지적되", "type" => "Mix"},
+                     %{"specific_type" => "Mix", "token" => "지적되다", "type" => "Mix"},
                      %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "예술", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "관하다", "type" => "Mix"},
