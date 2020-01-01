@@ -31,7 +31,7 @@ defmodule KoreanSentenceAnalyser do
   def analyse_sentence(sentence) do
     sentence
     |> KSA.KoreanUnicode.split()
-    |> KSA.VerbPattern.remove()
+    |> KSA.Grammar.remove()
     |> Enum.map(fn x ->
       analyse_word(x)
     end)

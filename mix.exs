@@ -31,7 +31,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
             KSA.PreEomi,
             KSA.Substantive,
             KSA.Verb,
-            KSA.VerbPattern
+            KSA.Grammar
           ],
           ETS: [KSA.DictFile],
           Helpers: [KSA.Formatter, KSA.KoreanUnicode, KSA.LocalDict, KSA.SplitWord, KSA.Stem, KSA.Typo, KSA.Word]

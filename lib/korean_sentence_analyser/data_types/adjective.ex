@@ -62,8 +62,10 @@ defmodule KSA.Adjective do
   defp find_with_removing_eomi(word, original_word) do
     case KSA.Eomi.remove(word) do
       new_word when new_word != word ->
-        find(new_word, original_word)
-
+        case KSA.LocalDict.find_in_file(word, "verb/verb.txt") do
+          nil -> find(new_word, original_word)
+          _match -> nil # Do not find when we have a matching verb
+        end
       _ ->
         case KSA.LocalDict.find_in_file(word, @file_path) do
           nil ->

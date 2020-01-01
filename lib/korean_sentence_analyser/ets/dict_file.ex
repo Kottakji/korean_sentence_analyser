@@ -13,6 +13,7 @@ defmodule KSA.DictFile do
       "auxiliary/conjunctions.txt",
       "auxiliary/determiner.txt",
       "auxiliary/exclamation.txt",
+      "grammar/grammar.txt",
       "josa/josa.txt",
       "noun/bible.txt",
       "noun/brand.txt",
