@@ -3,13 +3,13 @@ defmodule KSA.Grammar do
   Matches words that remove certain grammar that can be added to the end of words 음으로, 까지, 부터 etc
   Also removes certain grammar words like 중 (during), 내 (inside)
   """
-  
+
   @data_type "grammar"
   @file_path "grammar/grammar.txt"
-  
+
   @doc """
   Find a word when it has a Grammar ending
-  
+
       iex> KSA.Grammar.find("지역내")
       [
         %{
@@ -31,11 +31,14 @@ defmodule KSA.Grammar do
       match -> find(word, match)
     end
   end
-  
+
   defp find(word, match) do
     remains = KSA.Word.get_remaining(word, match)
+
     case KSA.Word.find(remains) do
-      nil -> nil
+      nil ->
+        nil
+
       remains_match ->
         [
           remains_match,
@@ -74,30 +77,30 @@ defmodule KSA.Grammar do
       |> Enum.at(index - 1)
       |> String.last()
       |> KSA.KoreanUnicode.ends_with_final?("ᆯ")
-  
+
     ends_with_issda_or_obtda =
       list
       |> Enum.at(index + 1)
       |> String.first()
       |> String.contains?(["있", "없"])
-  
+
     case starts_with_rieul == true && ends_with_issda_or_obtda == true do
       true ->
         new_value =
           list
           |> Enum.at(index - 1)
           |> remove_rieul()
-      
+
         list
         |> List.delete_at(index + 1)
         |> List.delete_at(index)
         |> List.replace_at(index - 1, new_value)
-    
+
       false ->
         list
     end
   end
-  
+
   defp remove_rieul(word) when byte_size(word) > 3 do
     last = String.last(word)
     remains = KSA.Word.get_remaining(word, last)
@@ -111,7 +114,7 @@ defmodule KSA.Grammar do
   defp remove_rieul(character) do
     KSA.KoreanUnicode.remove_final_consonant(character)
   end
-  
+
   defp remove_eunda(list) when is_list(list) do
     list
     |> Enum.map(fn x -> remove_eunda(x) end)
@@ -120,7 +123,7 @@ defmodule KSA.Grammar do
   defp remove_eunda(word) when byte_size(word) >= 6 do
     last = String.slice(word, -2..-1)
     remains = KSA.Word.get_remaining(word, last)
-  
+
     case last do
       "한다" -> remains <> "하"
       "된다" -> remains <> "되"

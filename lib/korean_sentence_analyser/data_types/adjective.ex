@@ -64,8 +64,10 @@ defmodule KSA.Adjective do
       new_word when new_word != word ->
         case KSA.LocalDict.find_in_file(word, "verb/verb.txt") do
           nil -> find(new_word, original_word)
-          _match -> nil # Do not find when we have a matching verb
+          # Do not find when we have a matching verb
+          _match -> nil
         end
+
       _ ->
         case KSA.LocalDict.find_in_file(word, @file_path) do
           nil ->
