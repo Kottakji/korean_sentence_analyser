@@ -3,16 +3,24 @@ defmodule WordTest do
   import AssertValue
 
   describe "Example words - " do
+    test "안내합니다" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("안내합니다") == [%{"specific_type" => "Mix", "token" => "안내하다", "type" => "Mix"}]
+    end
+
+    test "질문방" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("질문방") == [%{"specific_type" => "Wikipedia title noun", "token" => "질문방", "type" => "Noun"}]
+    end
+
     test "교환해봐요" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("교환해봐요") == [
-                     %{"specific_type" => "Mix", "token" => "교환하다", "type" => "Mix"},
+                     %{"specific_type" => "Mix", "token" => "교환하다", "type" => "Mix"}
                    ]
     end
-    
+
     test "이용하여" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("이용하여") == [%{"specific_type" => "Mix", "token" => "이용하다", "type" => "Mix"}]
     end
-    
+
     test "분들과" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("분들과") == [
                      %{"specific_type" => "Noun", "token" => "분", "type" => "Noun"},
@@ -20,7 +28,7 @@ defmodule WordTest do
                      %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"}
                    ]
     end
-    
+
     test "밥과" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("밥과") == [
                      %{"specific_type" => "Noun", "token" => "밥", "type" => "Noun"},
@@ -34,7 +42,7 @@ defmodule WordTest do
                      %{"specific_type" => "grammar", "token" => "와", "type" => "grammar"}
                    ]
     end
-    
+
     test "탈퇴했었으나" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("탈퇴했었으나") == [%{"specific_type" => "Mix", "token" => "탈퇴하다", "type" => "Mix"}]
     end

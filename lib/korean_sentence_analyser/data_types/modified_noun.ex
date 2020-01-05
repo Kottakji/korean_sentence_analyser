@@ -42,7 +42,7 @@ defmodule KSA.ModifiedNoun do
 
       match ->
         remains = KSA.Word.get_remaining(original_word, match)
-        
+
         with nil <- add_ending(match, remains, "ᄒ"),
              nil <- add_ending(match, remains, "ᄃ"),
              do: nil
@@ -90,7 +90,7 @@ defmodule KSA.ModifiedNoun do
         nil
     end
   end
-  
+
   defp add_ending(word, "다", _) do
     word
     |> KSA.Formatter.add_ending("다")
