@@ -1,9 +1,9 @@
 defmodule KSA.Adjective do
   @moduledoc false
-
+  
   @data_type "Adjective"
   @file_path "adjective/adjective.txt"
-
+  
   @doc """
   Find if the word is an adjective
     
@@ -15,15 +15,15 @@ defmodule KSA.Adjective do
     |> KSA.Formatter.add_ending("다")
     |> KSA.Formatter.print_result(@data_type)
   end
-
+  
   defp find(nil, _) do
     nil
   end
-
+  
   defp find("", _) do
     nil
   end
-
+  
   defp find(word, original_word) do
     with nil <- KSA.LocalDict.find_in_file(word, @file_path),
          nil <- find_with_changing_final_consonant(original_word),
@@ -31,43 +31,48 @@ defmodule KSA.Adjective do
          nil <- find_with_removing_eomi(word, original_word),
          do: nil
   end
-
+  
   defp find_with_changing_final_consonant(nil) do
     nil
   end
-
+  
   defp find_with_changing_final_consonant(word) do
     case KSA.KoreanUnicode.get_final_consonant(String.last(word)) == "ᆫ" do
       true ->
         word
         |> KSA.KoreanUnicode.change_final_consonant("ᇂ")
         |> KSA.LocalDict.find_in_file(@file_path)
-
+      
       false ->
         nil
     end
   end
-
+  
   defp find_with_removing_da(word, original_word) when byte_size(word) > 3 do
     case String.last(word) do
       "다" -> KSA.LocalDict.find_in_file(KSA.Word.get_remaining(word, "다"), @file_path)
       _ -> find_with_removing_eomi(word, original_word)
     end
   end
-
+  
   defp find_with_removing_da(_, _) do
     nil
   end
-
+  
   defp find_with_removing_eomi(word, original_word) do
     case KSA.Eomi.remove(word) do
       new_word when new_word != word ->
         case KSA.LocalDict.find_in_file(word, "verb/verb.txt") do
-          nil -> find(new_word, original_word)
+          nil ->
+            case KSA.LocalDict.find_in_file(word, "noun/nouns.txt") do
+              nil -> find(new_word, original_word)
+              # Do not find when we have a matching mixed verb
+              _match -> nil
+            end
           # Do not find when we have a matching verb
           _match -> nil
         end
-
+      
       _ ->
         case KSA.LocalDict.find_in_file(word, @file_path) do
           nil ->
@@ -78,7 +83,7 @@ defmodule KSA.Adjective do
             else
               _ -> nil
             end
-
+          
           match ->
             match
         end

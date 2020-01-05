@@ -29,11 +29,7 @@ defmodule VerbTest do
     end
 
     test "늘다" do
-      assert_value(
-        KoreanSentenceAnalyser.analyse_sentence("늘다") == [
-          %{"specific_type" => "Verb", "token" => "늘다", "type" => "Verb"}
-        ]
-      )
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("늘다") == [%{"specific_type" => "Mix", "token" => "늘다", "type" => "Mix"}])
     end
 
     test "해놓다" do
@@ -69,11 +65,7 @@ defmodule VerbTest do
     end
 
     test "감사합니다" do
-      assert_value(
-        KoreanSentenceAnalyser.analyse_sentence("감사합니다") == [
-          %{"specific_type" => "Verb", "token" => "감사하다", "type" => "Verb"}
-        ]
-      )
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("감사합니다") == [%{"specific_type" => "Mix", "token" => "감사하다", "type" => "Mix"}])
     end
   end
 end

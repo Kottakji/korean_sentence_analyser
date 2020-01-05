@@ -21,11 +21,11 @@ defmodule KSA.Word do
          nil <- KSA.Noun.find_without_grammar(word),
          nil <- KSA.Adverb.find(word),
          nil <- KSA.Adjective.find(word),
+         nil <- KSA.ModifiedNoun.find(word),
          nil <- KSA.Verb.find(word),
          nil <- KSA.Substantive.given_name(word, :remove_josa),
          nil <- KSA.Substantive.family_name(word, :remove_josa),
          nil <- KSA.Noun.find_without_josa(word),
-         nil <- KSA.ModifiedNoun.find(word),
          do: nil
   end
 

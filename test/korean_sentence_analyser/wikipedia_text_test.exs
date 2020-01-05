@@ -81,7 +81,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "철학", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "연구하다", "type" => "Mix"},
                      %{"specific_type" => "Noun", "token" => "사람", "type" => "Noun"},
-                     %{"specific_type" => "Verb", "token" => "말하다", "type" => "Verb"}
+                     %{"specific_type" => "Mix", "token" => "말하다", "type" => "Mix"}
                    ]
     end
   end

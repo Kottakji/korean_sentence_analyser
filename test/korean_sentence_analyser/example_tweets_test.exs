@@ -205,7 +205,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Wikipedia title noun", "token" => "충전기", "type" => "Noun"},
                      %{"specific_type" => "Entities", "token" => "아이폰", "type" => "Noun"},
                      %{"specific_type" => "Conjunction", "token" => "그래서", "type" => "Conjunction"},
-                     %{"specific_type" => "Verb", "token" => "감사하다", "type" => "Verb"},
+                     %{"specific_type" => "Mix", "token" => "감사하다", "type" => "Mix"},
                      %{"specific_type" => "Entities", "token" => "그녀", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "케이스", "type" => "Noun"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "핑크", "type" => "Noun"},
