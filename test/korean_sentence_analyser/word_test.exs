@@ -4,15 +4,25 @@ defmodule WordTest do
 
   describe "Example words - " do
     test "분들과" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("분들과") == [%{"specific_type" => "Noun", "token" => "분", "type" => "Noun"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("분들과") == [
+                     %{"specific_type" => "Noun", "token" => "분", "type" => "Noun"},
+                     %{"specific_type" => "grammar", "token" => "들", "type" => "grammar"},
+                     %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"}
+                   ]
     end
     
     test "밥과" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("밥과") == [%{"specific_type" => "Noun", "token" => "밥", "type" => "Noun"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("밥과") == [
+                     %{"specific_type" => "Noun", "token" => "밥", "type" => "Noun"},
+                     %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"}
+                   ]
     end
 
     test "개와" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("개와") == [%{"specific_type" => "Noun", "token" => "개", "type" => "Noun"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("개와") == [
+                     %{"specific_type" => "Noun", "token" => "개", "type" => "Noun"},
+                     %{"specific_type" => "grammar", "token" => "와", "type" => "grammar"}
+                   ]
     end
     
     test "탈퇴했었으나" do

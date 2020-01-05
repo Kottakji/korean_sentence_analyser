@@ -93,6 +93,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "밭", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "과거", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "오르다", "type" => "Verb"},
+                     %{"specific_type" => "grammar", "token" => "와", "type" => "grammar"},
                      %{"specific_type" => "Noun", "token" => "미래", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "산", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "초면", "type" => "Noun"}
@@ -149,6 +150,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "수도", "type" => "Noun"},
                      %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "범인", "type" => "Noun"},
+                     %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"},
                      %{"specific_type" => "Noun", "token" => "마주", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "급습", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
@@ -165,7 +167,7 @@ defmodule ExampleTweetsTest do
     end
 
     test "@user 와ㅣ@!!!!!" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 와ㅣ@!!!!!") == []
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 와ㅣ@!!!!!") == [%{"specific_type" => "Adverb", "token" => "와", "type" => "Adverb"}]
     end
 
     test "iPhone용 The Tribez의 미션 `커피 나무.`을(를) 달성했습니다!  완료할 수 있을까요? http://link.com #iphone, #iphonegames, #gameinsight" do

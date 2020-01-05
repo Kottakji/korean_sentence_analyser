@@ -66,6 +66,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "예술", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "관하다", "type" => "Mix"},
+                     %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"},
                      %{"specific_type" => "Noun", "token" => "다른", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "의견", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "내다", "type" => "Verb"}

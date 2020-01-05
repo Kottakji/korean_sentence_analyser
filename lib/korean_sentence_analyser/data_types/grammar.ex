@@ -57,8 +57,6 @@ defmodule KSA.Grammar do
     list
     |> halsuisdda(Enum.find_index(list, fn x -> x == "수" end), Enum.count(list) - 1)
     |> remove_eunda()
-    |> remove_final_grammar_characters()
-    |> remove_plural()
   end
   
   defp halsuisdda(list, nil, _) do
@@ -135,30 +133,5 @@ defmodule KSA.Grammar do
   
   defp remove_eunda(word) do
     word
-  end
-  
-  defp remove_final_grammar_characters(list) when is_list(list) do
-    list
-    |> Enum.map(fn x -> remove_final_grammar_characters(x) end)
-  end
-  
-  defp remove_final_grammar_characters(word) do
-    cond do
-      String.ends_with?(word, "과") -> KSA.Word.get_remaining(word, "과")
-      String.ends_with?(word, "와") -> KSA.Word.get_remaining(word, "와")
-      true -> word
-    end
-  end
-
-  defp remove_plural(list) when is_list(list) do
-    list
-    |> Enum.map(fn x -> remove_plural(x) end)
-  end
-
-  defp remove_plural(word) do
-    cond do
-      String.ends_with?(word, "들") -> KSA.Word.get_remaining(word, "들")
-      true -> word
-    end
   end
 end
