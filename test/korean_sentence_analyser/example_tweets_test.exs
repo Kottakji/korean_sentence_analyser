@@ -165,9 +165,7 @@ defmodule ExampleTweetsTest do
     end
 
     test "@user 와ㅣ@!!!!!" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 와ㅣ@!!!!!") == [
-                     %{"specific_type" => "Adverb", "token" => "와", "type" => "Adverb"}
-                   ]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("@user 와ㅣ@!!!!!") == []
     end
 
     test "iPhone용 The Tribez의 미션 `커피 나무.`을(를) 달성했습니다!  완료할 수 있을까요? http://link.com #iphone, #iphonegames, #gameinsight" do
