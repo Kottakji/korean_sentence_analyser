@@ -68,4 +68,18 @@ defmodule VerbTest do
       assert_value(KoreanSentenceAnalyser.analyse_sentence("감사합니다") == [%{"specific_type" => "Mix", "token" => "감사하다", "type" => "Mix"}])
     end
   end
+
+  describe "We can find verbs directly - " do
+    test "만드는" do
+      assert_value KSA.Verb.find("만드는") == %{"specific_type" => "Verb", "token" => "만들다", "type" => "Verb"}
+    end
+
+    test "매다는" do
+      assert_value KSA.Verb.find("매다는") == %{"specific_type" => "Verb", "token" => "매달다", "type" => "Verb"}
+    end
+
+    test "만든" do
+      assert_value KSA.Verb.find("만든") == %{"specific_type" => "Verb", "token" => "만들다", "type" => "Verb"}
+    end
+  end
 end

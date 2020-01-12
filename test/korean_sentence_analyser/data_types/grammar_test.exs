@@ -7,6 +7,7 @@ defmodule GrammarTest do
     test "마실 수도 있다" do
       assert_value KSA.Grammar.remove(["마실", "수도", "있다"]) == ["마시"]
     end
+
     test "마실 수 있다" do
       assert_value KSA.Grammar.remove(["마실", "수", "있다"]) == ["마시"]
     end

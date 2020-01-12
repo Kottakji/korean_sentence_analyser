@@ -322,13 +322,19 @@ defmodule NounTest do
     end
   end
 
-  describe "We find find nouns that are attached to eachother - " do
+  describe "We find find nouns that are attached to each other - " do
     test "현실주의자로" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("현실주의자로") == [
                      %{"specific_type" => "Noun", "token" => "현실", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "주의자", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "로", "type" => "Substantive"}
                    ]
+    end
+  end
+
+  describe "We should not match certain nouns - " do
+    test "만드는" do
+      assert_value KSA.Noun.find("만드는") == nil
     end
   end
 end

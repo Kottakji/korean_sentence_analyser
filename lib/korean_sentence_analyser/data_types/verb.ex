@@ -12,10 +12,22 @@ defmodule KSA.Verb do
     
   """
   def find(word) do
-    word
-    |> find(@file_path)
-    |> KSA.Formatter.add_ending("다")
-    |> KSA.Formatter.print_result(@data_type)
+    result =
+      word
+      |> find_conjugated()
+      |> KSA.Formatter.add_ending("다")
+      |> KSA.Formatter.print_result(@data_type)
+
+    cond do
+      result == nil ->
+        word
+        |> find(@file_path)
+        |> KSA.Formatter.add_ending("다")
+        |> KSA.Formatter.print_result(@data_type)
+
+      true ->
+        result
+    end
   end
 
   defp find(nil, _) do
@@ -34,7 +46,7 @@ defmodule KSA.Verb do
     "입니"
   end
 
-  defp find(word, file) do
+  defp find(word, file) when is_binary(word) do
     case KSA.LocalDict.find_in_file(word, file) do
       nil ->
         case KSA.Eomi.remove(word) do
@@ -50,5 +62,31 @@ defmodule KSA.Verb do
       match ->
         match
     end
+  end
+
+  defp find_conjugated(word) when byte_size(word) > 3 do
+    case String.last(word) do
+      # "만드는 -> 만들
+      "는" ->
+        KSA.Word.get_remaining(word, "는")
+        |> KSA.KoreanUnicode.change_final_consonant("ᆯ")
+        |> find(@file_path)
+
+      _ ->
+        # "만든 -> 만들
+        case KSA.KoreanUnicode.ends_with_final?(String.last(word), "ᆫ") do
+          true ->
+            word
+            |> KSA.KoreanUnicode.change_final_consonant("ᆯ")
+            |> find(@file_path)
+
+          false ->
+            nil
+        end
+    end
+  end
+
+  defp find_conjugated(_) do
+    nil
   end
 end
