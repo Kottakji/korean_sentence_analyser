@@ -8,7 +8,21 @@ defmodule KSA.Word do
     nil
   end
 
+  def find(word) when byte_size(word) > 3 do
+    word = KSA.Typo.find(word)
+
+    with nil <- KSA.Determiner.find(word),
+         nil <- KSA.Substantive.given_name(word),
+         nil <- KSA.Substantive.family_name(word),
+         nil <- KSA.Noun.find(word),
+         do: find(word, :main)
+  end
+
   def find(word) do
+    find(word, :main)
+  end
+
+  def find(word, :main) do
     word = KSA.Typo.find(word)
 
     with nil <- KSA.Determiner.find(word),
