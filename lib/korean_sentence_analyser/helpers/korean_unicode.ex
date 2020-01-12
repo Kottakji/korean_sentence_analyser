@@ -109,7 +109,7 @@ defmodule KSA.KoreanUnicode do
 
   @doc """
   Does the medial vowel match a certain Jamo?
-  
+
       iex> KSA.KoreanUnicode.has_medial_vowel?("쳐", "ᅧ")
       true
   """

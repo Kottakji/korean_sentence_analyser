@@ -3,10 +3,22 @@ defmodule WordTest do
   import AssertValue
 
   describe "Example words - " do
+    test "대단합니다" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("대단합니다") == [%{"specific_type" => "Adjective", "token" => "대단하다", "type" => "Adjective"}]
+    end
+
+    test "마십니다" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("마십니다") == [%{"specific_type" => "Verb", "token" => "마시다", "type" => "Verb"}]
+    end
+
+    test "답답해서" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("답답해서") == [%{"specific_type" => "Adjective", "token" => "답답하다", "type" => "Adjective"}]
+    end
+
     test "지쳐요" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("지쳐요") == [%{"specific_type" => "Verb", "token" => "지치다", "type" => "Verb"}]
     end
-    
+
     test "5년째" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("5년째") == [
                      %{"specific_type" => "Noun", "token" => "년", "type" => "Noun"},
@@ -21,9 +33,7 @@ defmodule WordTest do
     end
 
     test "입니다" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("입니다") == [
-                     %{"specific_type" => "Verb", "token" => "입니다", "type" => "Verb"}
-                   ]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("입니다") == [%{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}]
     end
 
     test "사과" do

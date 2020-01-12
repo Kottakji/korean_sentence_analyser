@@ -4,6 +4,14 @@ defmodule GrammarTest do
   doctest KSA.Grammar
 
   describe "We can remove certain verb patters - " do
+    test "먹습니다" do
+      assert_value KSA.Grammar.remove(["먹습니다"]) == ["먹"]
+    end
+
+    test "대단합니다" do
+      assert_value KSA.Grammar.remove(["대단합니다"]) == ["대단하다"]
+    end
+
     test "마실 수도 있다" do
       assert_value KSA.Grammar.remove(["마실", "수도", "있다"]) == ["마시"]
     end

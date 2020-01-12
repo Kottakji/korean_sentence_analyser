@@ -65,11 +65,12 @@ defmodule KSA.Verb do
         match
     end
   end
-  
+
   defp find_again(word, file) when byte_size(word) > 1 do
     case KSA.KoreanUnicode.has_medial_vowel?(String.last(word), "ᅧ") do
       true ->
         find(KSA.KoreanUnicode.change_medial_vowel(word, "ᅵ"), file)
+
       false ->
         find(word, file)
     end
@@ -78,7 +79,7 @@ defmodule KSA.Verb do
   defp find_again(_, _) do
     nil
   end
-  
+
   defp find_conjugated(word) when byte_size(word) > 3 do
     case String.last(word) do
       # "만드는 -> 만들

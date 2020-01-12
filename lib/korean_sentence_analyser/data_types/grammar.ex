@@ -60,7 +60,8 @@ defmodule KSA.Grammar do
     list
     |> halsuisdda(Enum.find_index(list, fn x -> x == "수" end), Enum.count(list) - 1)
     |> halsuisdda(Enum.find_index(list, fn x -> x == "수도" end), Enum.count(list) - 1)
-    |> remove_eunda()
+    |> modify_end()
+    |> formal_speech()
   end
 
   defp halsuisdda(list, nil, _) do
@@ -119,23 +120,52 @@ defmodule KSA.Grammar do
     KSA.KoreanUnicode.remove_final_consonant(character)
   end
 
-  defp remove_eunda(list) when is_list(list) do
+  defp modify_end(list) when is_list(list) do
     list
-    |> Enum.map(fn x -> remove_eunda(x) end)
+    |> Enum.map(fn x -> modify_end(x) end)
   end
 
-  defp remove_eunda(word) when byte_size(word) >= 6 do
+  defp modify_end(word) when byte_size(word) >= 6 do
     last = String.slice(word, -2..-1)
     remains = KSA.Word.get_remaining(word, last)
 
     case last do
       "한다" -> remains <> "하"
       "된다" -> remains <> "되"
+      "해서" -> remains <> "하"
       _ -> word
     end
   end
 
-  defp remove_eunda(word) do
+  defp modify_end(word) do
     word
+  end
+
+  defp formal_speech(list) when is_list(list) do
+    list
+    |> Enum.map(fn x -> formal_speech(x) end)
+  end
+
+  defp formal_speech(word) do
+    list = String.split(word, "니")
+
+    case length(list) do
+      2 ->
+        [head | _rest] = list
+
+        cond do
+          String.last(head) == "습" ->
+            KSA.Word.get_remaining(head, "습")
+
+          KSA.KoreanUnicode.ends_with_final?(String.last(head), "ᆸ") ->
+            String.slice(head, 0..-2) <> KSA.KoreanUnicode.remove_final_consonant(String.last(head)) <> "다"
+
+          true ->
+            word
+        end
+
+      _ ->
+        word
+    end
   end
 end

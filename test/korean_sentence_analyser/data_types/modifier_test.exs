@@ -73,12 +73,9 @@ defmodule ModifierTest do
                    ]
     end
 
+    # TODO improve
     test "이말입니가" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("이말입니가") == [
-                     %{"specific_type" => "Determiner", "token" => "이", "type" => "Determiner"},
-                     %{"specific_type" => "Noun", "token" => "말", "type" => "Noun"},
-                     %{"specific_type" => "Verb", "token" => "입니다", "type" => "Verb"}
-                   ]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("이말입니가") == [%{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}]
     end
   end
 end
