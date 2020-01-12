@@ -95,6 +95,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Grammar", "token" => "에서", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "과거", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "오르다", "type" => "Verb"},
+                     %{"specific_type" => "Grammar", "token" => "도", "type" => "Grammar"},
                      %{"specific_type" => "Grammar", "token" => "와", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "미래", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "산", "type" => "Noun"},

@@ -15,7 +15,8 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "말로", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "요리", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "통해", "type" => "Noun"},
-                     %{"specific_type" => "Verb", "token" => "만들다", "type" => "Verb"},
+                     %{"specific_type" => "Entities", "token" => "만들기", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "도", "type" => "Grammar"},
                      %{"specific_type" => "Verb", "token" => "하다", "type" => "Verb"}
                    ]
     end
@@ -68,6 +69,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "예술", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "관하다", "type" => "Mix"},
+                     %{"specific_type" => "Grammar", "token" => "도", "type" => "Grammar"},
                      %{"specific_type" => "Grammar", "token" => "과", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "다른", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "의견", "type" => "Noun"},
