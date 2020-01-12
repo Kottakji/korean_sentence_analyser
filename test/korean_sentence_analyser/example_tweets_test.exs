@@ -65,6 +65,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "젠장", "type" => "Noun"},
                      %{"specific_type" => "Determiner", "token" => "나", "type" => "Determiner"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "이나라", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},
                      %{"specific_type" => "Adjective", "token" => "살다", "type" => "Adjective"},
                      %{"specific_type" => "Verb", "token" => "받다", "type" => "Verb"},
                      %{"specific_type" => "Noun", "token" => "도대체", "type" => "Noun"},
@@ -91,9 +92,10 @@ defmodule ExampleTweetsTest do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 1. 꽃밭에서-과거의 오르도와 미래의 산(초면)") == [
                      %{"specific_type" => "Noun", "token" => "꽃", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "밭", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "에서", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "과거", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "오르다", "type" => "Verb"},
-                     %{"specific_type" => "grammar", "token" => "와", "type" => "grammar"},
+                     %{"specific_type" => "Grammar", "token" => "와", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "미래", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "산", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "초면", "type" => "Noun"}
@@ -122,7 +124,8 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Modifier", "token" => "뭔", "type" => "Modifier"},
                      %{"specific_type" => "Noun", "token" => "데", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "강남", "type" => "Noun"},
-                     %{"specific_type" => "Noun", "token" => "구", "type" => "Noun"},
+                     %{"specific_type" => "Family name", "token" => "구", "type" => "Substantive"},
+                     %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},
                      %{"specific_type" => "Verb", "token" => "끼다", "type" => "Verb"}
                    ]
     end
@@ -144,13 +147,12 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "왜", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "굳이", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "층", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "에서", "type" => "Grammar"},
                      %{"specific_type" => "Verb", "token" => "내려오다", "type" => "Verb"},
                      %{"specific_type" => "Adverb", "token" => "물론", "type" => "Adverb"},
                      %{"specific_type" => "Verb", "token" => "올라가다", "type" => "Verb"},
-                     %{"specific_type" => "Noun", "token" => "수도", "type" => "Noun"},
-                     %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "범인", "type" => "Noun"},
-                     %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"},
+                     %{"specific_type" => "Grammar", "token" => "과", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "마주", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "급습", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
@@ -208,9 +210,10 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Mix", "token" => "감사하다", "type" => "Mix"},
                      %{"specific_type" => "Entities", "token" => "그녀", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "케이스", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "핑크", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "색상", "type" => "Noun"},
-                     %{"specific_type" => "Adjective", "token" => "싫어하다", "type" => "Adjective"},
+                     %{"specific_type" => "Adjective", "token" => "싫다", "type" => "Adjective"},
                      %{"specific_type" => "Conjunction", "token" => "하지만", "type" => "Conjunction"},
                      %{"specific_type" => "Determiner", "token" => "나", "type" => "Determiner"},
                      %{"specific_type" => "Noun", "token" => "그것", "type" => "Noun"},

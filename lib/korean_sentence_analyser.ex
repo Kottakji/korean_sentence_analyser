@@ -20,6 +20,7 @@ defmodule KoreanSentenceAnalyser do
         %{"specific_type" => "Noun", "token" => "한국", "type" => "Noun"},
         %{"specific_type" => "Wikipedia title noun","token" => "동아시아","type" => "Noun"},
         %{"specific_type" => "Entities", "token" => "한반도", "type" => "Noun"},
+        %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},
         %{"specific_type" => "Noun", "token" => "위치", "type" => "Noun"},
         %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"}
       ]

@@ -4,7 +4,7 @@ defmodule KSA.Grammar do
   Also removes certain grammar words like 중 (during), 내 (inside)
   """
 
-  @data_type "grammar"
+  @data_type "Grammar"
   @file_path "grammar/grammar.txt"
 
   @doc """
@@ -18,9 +18,9 @@ defmodule KSA.Grammar do
           "type" => "Noun"
         },
         %{
-          "specific_type" => "grammar",
+          "specific_type" => "Grammar",
           "token" => "내",
-          "type" => "grammar"
+          "type" => "Grammar"
         }
       ]
 
@@ -52,10 +52,14 @@ defmodule KSA.Grammar do
 
       iex> KSA.Grammar.remove(["마실", "수", "있다"])
       ["마시"]
+    
+      iex> KSA.Grammar.remove(["마실", "수도", "있다"])
+      ["마시"]
   """
   def remove(list) when is_list(list) do
     list
     |> halsuisdda(Enum.find_index(list, fn x -> x == "수" end), Enum.count(list) - 1)
+    |> halsuisdda(Enum.find_index(list, fn x -> x == "수도" end), Enum.count(list) - 1)
     |> remove_eunda()
   end
 

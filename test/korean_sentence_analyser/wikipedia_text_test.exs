@@ -29,6 +29,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "모두", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "식물", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "동물", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "에서", "type" => "Grammar"},
                      %{"specific_type" => "Verb", "token" => "얻다", "type" => "Verb"}
                    ]
     end
@@ -56,7 +57,8 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Wikipedia title noun", "token" => "관념론", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "적", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "이상주의", "type" => "Noun"},
-                     %{"specific_type" => "Noun", "token" => "임", "type" => "Noun"},
+                     %{"specific_type" => "Family name", "token" => "임", "type" => "Substantive"},
+                     %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},
                      %{"specific_type" => "Verb", "token" => "대다", "type" => "Verb"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "경험론", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "현실", "type" => "Noun"},
@@ -66,7 +68,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Adjective", "token" => "있다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "예술", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "관하다", "type" => "Mix"},
-                     %{"specific_type" => "grammar", "token" => "과", "type" => "grammar"},
+                     %{"specific_type" => "Grammar", "token" => "과", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "다른", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "의견", "type" => "Noun"},
                      %{"specific_type" => "Verb", "token" => "내다", "type" => "Verb"}
@@ -78,6 +80,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "철학자", "type" => "Noun"},
                      %{"specific_type" => "Adjective", "token" => "넓다", "type" => "Adjective"},
                      %{"specific_type" => "Noun", "token" => "의미", "type" => "Noun"},
+                     %{"specific_type" => "Grammar", "token" => "에서", "type" => "Grammar"},
                      %{"specific_type" => "Noun", "token" => "철학", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "연구하다", "type" => "Mix"},
                      %{"specific_type" => "Noun", "token" => "사람", "type" => "Noun"},

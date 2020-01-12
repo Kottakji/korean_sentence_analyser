@@ -4,6 +4,9 @@ defmodule ConjunctionTest do
   doctest KSA.Conjunction
 
   describe "We can find conjunctions - " do
+    test "하지만" do
+      assert_value(KoreanSentenceAnalyser.analyse_sentence("하지만") == [%{"specific_type" => "Conjunction", "token" => "하지만", "type" => "Conjunction"}])
+    end
     test "그럼" do
       assert_value(
         KoreanSentenceAnalyser.analyse_sentence("그럼") == [

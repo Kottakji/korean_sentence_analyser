@@ -12,10 +12,10 @@ defmodule KSA.Word do
     word = KSA.Typo.find(word)
 
     with nil <- KSA.Determiner.find(word),
+         nil <- KSA.Conjunction.find(word),
          nil <- KSA.Grammar.find(word),
          nil <- KSA.Substantive.given_name(word),
          nil <- KSA.Substantive.family_name(word),
-         nil <- KSA.Conjunction.find(word),
          nil <- KSA.Noun.find(word),
          nil <- KSA.Noun.find_without_determiner(word),
          nil <- KSA.Noun.find_without_grammar(word),
