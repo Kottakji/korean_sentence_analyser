@@ -33,6 +33,7 @@ defmodule KSA.Word do
          nil <- KSA.Noun.find(word),
          nil <- KSA.Noun.find_without_determiner(word),
          nil <- KSA.Noun.find_without_grammar(word),
+         nil <- KSA.Suffix.find(word),
          nil <- KSA.Adverb.find(word),
          nil <- KSA.Adjective.find(word),
          nil <- KSA.ModifiedNoun.find(word),
