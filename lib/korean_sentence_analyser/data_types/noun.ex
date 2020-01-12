@@ -119,6 +119,32 @@ defmodule KSA.Noun do
   end
 
   @doc """
+  Find if the word is a noun, removing any grammar attached to the word
+  """
+  def find_without_destructive_grammar(word) do
+    with nil <- bible(word, :remove_desctructive_grammar),
+         nil <- brand(word, :remove_desctructive_grammar),
+         nil <- company_name(word, :remove_desctructive_grammar),
+         nil <- congress(word, :remove_desctructive_grammar),
+         nil <- entity(word, :remove_desctructive_grammar),
+         nil <- fashion(word, :remove_desctructive_grammar),
+         nil <- foreign(word, :remove_desctructive_grammar),
+         nil <- geolocation(word, :remove_desctructive_grammar),
+         nil <- kpop(word, :remove_desctructive_grammar),
+         nil <- lol(word, :remove_desctructive_grammar),
+         nil <- name(word, :remove_desctructive_grammar),
+         nil <- neologism(word, :remove_desctructive_grammar),
+         nil <- nouns(word, :remove_desctructive_grammar),
+         nil <- pokemon(word, :remove_desctructive_grammar),
+         nil <- profane(word, :remove_desctructive_grammar),
+         nil <- slang(word, :remove_desctructive_grammar),
+         nil <- spam(word, :remove_desctructive_grammar),
+         nil <- twitter(word, :remove_desctructive_grammar),
+         nil <- wikipedia_title_noun(word, :remove_desctructive_grammar),
+         do: nil
+  end
+
+  @doc """
   Find if the word is a bible word
   """
   def bible(word, option \\ nil) do

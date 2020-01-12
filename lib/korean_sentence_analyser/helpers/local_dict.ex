@@ -28,6 +28,11 @@ defmodule KSA.LocalDict do
     |> find_in_file(file)
   end
 
+  def find_in_file(word, file, :remove_desctructive_grammar) do
+    Regex.replace(~r/(는|은)$/, word, "")
+    |> find_in_file(file)
+  end
+
   def find_in_file(word, file, :remove_determiner) do
     case KSA.Determiner.remove(word) do
       match when match != word ->

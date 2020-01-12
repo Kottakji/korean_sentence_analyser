@@ -37,6 +37,7 @@ defmodule KSA.Word do
          nil <- KSA.Adjective.find(word),
          nil <- KSA.ModifiedNoun.find(word),
          nil <- KSA.Verb.find(word),
+         nil <- KSA.Noun.find_without_destructive_grammar(word),
          nil <- KSA.Substantive.given_name(word, :remove_josa),
          nil <- KSA.Substantive.family_name(word, :remove_josa),
          nil <- KSA.Noun.find_without_josa(word),
