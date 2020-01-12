@@ -153,7 +153,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Verb", "token" => "올라가다", "type" => "Verb"},
                      %{"specific_type" => "Noun", "token" => "범인", "type" => "Noun"},
                      %{"specific_type" => "Grammar", "token" => "과", "type" => "Grammar"},
-                     %{"specific_type" => "Noun", "token" => "마주", "type" => "Noun"},
+                     %{"specific_type" => "Verb", "token" => "마주치다", "type" => "Verb"},
                      %{"specific_type" => "Noun", "token" => "급습", "type" => "Noun"},
                      %{"specific_type" => "Mix", "token" => "당하다", "type" => "Mix"}
                    ]

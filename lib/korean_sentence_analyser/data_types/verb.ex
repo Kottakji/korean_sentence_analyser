@@ -6,6 +6,8 @@ defmodule KSA.Verb do
 
   @doc """
   Find if the word is a verb
+                     %{"specific_type" => "Noun", "token" => "년", "type" => "Noun"},
+                     %{"specific_type" => "Suffix", "token" => "째", "type" => "Suffix"}
 
       iex> KSA.Verb.find("먹다")
       %{"specific_type" => "Verb", "token" => "먹다", "type" => "Verb"}
@@ -51,7 +53,7 @@ defmodule KSA.Verb do
       nil ->
         case KSA.Eomi.remove(word) do
           new_word when new_word != word ->
-            find(new_word, file)
+            find_again(new_word, file)
 
           _ ->
             word
@@ -63,7 +65,20 @@ defmodule KSA.Verb do
         match
     end
   end
+  
+  defp find_again(word, file) when byte_size(word) > 1 do
+    case KSA.KoreanUnicode.has_medial_vowel?(String.last(word), "ᅧ") do
+      true ->
+        find(KSA.KoreanUnicode.change_medial_vowel(word, "ᅵ"), file)
+      false ->
+        find(word, file)
+    end
+  end
 
+  defp find_again(_, _) do
+    nil
+  end
+  
   defp find_conjugated(word) when byte_size(word) > 3 do
     case String.last(word) do
       # "만드는 -> 만들

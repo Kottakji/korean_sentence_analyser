@@ -3,6 +3,10 @@ defmodule WordTest do
   import AssertValue
 
   describe "Example words - " do
+    test "지쳐요" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("지쳐요") == [%{"specific_type" => "Verb", "token" => "지치다", "type" => "Verb"}]
+    end
+    
     test "5년째" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("5년째") == [
                      %{"specific_type" => "Noun", "token" => "년", "type" => "Noun"},

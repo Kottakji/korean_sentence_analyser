@@ -70,6 +70,10 @@ defmodule VerbTest do
   end
 
   describe "We can find verbs directly - " do
+    test "지쳐요" do
+      assert_value KSA.Verb.find("지쳐요") == %{"specific_type" => "Verb", "token" => "지치다", "type" => "Verb"}
+    end
+    
     test "만드는" do
       assert_value KSA.Verb.find("만드는") == %{"specific_type" => "Verb", "token" => "만들다", "type" => "Verb"}
     end

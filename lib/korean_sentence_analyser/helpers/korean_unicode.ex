@@ -108,6 +108,24 @@ defmodule KSA.KoreanUnicode do
   end
 
   @doc """
+  Does the medial vowel match a certain Jamo?
+  
+      iex> KSA.KoreanUnicode.has_medial_vowel?("쳐", "ᅧ")
+      true
+  """
+  def has_medial_vowel?("", _jamo) do
+    false
+  end
+
+  def has_medial_vowel?(nil, _jamo) do
+    false
+  end
+
+  def has_medial_vowel?(character, jamo) do
+    get_medial_vowel(character) == jamo
+  end
+
+  @doc """
   Does it end with a certain Jamo?
 
       iex> KSA.KoreanUnicode.ends_with_final?("씻", "ᆺ")
@@ -162,6 +180,28 @@ defmodule KSA.KoreanUnicode do
         final_consonant_code_point
 
     <<decimal::utf8>>
+  end
+
+  @doc """
+  Change the medial voewel of a character
+  If you pass in a word, it will change the final consonant of the last character
+
+      iex> KSA.KoreanUnicode.change_medial_vowel("지쳐", "ᅵ")
+      "지치"
+    
+  """
+  def change_medial_vowel(word, new_medial_vowel) when byte_size(word) > 3 do
+    last = String.last(word)
+    remains = KSA.Word.get_remaining(word, last)
+    remains <> change_medial_vowel(last, new_medial_vowel)
+  end
+
+  def change_medial_vowel(character, new_medial_vowel) do
+    create_from_code_points(
+      get_initial_code_point(character),
+      get_unicode_decimal_value(new_medial_vowel) - @jamo_medial_start_location_in_unicode,
+      get_final_code_point(character)
+    )
   end
 
   @doc """

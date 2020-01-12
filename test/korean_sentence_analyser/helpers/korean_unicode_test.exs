@@ -80,9 +80,22 @@ defmodule KoreanUnicodeTest do
     end
   end
 
+  describe "We can find if the character has a medial vowel - " do
+    test "쳐" do
+      assert_value(KSA.KoreanUnicode.has_medial_vowel?("쳐", "ᅧ") == true)
+      assert_value(KSA.KoreanUnicode.has_medial_vowel?("쳐", "ᅨ") == false)
+    end
+  end
+
   describe "We can find if the character end with a certain hangul - " do
     test "씻" do
       assert_value(KSA.KoreanUnicode.ends_with_final?("씻", "ᆺ") == true)
+    end
+  end
+
+  describe "We can change the medial vowel of a word - " do
+    test "지쳐" do
+      assert_value KSA.KoreanUnicode.change_medial_vowel("지쳐", "ᅵ") == "지치"
     end
   end
 
