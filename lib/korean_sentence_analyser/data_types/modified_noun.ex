@@ -17,8 +17,12 @@ defmodule KSA.ModifiedNoun do
       %{"specific_type" => "Mix", "token" => "생각하다", "type" => "Mix"}
     
   """
-  def find(word) do
+  def find(word) when byte_size(word) > 6 do
     find(word, word)
+  end
+
+  def find(word) do
+    nil
   end
 
   defp find(nil, _) do

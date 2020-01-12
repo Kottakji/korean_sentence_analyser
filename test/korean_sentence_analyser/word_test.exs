@@ -11,6 +11,10 @@ defmodule WordTest do
       assert_value KoreanSentenceAnalyser.analyse_sentence("만드는") == [%{"specific_type" => "Verb", "token" => "만들다", "type" => "Verb"}]
     end
 
+    test "만든" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("만든") == [%{"specific_type" => "Verb", "token" => "만들다", "type" => "Verb"}]
+    end
+
     test "싫어하지만" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("싫어하지만") == [
                      %{"specific_type" => "Adjective", "token" => "싫다", "type" => "Adjective"},

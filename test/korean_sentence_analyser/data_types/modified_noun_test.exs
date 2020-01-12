@@ -56,4 +56,10 @@ defmodule ModifiedNounTest do
       )
     end
   end
+
+  describe "We do not match certain verbs - " do
+    test "만든" do
+      assert_value KSA.ModifiedNoun.find("만든") == nil
+    end
+  end
 end
