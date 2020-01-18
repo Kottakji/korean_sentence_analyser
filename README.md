@@ -1,6 +1,7 @@
 # KoreanSentenceAnalyser
 
 [![Build Status](https://travis-ci.org/JorisKok/korean_sentence_analyser.svg?branch=master)](https://travis-ci.org/JorisKok/korean_sentence_analyser)
+[![Coverage Status](https://coveralls.io/repos/github/JorisKok/korean_sentence_analyser/badge.svg)](https://coveralls.io/github/JorisKok/korean_sentence_analyser)
 [![Hex pm](http://img.shields.io/hexpm/v/korean_sentence_analyser.svg?style=flat)](https://hex.pm/packages/korean_sentence_analyser)
 
 Docs: [https://hexdocs.pm/korean_sentence_analyser](https://hexdocs.pm/korean_sentence_analyser).
