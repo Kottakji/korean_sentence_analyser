@@ -56,7 +56,7 @@ defmodule WikipediaTextTest do
                      %{"specific_type" => "Noun", "token" => "스승", "type" => "Noun"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "플라톤", "type" => "Noun"},
                      %{"specific_type" => "Wikipedia title noun", "token" => "관념론", "type" => "Noun"},
-                     %{"specific_type" => "Suffix", "token" => "적", "type" => "Suffix"},
+                     %{"specific_type" => "Noun", "token" => "적", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "이상주의", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "임", "type" => "Substantive"},
                      %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},

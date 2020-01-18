@@ -64,7 +64,8 @@ defmodule ExampleTweetsTest do
       assert_value KoreanSentenceAnalyser.analyse_sentence("@user 젠장 나는 이나라에 살아서 받는게 도대체 무엇이야") == [
                      %{"specific_type" => "Noun", "token" => "젠장", "type" => "Noun"},
                      %{"specific_type" => "Determiner", "token" => "나", "type" => "Determiner"},
-                     %{"specific_type" => "Wikipedia title noun", "token" => "이나라", "type" => "Noun"},
+                     %{"specific_type" => "Determiner", "token" => "이", "type" => "Determiner"},
+                     %{"specific_type" => "Noun", "token" => "나라", "type" => "Noun"},
                      %{"specific_type" => "Grammar", "token" => "에", "type" => "Grammar"},
                      %{"specific_type" => "Adjective", "token" => "살다", "type" => "Adjective"},
                      %{"specific_type" => "Verb", "token" => "받다", "type" => "Verb"},
@@ -234,7 +235,7 @@ defmodule ExampleTweetsTest do
                      %{"specific_type" => "Noun", "token" => "입학", "type" => "Noun"},
                      %{"specific_type" => "Entities", "token" => "찍기", "type" => "Noun"},
                      %{"specific_type" => "Noun", "token" => "방어", "type" => "Noun"},
-                     %{"specific_type" => "Wikipedia title noun", "token" => "이속", "type" => "Noun"},
+                     %{"specific_type" => "Noun", "token" => "속", "type" => "Noun"},
                      %{"specific_type" => "Family name", "token" => "공", "type" => "Substantive"},
                      %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}
                    ]

@@ -42,6 +42,7 @@ defmodule KSA.Word do
          nil <- KSA.Substantive.given_name(word, :remove_josa),
          nil <- KSA.Substantive.family_name(word, :remove_josa),
          nil <- KSA.Noun.find_without_josa(word),
+         nil <- KSA.Noun.find_wikipedia_title_noun(word),
          do: nil
   end
 

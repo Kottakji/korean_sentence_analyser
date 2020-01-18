@@ -29,7 +29,6 @@ defmodule KSA.Noun do
          nil <- slang(word),
          nil <- spam(word),
          nil <- twitter(word),
-         nil <- wikipedia_title_noun(word),
          do: nil
   end
 
@@ -55,7 +54,6 @@ defmodule KSA.Noun do
          nil <- slang(word, :remove_josa),
          nil <- spam(word, :remove_josa),
          nil <- twitter(word, :remove_josa),
-         nil <- wikipedia_title_noun(word, :remove_josa),
          do: nil
   end
 
@@ -80,8 +78,7 @@ defmodule KSA.Noun do
          nil <- profane(word, :remove_determiner),
          nil <- slang(word, :remove_determiner),
          nil <- spam(word, :remove_determiner),
-         nil <- twitter(word, :remove_determiner),
-         nil <- wikipedia_title_noun(word, :remove_determiner) do
+         nil <- twitter(word, :remove_determiner) do
       nil
     else
       match = %{"token" => token} ->
@@ -114,7 +111,6 @@ defmodule KSA.Noun do
          nil <- slang(word, :remove_grammar),
          nil <- spam(word, :remove_grammar),
          nil <- twitter(word, :remove_grammar),
-         nil <- wikipedia_title_noun(word, :remove_grammar),
          do: nil
   end
 
@@ -140,6 +136,17 @@ defmodule KSA.Noun do
          nil <- slang(word, :remove_desctructive_grammar),
          nil <- spam(word, :remove_desctructive_grammar),
          nil <- twitter(word, :remove_desctructive_grammar),
+         do: nil
+  end
+
+  @doc """
+  Find if the word is a wikipedia noun
+  """
+  def find_wikipedia_title_noun(word) do
+    with nil <- wikipedia_title_noun(word),
+         nil <- wikipedia_title_noun(word, :remove_josa),
+         nil <- wikipedia_title_noun(word, :remove_determiner),
+         nil <- wikipedia_title_noun(word, :remove_grammar),
          nil <- wikipedia_title_noun(word, :remove_desctructive_grammar),
          do: nil
   end

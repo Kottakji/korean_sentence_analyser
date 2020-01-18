@@ -3,27 +3,40 @@ defmodule WordTest do
   import AssertValue
 
   describe "Example words - " do
+    @tag :now
+    test "보이지" do
+      assert_value KoreanSentenceAnalyser.analyse_sentence("보이지") == [%{"specific_type" => "Verb", "token" => "보이다", "type" => "Verb"}]
+    end
+
     test "이유도" do
       assert_value KoreanSentenceAnalyser.analyse_sentence("이유도") == [
                      %{"specific_type" => "Noun", "token" => "이유", "type" => "Noun"},
                      %{"specific_type" => "Grammar", "token" => "도", "type" => "Grammar"}
                    ]
     end
-    
+
     test "대단합니다" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("대단합니다") == [%{"specific_type" => "Adjective", "token" => "대단하다", "type" => "Adjective"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("대단합니다") == [
+                     %{"specific_type" => "Adjective", "token" => "대단하다", "type" => "Adjective"}
+                   ]
     end
 
     test "마십니다" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("마십니다") == [%{"specific_type" => "Verb", "token" => "마시다", "type" => "Verb"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("마십니다") == [
+                     %{"specific_type" => "Verb", "token" => "마시다", "type" => "Verb"}
+                   ]
     end
 
     test "답답해서" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("답답해서") == [%{"specific_type" => "Adjective", "token" => "답답하다", "type" => "Adjective"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("답답해서") == [
+                     %{"specific_type" => "Adjective", "token" => "답답하다", "type" => "Adjective"}
+                   ]
     end
 
     test "지쳐요" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("지쳐요") == [%{"specific_type" => "Verb", "token" => "지치다", "type" => "Verb"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("지쳐요") == [
+                     %{"specific_type" => "Verb", "token" => "지치다", "type" => "Verb"}
+                   ]
     end
 
     test "5년째" do
@@ -40,7 +53,9 @@ defmodule WordTest do
     end
 
     test "입니다" do
-      assert_value KoreanSentenceAnalyser.analyse_sentence("입니다") == [%{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}]
+      assert_value KoreanSentenceAnalyser.analyse_sentence("입니다") == [
+                     %{"specific_type" => "Adjective", "token" => "이다", "type" => "Adjective"}
+                   ]
     end
 
     test "사과" do
