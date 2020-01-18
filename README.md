@@ -7,7 +7,7 @@
 Docs: [https://hexdocs.pm/korean_sentence_analyser](https://hexdocs.pm/korean_sentence_analyser).
 
 
-## In short
+## Analyse Korean Text
 
 An attempt to try to get information about Korean text.
 
