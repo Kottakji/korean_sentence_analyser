@@ -1,6 +1,6 @@
 defmodule KoreanSentenceAnalyser.MixProject do
   use Mix.Project
-
+  
   def project do
     [
       app: :korean_sentence_analyser,
@@ -8,9 +8,11 @@ defmodule KoreanSentenceAnalyser.MixProject do
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+                preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       description: description(),
       package: package(),
-
+      
       # Docs
       name: "Korean Sentence Analyser",
       source_url: "https://github.com/JorisKok/korean_sentence_analyser",
@@ -40,11 +42,11 @@ defmodule KoreanSentenceAnalyser.MixProject do
       ]
     ]
   end
-
+  
   defp description do
     "A tool to analyse Korean sentences"
   end
-
+  
   defp package do
     [
       licenses: ["Apache 2.0"],
@@ -53,7 +55,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
       }
     ]
   end
-
+  
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
@@ -61,7 +63,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
       extra_applications: [:logger]
     ]
   end
-
+  
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
@@ -71,7 +73,8 @@ defmodule KoreanSentenceAnalyser.MixProject do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:assert_value, ">= 0.0.0", only: [:dev, :test]},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
-      {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]}
+      {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]},
+      {:excoveralls, "~> 0.10", only: :test},
     ]
   end
 end

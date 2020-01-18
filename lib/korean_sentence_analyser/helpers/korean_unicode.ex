@@ -11,7 +11,7 @@ defmodule KSA.KoreanUnicode do
   @jamo_initial_start_location_in_unicode 4352
   @jamo_medial_start_location_in_unicode 4449
   @jamo_final_start_location_in_unicode 4519
-  @start_location_in_unicode 44032
+  @start_location_in_unicode 44_032
   @characters_per_initial 588
   @characters_per_medial 28
 
@@ -81,7 +81,7 @@ defmodule KSA.KoreanUnicode do
       "가"
     
   """
-  def create_hangul_from_decimal_value(decimal_value) when decimal_value <= 55209 and decimal_value >= 44032 do
+  def create_hangul_from_decimal_value(decimal_value) when decimal_value <= 55_209 and decimal_value >= 44_032 do
     <<decimal_value::utf8>>
   end
 

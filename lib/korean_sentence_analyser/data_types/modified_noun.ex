@@ -21,7 +21,7 @@ defmodule KSA.ModifiedNoun do
     find(word, word)
   end
 
-  def find(word) do
+  def find(_word) do
     nil
   end
 

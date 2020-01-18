@@ -33,7 +33,7 @@ defmodule KSA.SplitWord do
         |> Enum.drop(-1)
         |> find(word, result)
 
-      match = %{"token" => "요"} ->
+      _match = %{"token" => "요"} ->
         # Do not match 요
         word_list
         |> Enum.drop(-1)
