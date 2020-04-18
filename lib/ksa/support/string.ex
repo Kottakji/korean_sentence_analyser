@@ -1,6 +1,6 @@
 defmodule Ksa.Support.StringHelper do
   @moduledoc """
-  Helper functions
+  Helper functions for strings
   """
 
   @doc """
