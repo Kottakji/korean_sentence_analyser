@@ -60,10 +60,10 @@ defmodule Ksa.Support.String do
     cond do
       String.starts_with?(word, match) ->
         Regex.replace(Regex.compile!("^" <> match, "u"), word, "")
-    
+
       String.ends_with?(word, match) ->
         Regex.replace(Regex.compile!(match <> "$", "u"), word, "")
-    
+
       true ->
         ""
     end

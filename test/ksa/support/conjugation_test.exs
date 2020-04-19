@@ -1,111 +1,97 @@
 defmodule Support.ConjugationTest do
   use ExUnit.Case
   alias Ksa.Support.Conjugation
-  
-  describe "Present tense" do
-    test "해" do
-      assert Conjugation.conjugate("해") == "하"
+  alias Ksa.Structs.Conjugated
+
+  describe "Regular" do
+    test "a" do
+      assert Enum.member?(Conjugation.conjugate("해"), %Conjugated{word: "해", conjugated: "하", tense: "present", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("했"), %Conjugated{word: "했", conjugated: "하", tense: "past", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("합"), %Conjugated{word: "합", conjugated: "하", tense: "present_formal", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("한"), %Conjugated{word: "한", conjugated: "하", tense: "past_written", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("할"), %Conjugated{word: "할", conjugated: "하", tense: "future", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("함"), %Conjugated{word: "함", conjugated: "하", tense: "nominal", sub_type: "regular"})
     end
-    
-    test "먹어" do
-      assert Conjugation.conjugate("먹어") == "먹"
+
+    test "eu" do
+      assert Enum.member?(Conjugation.conjugate("써"), %Conjugated{word: "써", conjugated: "쓰", tense: "present", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("썼"), %Conjugated{word: "썼", conjugated: "쓰", tense: "past", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("씁"), %Conjugated{word: "씁", conjugated: "쓰", tense: "present_formal", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("쓴"), %Conjugated{word: "쓴", conjugated: "쓰", tense: "past_written", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("쓸"), %Conjugated{word: "쓸", conjugated: "쓰", tense: "future", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("씀"), %Conjugated{word: "씀", conjugated: "쓰", tense: "nominal", sub_type: "regular"})
     end
-    
-    test "신어" do
-      assert Conjugation.conjugate("신어") == "신"
+
+    test "rieul" do
+      assert Enum.member?(Conjugation.conjugate("운"), %Conjugated{word: "운", conjugated: "울", tense: "past_written", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("웁"), %Conjugated{word: "웁", conjugated: "울", tense: "present_formal", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("우"), %Conjugated{word: "우", conjugated: "울", tense: "imperative", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("욺"), %Conjugated{word: "욺", conjugated: "울", tense: "nominal", sub_type: "regular"})
     end
-    
-    test "써" do
-      assert Conjugation.conjugate("써") == "쓰"
+
+    test "u" do
+      assert Enum.member?(Conjugation.conjugate("줘"), %Conjugated{word: "줘", conjugated: "주", tense: "present", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("준"), %Conjugated{word: "준", conjugated: "주", tense: "past_written", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("줬"), %Conjugated{word: "줬", conjugated: "주", tense: "past", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("줄"), %Conjugated{word: "줄", conjugated: "주", tense: "future", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("줍"), %Conjugated{word: "줍", conjugated: "주", tense: "present_formal", sub_type: "regular"})
+      assert Enum.member?(Conjugation.conjugate("줌"), %Conjugated{word: "줌", conjugated: "주", tense: "nominal", sub_type: "regular"})
     end
-    
-    test "울어" do
-      assert Conjugation.conjugate("울어") == "울"
-    end
-    
-    test "읽어" do
-      assert Conjugation.conjugate("읽어") == "읽"
-    end
-    
-    test "재미있어" do
-      assert Conjugation.conjugate("재미있어") == "재미있"
-    end
-    
-    test "줘" do
-      assert Conjugation.conjugate("줘") == "주"
-    end
-    
-    test "커" do
-      assert Conjugation.conjugate("커") == "크"
-    end
-    
-    test "필요없어" do
-      assert Conjugation.conjugate("필요없어") == "필요없"
-    end
-    
-    test "힘들어" do
-      assert Conjugation.conjugate("힘들어") == "힘들"
+
+    test "Only unique values are returned" do
+      assert Enum.count(Conjugation.conjugate("가능하")) == 1
     end
   end
-  
-  # https://www.koreanwikiproject.com/wiki/%EC%95%84/%EC%96%B4/%EC%97%AC_%2B_%EC%9A%94
-  describe "Past tense" do
-    test "했어" do
-      assert Conjugation.conjugate("했어") == "하"
-    end
-    test "줬어" do
-      assert Conjugation.conjugate("줬어") == "주"
-    end
-    
-    test "썼어" do
-      assert Conjugation.conjugate("썼어") == "쓰"
-    end
-    
-    test "했는데" do
-      assert Conjugation.conjugate("했는") == "하"
-    end
-    
-    test "화났는데" do
-      assert Conjugation.conjugate("화났는") == "화나"
-    end
-  end
-  
+
   describe "Irregular" do
     test "dieut" do
-      assert Enum.member?(Conjugation.conjugate_irregular("깨달"), "깨닫")
+      assert Enum.member?(Conjugation.conjugate_irregular("깨달"), %Conjugated{word: "깨달", conjugated: "깨닫", tense: "present", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("깨단"), %Conjugated{word: "깨단", conjugated: "깨닫", tense: "past_written", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("깨답"), %Conjugated{word: "깨답", conjugated: "깨닫", tense: "present_formal", sub_type: "irregular"})
     end
-    
+
     test "rieul" do
-      assert Enum.member?(Conjugation.conjugate_irregular("노니"), "놀")
+      assert Enum.member?(Conjugation.conjugate_irregular("논"), %Conjugated{word: "논", conjugated: "놀", tense: "past_written", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("놉"), %Conjugated{word: "놉", conjugated: "놀", tense: "present_formal", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("노"), %Conjugated{word: "노", conjugated: "놀", tense: "imperative", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("놂"), %Conjugated{word: "놂", conjugated: "놀", tense: "nominal", sub_type: "irregular"})
     end
-    
+
     test "rieul_eu" do
-      assert Enum.member?(Conjugation.conjugate_irregular("고릅"), "고르")
-      assert Enum.member?(Conjugation.conjugate_irregular("골라"), "고르")
+      assert Enum.member?(Conjugation.conjugate_irregular("골라"), %Conjugated{word: "골라", conjugated: "고르", tense: "present", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("고른"), %Conjugated{word: "고른", conjugated: "고르", tense: "past_written", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("골랐"), %Conjugated{word: "골랐", conjugated: "고르", tense: "past", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("고를"), %Conjugated{word: "고를", conjugated: "고르", tense: "future", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("고릅"), %Conjugated{word: "고릅", conjugated: "고르", tense: "present_formal", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("고름"), %Conjugated{word: "고름", conjugated: "고르", tense: "nominal", sub_type: "irregular"})
     end
-    
+
     test "sieut" do
-      assert Enum.member?(Conjugation.conjugate_irregular("지"), "짓")
+      assert Enum.member?(Conjugation.conjugate_irregular("지"), %Conjugated{word: "지", conjugated: "짓", tense: "present", sub_type: "irregular"})
     end
 
     test "hieuh_o" do
-      assert Enum.member?(Conjugation.conjugate_irregular("그래"), "그렇")
-      assert Enum.member?(Conjugation.conjugate_irregular("그랬"), "그렇")
-      assert Enum.member?(Conjugation.conjugate_irregular("그럴"), "그렇")
+      assert Enum.member?(Conjugation.conjugate_irregular("그래"), %Conjugated{word: "그래", conjugated: "그렇", tense: "present", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("그랬"), %Conjugated{word: "그랬", conjugated: "그렇", tense: "past", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("그럴"), %Conjugated{word: "그럴", conjugated: "그렇", tense: "future", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("그럼"), %Conjugated{word: "그럼", conjugated: "그렇", tense: "nominal", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("그러"), %Conjugated{word: "그러", conjugated: "그렇", tense: "imperative", sub_type: "irregular"})
     end
-    
-    test"hieuh_a" do
-      assert Enum.member?(Conjugation.conjugate_irregular("까매"), "까맣")
-      assert Enum.member?(Conjugation.conjugate_irregular("까맸"), "까맣")
-      assert Enum.member?(Conjugation.conjugate_irregular("까말"), "까맣")
-      assert Enum.member?(Conjugation.conjugate_irregular("까마"), "까맣")
+
+    test "hieuh_a" do
+      assert Enum.member?(Conjugation.conjugate_irregular("까매"), %Conjugated{word: "까매", conjugated: "까맣", tense: "present", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("까맸"), %Conjugated{word: "까맸", conjugated: "까맣", tense: "past", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("까말"), %Conjugated{word: "까말", conjugated: "까맣", tense: "future", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("까마"), %Conjugated{word: "까마", conjugated: "까맣", tense: "imperative", sub_type: "irregular"})
+      assert Enum.member?(Conjugation.conjugate_irregular("까맘"), %Conjugated{word: "까맘", conjugated: "까맣", tense: "nominal", sub_type: "irregular"})
     end
 
     test "bieup" do
-      assert Enum.member?(Conjugation.conjugate_irregular("가벼워"), "가볍")
-      assert Enum.member?(Conjugation.conjugate_irregular("가벼웠"), "가볍")
-      assert Enum.member?(Conjugation.conjugate_irregular("가벼울"), "가볍")
-      assert Enum.member?(Conjugation.conjugate_irregular("가벼우"), "가볍")
+      assert Enum.member?(Conjugation.conjugate_irregular("가벼"), %Conjugated{word: "가벼", conjugated: "가볍", tense: "present", sub_type: "irregular"})
+    end
+
+    test "Only unique values are returned" do
+      assert Enum.count(Conjugation.conjugate_irregular("가능하")) == 5
     end
   end
 end
