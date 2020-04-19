@@ -23,22 +23,28 @@ defmodule Ksa.Support.Conjugation do
   @regular "regular"
   @irregular "irregular"
 
-  @spec conjugate(String.t()) :: String.t()
+
+  @spec conjugate(String.t()) :: list
+  def conjugate(word) when byte_size(word) == 0 do
+    []
+  end
+  
+  @spec conjugate(String.t()) :: list
   def conjugate(word) when byte_size(word) == 3 do
     conjugate({"", word}, {"", word})
   end
 
-  @spec conjugate(String.t()) :: String.t()
+  @spec conjugate(String.t()) :: list
   def conjugate(word) when byte_size(word) == 6 do
     conjugate(String.split_at(word, -1), {"", String.first(word)})
   end
 
-  @spec conjugate(String.t()) :: String.t()
+  @spec conjugate(String.t()) :: list
   def conjugate(word) when byte_size(word) > 6 do
     conjugate(String.split_at(word, -1), String.split_at(String.slice(word, 0..-2), -1))
   end
 
-  @spec conjugate(tuple(), tuple()) :: String.t()
+  @spec conjugate(tuple(), tuple()) :: list
   def conjugate(last, second_last) do
     [
       [conjugate_a(last, second_last)],
@@ -51,7 +57,7 @@ defmodule Ksa.Support.Conjugation do
     |> Enum.uniq()
   end
 
-  @spec conjugate_a(tuple(), tuple()) :: String.t() | nil
+  @spec conjugate_a(tuple(), tuple()) :: list
   defp conjugate_a({last_remaining, last}, {second_last_remaining, second_last}) do
     cond do
       Unicode.get_final_consonant(second_last) == "ᆻ" and second_last != "있" ->
@@ -115,7 +121,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_eu(tuple(), tuple()) :: String.t() | nil
+  @spec conjugate_eu(tuple(), tuple()) :: list
   defp conjugate_eu({last_remaining, last}, {second_last_remaining, second_last}) do
     cond do
       Unicode.get_final_consonant(second_last) == "ᆻ" and second_last != "있" ->
@@ -179,7 +185,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_rieul(tuple(), tuple()) :: String.t() | nil
+  @spec conjugate_rieul(tuple(), tuple()) :: list
   defp conjugate_rieul({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == "ᆸ" ->
@@ -219,7 +225,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_u(tuple(), tuple()) :: String.t() | nil
+  @spec conjugate_u(tuple(), tuple()) :: list
   defp conjugate_u({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_medial_vowel(last) == "ᅯ" and Unicode.get_final_consonant(last) == "ᆻ" ->
@@ -276,6 +282,11 @@ defmodule Ksa.Support.Conjugation do
   end
 
   @spec conjugate_irregular(String.t()) :: list
+  def conjugate_irregular(word) when byte_size(word) == 0 do
+    []
+  end
+  
+  @spec conjugate_irregular(String.t()) :: list
   def conjugate_irregular(word) when byte_size(word) == 3 do
     conjugate_irregular({"", word}, {"", word})
   end
@@ -306,7 +317,7 @@ defmodule Ksa.Support.Conjugation do
     |> Enum.uniq()
   end
 
-  @spec conjugate_irregular_dieut(tuple(), tuple()) :: String.t() | nil
+  @spec conjugate_irregular_dieut(tuple(), tuple()) :: list
   defp conjugate_irregular_dieut({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == "ᆯ" ->
@@ -338,7 +349,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_irregular_rieul(tuple(), tuple()) :: String.t()
+  @spec conjugate_irregular_rieul(tuple(), tuple()) :: list
   defp conjugate_irregular_rieul({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == "ᆫ" ->
@@ -378,7 +389,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_irregular_rieul_eu(tuple(), tuple()) :: String.t()
+  @spec conjugate_irregular_rieul_eu(tuple(), tuple()) :: list
   defp conjugate_irregular_rieul_eu({last_remaining, last}, {second_last_remaining, second_last}) do
     cond do
       last == "라" and Unicode.get_final_consonant(second_last) == "ᆯ" ->
@@ -434,7 +445,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_irregular_sieut(tuple(), tuple()) :: String.t()
+  @spec conjugate_irregular_sieut(tuple(), tuple()) :: list
   defp conjugate_irregular_sieut({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == nil ->
@@ -450,7 +461,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_irregular_hieuh_o(tuple(), tuple()) :: String.t()
+  @spec conjugate_irregular_hieuh_o(tuple(), tuple()) :: list
   defp conjugate_irregular_hieuh_o({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == "ᆻ" and Unicode.get_medial_vowel(last) == "ᅢ" ->
@@ -498,7 +509,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_irregular_hieuh_a(tuple(), tuple()) :: String.t()
+  @spec conjugate_irregular_hieuh_a(tuple(), tuple()) :: list
   defp conjugate_irregular_hieuh_a({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == "ᆻ" and Unicode.get_medial_vowel(last) == "ᅢ" ->
@@ -546,7 +557,7 @@ defmodule Ksa.Support.Conjugation do
     end
   end
 
-  @spec conjugate_irregular_bieup(tuple(), tuple()) :: String.t()
+  @spec conjugate_irregular_bieup(tuple(), tuple()) :: list
   defp conjugate_irregular_bieup({last_remaining, last}, {_second_last_remaining, _second_last}) do
     cond do
       Unicode.get_final_consonant(last) == nil ->

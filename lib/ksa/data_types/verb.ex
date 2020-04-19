@@ -1,10 +1,10 @@
-defmodule Ksa.DataTypes.Adjective do
+defmodule Ksa.DataTypes.Verb do
   @moduledoc """
-  Find the adjectives in the sentence
+  Find the verb in the sentence
   """
   alias Ksa.Support.String, as: StringHelper
   alias Ksa.Ets.DictFile
-  alias Ksa.Structs.Adjective
+  alias Ksa.Structs.Verb
   alias Ksa.Structs.Conjugated
 
   @spec match(String.t()) :: list
@@ -34,19 +34,19 @@ defmodule Ksa.DataTypes.Adjective do
     |> Enum.filter(fn x -> x != nil end)
   end
 
-  @spec match(String.t(), String.t()) :: Adjective.t() | nil
+  @spec match(String.t(), String.t()) :: Verb.t() | nil
   defp match(word, part) when is_bitstring(word) and is_bitstring(part) do
     cond do
-      DictFile.find(part, "adjective/adjective.txt") -> %Adjective{word: word, match: part}
+      DictFile.find(part, "verb/verb.txt") -> %Verb{word: word, match: part}
       true -> nil
     end
   end
 
-  @spec match(String.t(), String.t()) :: Adjective.t() | nil
+  @spec match(String.t(), String.t()) :: Verb.t() | nil
   defp match(word, conjugated = %Conjugated{}) when is_bitstring(word) and is_map(conjugated) do
     cond do
-      DictFile.find(conjugated.conjugated, "adjective/adjective.txt") ->
-        %Adjective{word: word, match: conjugated.conjugated, conjugated: conjugated}
+      DictFile.find(conjugated.conjugated, "verb/verb.txt") ->
+        %Verb{word: word, match: conjugated.conjugated, conjugated: conjugated}
 
       true ->
         nil

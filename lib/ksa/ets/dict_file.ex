@@ -34,7 +34,7 @@ defmodule Ksa.Ets.DictFile do
       "noun/slangs.txt",
       "noun/spam.txt",
       "noun/twitter.txt",
-      "noun/wikipedia_title_nouns.txt"
+      "noun/wikipedia_title_nouns.txt",
       #      "substantives/family_names.txt",
       #      "substantives/given_names.txt",
       #      "substantives/modifier.txt",
@@ -42,7 +42,7 @@ defmodule Ksa.Ets.DictFile do
       #      "typos/typos.txt",
       #      "verb/eomi.txt",
       #      "verb/pre_eomi.txt",
-      #      "verb/verb.txt",
+            "verb/verb.txt",
       #      "verb/verb_prefix.txt"
     ]
     |> Enum.each(fn path -> init_dict_from_file(path) end)

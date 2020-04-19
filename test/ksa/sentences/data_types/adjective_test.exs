@@ -15,6 +15,5 @@ defmodule Sentences.DataTypes.AdjectiveTest do
                word: "그립습니다"
              }
            )
-  
   end
 end
