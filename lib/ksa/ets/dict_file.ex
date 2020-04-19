@@ -2,14 +2,14 @@ defmodule Ksa.Ets.DictFile do
   @moduledoc """
   Use ETS to access dictionary files
   """
-
+  
   @doc """
   Initiate the dictionaries into ETS
   """
   @spec init() :: :ok
   def init() do
     [
-      #      "adjective/adjective.txt",
+      "adjective/adjective.txt",
       #      "adverb/adverb.txt",
       #      "auxiliary/conjunctions.txt",
       #      "auxiliary/determiner.txt",
@@ -46,37 +46,39 @@ defmodule Ksa.Ets.DictFile do
       #      "verb/verb_prefix.txt"
     ]
     |> Enum.each(fn path -> init_dict_from_file(path) end)
-
+    
     :ok
   end
-
+  
   @spec init_dict_from_file(String.t()) :: :ok
   defp init_dict_from_file(path) when is_bitstring(path) do
     :ets.new(String.to_atom(path), [:ordered_set, :protected, :named_table])
-
+    
     Path.join(:code.priv_dir(:ksa), path)
     |> File.stream!()
-    |> Stream.map(fn x ->
-      String.replace(x, "\n", "")
-      |> insert(path)
-    end)
+    |> Stream.map(
+         fn x ->
+           String.replace(x, "\n", "")
+           |> insert(path)
+         end
+       )
     |> Stream.run()
-
+    
     :ok
   end
-
+  
   @spec insert(String.t(), String.t(), String.t()) :: :ok
   defp insert(key, value, path) when is_bitstring(key) and is_bitstring(value) and is_bitstring(path) do
     :ets.insert(String.to_atom(path), {key, value})
-
+    
     :ok
   end
-
+  
   @spec insert(String.t(), String.t()) :: :ok
   defp insert(value, path) do
     insert(value, value, path)
   end
-
+  
   @doc """
   Find a word in the dictionary path
   """

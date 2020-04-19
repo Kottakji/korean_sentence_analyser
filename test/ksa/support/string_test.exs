@@ -1,4 +1,4 @@
-defmodule Helpers.StringHelperTest do
+defmodule Support.StringHelperTest do
   use ExUnit.Case
-  doctest Ksa.Helpers.StringHelper
+  doctest Ksa.Support.String
 end

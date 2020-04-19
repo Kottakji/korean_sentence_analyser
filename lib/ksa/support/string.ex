@@ -1,4 +1,4 @@
-defmodule Ksa.Support.StringHelper do
+defmodule Ksa.Support.String do
   @moduledoc """
   Helper functions for strings
   """
@@ -7,7 +7,7 @@ defmodule Ksa.Support.StringHelper do
   Splits our word into all matchable parts
 
   ## Examples
-    iex> Ksa.Support.StringHelper.split("서울시장")
+    iex> Ksa.Support.String.split("서울시장")
     ["서","서울","서울시","서울시장","울","울시","울시장","시","시장","장"]
   """
   @spec split(String.t()) :: list
@@ -51,5 +51,21 @@ defmodule Ksa.Support.StringHelper do
       )
 
     List.to_string(head) <> tail
+  end
+
+  @doc """
+  Get the remaining part of the word, removing the match from either the beginning or the end
+  """
+  def get_remaining(word, match) do
+    cond do
+      String.starts_with?(word, match) ->
+        Regex.replace(Regex.compile!("^" <> match, "u"), word, "")
+    
+      String.ends_with?(word, match) ->
+        Regex.replace(Regex.compile!(match <> "$", "u"), word, "")
+    
+      true ->
+        ""
+    end
   end
 end

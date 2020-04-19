@@ -1,4 +1,4 @@
-defmodule Helpers.UnicodeTest do
+defmodule Support.UnicodeTest do
   use ExUnit.Case
-  doctest Ksa.Helpers.Unicode
+  doctest Ksa.Support.Unicode
 end

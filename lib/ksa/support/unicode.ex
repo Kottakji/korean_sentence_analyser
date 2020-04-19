@@ -1,4 +1,4 @@
-defmodule Ksa.Helpers.Unicode do
+defmodule Ksa.Support.Unicode do
   @moduledoc """
   Contains functions helpful in dealing with Hangul
   
@@ -18,7 +18,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Split a sentence into only Korean words
   
-      iex> KSA.KoreanUnicode.split("투표......당신의 소중한  한표....ㅋㅋ")
+      iex> Ksa.Support.Unicode.split("투표......당신의 소중한  한표....ㅋㅋ")
       ["투표", "당신의", "소중한", "한표"]
     
   """
@@ -65,7 +65,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Create a unicode character from a decimal value
     
-      iex> KSA.KoreanUnicode.create_from_decimal_value(55200)
+      iex> Ksa.Support.Unicode.create_from_decimal_value(55200)
       "힠"
   
   """
@@ -77,7 +77,7 @@ defmodule Ksa.Helpers.Unicode do
   Create a unicode hangul character from a decimal value\n
   Note: Does not create Jamo, only Hangul
   
-      iex> KSA.KoreanUnicode.create_hangul_from_decimal_value(44032)
+      iex> Ksa.Support.Unicode.create_hangul_from_decimal_value(44032)
       "가"
     
   """
@@ -92,7 +92,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Does it start with a certain Jamo?
   
-      iex> KSA.KoreanUnicode.starts_with?("가", "ᄀ")
+      iex> Ksa.Support.Unicode.starts_with?("가", "ᄀ")
       true
   """
   def starts_with?("", _jamo) do
@@ -110,7 +110,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Does the medial vowel match a certain Jamo?
   
-      iex> KSA.KoreanUnicode.has_medial_vowel?("쳐", "ᅧ")
+      iex> Ksa.Support.Unicode.has_medial_vowel?("쳐", "ᅧ")
       true
   """
   def has_medial_vowel?("", _jamo) do
@@ -128,7 +128,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Does it end with a certain Jamo?
   
-      iex> KSA.KoreanUnicode.ends_with_final?("씻", "ᆺ")
+      iex> Ksa.Support.Unicode.ends_with_final?("씻", "ᆺ")
       true
     
   """
@@ -147,7 +147,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the decimal value of a character
   
-      iex> KSA.KoreanUnicode.get_unicode_decimal_value("는")
+      iex> Ksa.Support.Unicode.get_unicode_decimal_value("는")
       45716
     
   """
@@ -165,10 +165,10 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Create a unicode character from code points
   
-      iex> KSA.KoreanUnicode.create_from_code_points(0,0,0)
+      iex> Ksa.Support.Unicode.create_from_code_points(0,0,0)
       "가"
       
-      iex> KSA.KoreanUnicode.create_from_code_points(1,0,3)
+      iex> Ksa.Support.Unicode.create_from_code_points(1,0,3)
       "깏"
     
   """
@@ -186,13 +186,13 @@ defmodule Ksa.Helpers.Unicode do
   Change the medial voewel of a character
   If you pass in a word, it will change the final consonant of the last character
   
-      iex> KSA.KoreanUnicode.change_medial_vowel("지쳐", "ᅵ")
+      iex> Ksa.Support.Unicode.change_medial_vowel("지쳐", "ᅵ")
       "지치"
     
   """
   def change_medial_vowel(word, new_medial_vowel) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = KSA.Word.get_remaining(word, last)
+    remains = Ksa.Support.String.get_remaining(word, last)
     remains <> change_medial_vowel(last, new_medial_vowel)
   end
   
@@ -208,13 +208,13 @@ defmodule Ksa.Helpers.Unicode do
   Change the final consonant of a character
   If you pass in a word, it will change the final consonant of the last character
   
-      iex> KSA.KoreanUnicode.change_final_consonant("노랗", "ᆫ")
+      iex> Ksa.Support.Unicode.change_final_consonant("노랗", "ᆫ")
       "노란"
     
   """
   def change_final_consonant(word, new_final_consonant) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = KSA.Word.get_remaining(word, last)
+    remains = Ksa.Support.String.get_remaining(word, last)
     remains <> change_final_consonant(last, new_final_consonant)
   end
   
@@ -229,13 +229,13 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Remove a final consonant and return the string without it
   
-      iex> KSA.KoreanUnicode.remove_final_consonant("마실")
+      iex> Ksa.Support.Unicode.remove_final_consonant("마실")
       "마시"
     
   """
   def remove_final_consonant(word) when byte_size(word) > 3 do
     last = String.last(word)
-    remains = KSA.Word.get_remaining(word, last)
+    remains = Ksa.Support.String.get_remaining(word, last)
     remains <> remove_final_consonant(last)
   end
   
@@ -250,7 +250,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the initial consonant code point
   
-      iex> KSA.KoreanUnicode.get_initial_code_point("한")
+      iex> Ksa.Support.Unicode.get_initial_code_point("한")
       18
     
   """
@@ -269,7 +269,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the initial consonant decimal value
   
-      iex> KSA.KoreanUnicode.get_initial_consonant("한")
+      iex> Ksa.Support.Unicode.get_initial_consonant("한")
       "ᄒ"
     
   """
@@ -285,7 +285,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the medial vowel code point
   
-      iex> KSA.KoreanUnicode.get_medial_code_point("한")
+      iex> Ksa.Support.Unicode.get_medial_code_point("한")
       0
     
   """
@@ -305,7 +305,7 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the medial vowel
   
-      iex> KSA.KoreanUnicode.get_medial_vowel("해")
+      iex> Ksa.Support.Unicode.get_medial_vowel("해")
       "ᅢ"
     
   """
@@ -321,10 +321,10 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the final consonant code point
   
-      iex> KSA.KoreanUnicode.get_final_code_point("한")
+      iex> Ksa.Support.Unicode.get_final_code_point("한")
       4
   
-      iex> KSA.KoreanUnicode.get_final_code_point("해")
+      iex> Ksa.Support.Unicode.get_final_code_point("해")
       0
     
   """
@@ -344,10 +344,10 @@ defmodule Ksa.Helpers.Unicode do
   @doc """
   Get the final consonant
   
-      iex> KSA.KoreanUnicode.get_final_consonant("한")
+      iex> Ksa.Support.Unicode.get_final_consonant("한")
       "ᆫ"
   
-      iex> KSA.KoreanUnicode.get_final_consonant("해")
+      iex> Ksa.Support.Unicode.get_final_consonant("해")
       nil
     
   """

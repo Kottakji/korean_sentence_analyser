@@ -1,8 +1,7 @@
-defmodule Ksa.Structs.Noun do
+defmodule Ksa.Structs.Adjective do
   @moduledoc """
-  Defines the noun
-  서울은 is the word given, the part matched is 서울
+  Defines the adjective
   """
-  @enforce_keys [:word, :part, :subtype]
-  defstruct [:word, :part, :subtype, type: "noun"]
+  @enforce_keys [:word, :part]
+  defstruct [:word, :part, type: "adjective"]
 end

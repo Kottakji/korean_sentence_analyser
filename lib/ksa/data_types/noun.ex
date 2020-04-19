@@ -2,7 +2,7 @@ defmodule Ksa.DataTypes.Noun do
   @moduledoc """
   Find the nouns in the sentence
   """
-  alias Ksa.Support.StringHelper
+  alias Ksa.Support.String, as: StringHelper
   alias Ksa.Ets.DictFile
   alias Ksa.Structs.Noun
 
@@ -10,7 +10,6 @@ defmodule Ksa.DataTypes.Noun do
   def match(sentence) when is_bitstring(sentence) do
     String.split(sentence, " ")
     |> Enum.flat_map(fn word ->
-      # Custom logic
       StringHelper.split(word)
       |> Enum.map(fn part ->
         match(word, part)
