@@ -12,7 +12,7 @@ defmodule Ksa.DataTypes.Adjective do
     String.split(sentence, " ")
     |> Enum.flat_map(fn word ->
       StringHelper.split(word)
-      |> Enum.map(fn part ->
+      |> Enum.flat_map(fn part ->
         [
           match(word, part),
           Enum.map(
@@ -28,8 +28,8 @@ defmodule Ksa.DataTypes.Adjective do
             end
           )
         ]
+        |> List.flatten()
       end)
-      |> List.flatten()
     end)
     |> Enum.filter(fn x -> x != nil end)
   end

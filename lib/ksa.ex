@@ -27,5 +27,6 @@ defmodule Ksa do
       Ksa.DataTypes.Verb.match(sentence)
     ]
     |> Enum.concat()
+    |> Ksa.Analyse.analyse()
   end
 end

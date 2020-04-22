@@ -2,7 +2,7 @@ defmodule Words.DataTypes.VerbTest do
   use ExUnit.Case
   import Ksa.DataTypes.Verb, only: [match: 1]
   alias Ksa.Structs.Verb
-
+  
   test "만지지마" do
     assert Enum.member?(
              match("만지지마"),
