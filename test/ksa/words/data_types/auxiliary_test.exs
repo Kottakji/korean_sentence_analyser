@@ -2,7 +2,7 @@ defmodule Words.DataTypes.AuxiliaryTest do
   use ExUnit.Case
   import Ksa.DataTypes.Auxiliary, only: [match: 1]
   alias Ksa.Structs.Auxiliary
-  
+
   test "이러니" do
     assert Enum.member?(
              match("이러니"),
@@ -14,7 +14,7 @@ defmodule Words.DataTypes.AuxiliaryTest do
              }
            )
   end
-  
+
   test "그" do
     assert Enum.member?(
              match("그"),
