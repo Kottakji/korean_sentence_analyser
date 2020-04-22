@@ -1,16 +1,15 @@
-defmodule Words.DataTypes.VerbTest do
+defmodule Words.DataTypes.AdverbTest do
   use ExUnit.Case
-  import Ksa.DataTypes.Verb, only: [match: 1]
-  alias Ksa.Structs.Verb
-  
-  test "만지지마" do
+  import Ksa.DataTypes.Adverb, only: [match: 1]
+  alias Ksa.Structs.Adverb
+
+  test "힐끗힐끗" do
     assert Enum.member?(
-             match("만지지마"),
-             %Verb{
-               conjugated: nil,
-               match: "만지",
-               type: "verb",
-               word: "만지지마"
+             match("힐끗힐끗"),
+             %Adverb{
+               match: "힐끗힐끗",
+               type: "adverb",
+               word: "힐끗힐끗"
              }
            )
   end

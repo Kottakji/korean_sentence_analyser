@@ -10,10 +10,10 @@ defmodule Ksa.Ets.DictFile do
   def init() do
     [
       "adjective/adjective.txt",
-      #      "adverb/adverb.txt",
-      #      "auxiliary/conjunctions.txt",
-      #      "auxiliary/determiner.txt",
-      #      "auxiliary/exclamation.txt",
+      "adverb/adverb.txt",
+            "auxiliary/conjunctions.txt",
+            "auxiliary/determiner.txt",
+            "auxiliary/exclamation.txt",
       #      "grammar/grammar.txt",
       #      "josa/josa.txt",
       "noun/bible.txt",
@@ -42,7 +42,7 @@ defmodule Ksa.Ets.DictFile do
       #      "typos/typos.txt",
       #      "verb/eomi.txt",
       #      "verb/pre_eomi.txt",
-            "verb/verb.txt",
+      "verb/verb.txt"
       #      "verb/verb_prefix.txt"
     ]
     |> Enum.each(fn path -> init_dict_from_file(path) end)

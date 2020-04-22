@@ -23,12 +23,11 @@ defmodule Ksa.Support.Conjugation do
   @regular "regular"
   @irregular "irregular"
 
-
   @spec conjugate(String.t()) :: list
   def conjugate(word) when byte_size(word) == 0 do
     []
   end
-  
+
   @spec conjugate(String.t()) :: list
   def conjugate(word) when byte_size(word) == 3 do
     conjugate({"", word}, {"", word})
@@ -285,7 +284,7 @@ defmodule Ksa.Support.Conjugation do
   def conjugate_irregular(word) when byte_size(word) == 0 do
     []
   end
-  
+
   @spec conjugate_irregular(String.t()) :: list
   def conjugate_irregular(word) when byte_size(word) == 3 do
     conjugate_irregular({"", word}, {"", word})

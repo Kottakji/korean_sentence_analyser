@@ -21,7 +21,9 @@ defmodule Ksa do
     [
       Ksa.DataTypes.Noun.match(sentence),
       Ksa.DataTypes.Adjective.match(sentence),
-      Ksa.DataTypes.Verb.match(sentence)
+      Ksa.DataTypes.Verb.match(sentence),
+      Ksa.DataTypes.Adverb.match(sentence),
+      Ksa.DataTypes.Auxiliary.match(sentence)
     ]
     |> Enum.concat()
   end
