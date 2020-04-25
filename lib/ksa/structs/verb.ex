@@ -8,7 +8,7 @@ defmodule Ksa.Structs.Verb do
 
   @enforce_keys [:word, :match]
   defstruct [:word, :match, type: "verb", conjugated: nil, base_rating: 0.6]
-  
+
   @spec get_conjugation_score(t()) :: float
   def get_conjugation_score(match = %Ksa.Structs.Verb{conjugated: %Ksa.Structs.Conjugated{tense: tense}}) do
     case tense do
@@ -20,5 +20,10 @@ defmodule Ksa.Structs.Verb do
       @imperative_tense -> 0.85
       @nominal_tense -> 0.86
     end
+  end
+
+  @spec get_conjugation_score(t()) :: float
+  def get_conjugation_score(match = %Ksa.Structs.Verb{}) do
+    1
   end
 end

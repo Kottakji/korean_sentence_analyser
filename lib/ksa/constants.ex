@@ -10,7 +10,7 @@ defmodule Ksa.Constants do
       @future_tense "future"
       @imperative_tense "imperative"
       @nominal_tense "nominal"
-  
+
       # Sub types
       @regular "regular"
       @irregular "irregular"
