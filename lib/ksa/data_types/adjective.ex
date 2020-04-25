@@ -26,6 +26,12 @@ defmodule Ksa.DataTypes.Adjective do
             fn conjugated = %Conjugated{} ->
               match(word, conjugated)
             end
+          ),
+          Enum.map(
+            Ksa.Support.Conjugation.conjugate_passive(part),
+            fn conjugated = %Conjugated{} ->
+              match(word, conjugated)
+            end
           )
         ]
         |> List.flatten()
