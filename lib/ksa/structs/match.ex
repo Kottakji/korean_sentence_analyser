@@ -1,10 +1,11 @@
 defmodule Ksa.Structs.Match do
   @moduledoc """
-  Defines a match
-  A match contains a child struct with a specific type
+  Defines a match\n
+  A match contains a child with a struct
   """
 
-  @type t :: %{child: map, rating: integer}
+  @type child :: Ksa.Structs.Adjective | Ksa.Structs.Adverb | Ksa.Structs.Auxiliary | Ksa.Structs.Noun | Ksa.Structs.Substantive | Ksa.Structs.Verb
+  @type t :: %{child: child, rating: float}
 
   @enforce_keys [:child, :rating]
   defstruct [:child, :rating]

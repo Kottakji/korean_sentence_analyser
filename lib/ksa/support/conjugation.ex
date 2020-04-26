@@ -1,6 +1,12 @@
 defmodule Ksa.Support.Conjugation do
-  @moduledoc """
+  @moduledoc false
+  alias Ksa.Support.Unicode
+  alias Ksa.Structs.Conjugated
+  use Ksa.Constants
+
+  @doc """
   Helper functions for conjugation
+
 
   Useful links:
   https://www.koreanwikiproject.com/wiki/%EC%95%84/%EC%96%B4/%EC%97%AC_%2B_%EC%9A%94
@@ -8,10 +14,6 @@ defmodule Ksa.Support.Conjugation do
   https://koreanverb.app/
   https://zkorean.com/hangul/appearance
   """
-  alias Ksa.Support.Unicode
-  alias Ksa.Structs.Conjugated
-  use Ksa.Constants
-
   @spec conjugate(String.t()) :: list
   def conjugate(word) when byte_size(word) == 0 do
     []

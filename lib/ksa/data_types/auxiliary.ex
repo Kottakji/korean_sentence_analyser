@@ -1,7 +1,5 @@
 defmodule Ksa.DataTypes.Auxiliary do
-  @moduledoc """
-  Find the auxiliary in the sentence
-  """
+  @moduledoc false
   alias Ksa.Support.String, as: StringHelper
   alias Ksa.Ets.DictFile
   alias Ksa.Structs.Auxiliary

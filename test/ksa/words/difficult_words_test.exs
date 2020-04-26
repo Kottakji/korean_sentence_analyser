@@ -43,13 +43,61 @@ defmodule Words.DifficultWordsTest do
     assert_value analyse("매기고") == [%{"매기고" => "매기다"}]
   end
 
-  #  무수히
-  # 것이다
-  # 가라앉았다
-  # 타서
-  # 호는
+  test "저는" do
+    assert_value analyse("저는") == [%{"저는" => "저"}]
+  end
+
+  test "했어요" do
+    assert_value analyse("했어요") == [%{"했어요" => "하다"}]
+  end
+
+  test "저는 공부하느라고 청소를 못 했어요" do
+    assert_value analyse("저는 공부하느라고 청소를 못 했어요") == [
+                   %{"공부하느라고" => "공부"},
+                   %{"못" => "못"},
+                   %{"저는" => "저"},
+                   %{"청소를" => "청소"},
+                   %{"했어요" => "하다"}
+                 ]
+  end
+
+  test "무수히" do
+    assert_value analyse("무수히") == [%{"무수히" => "무수히"}]
+  end
+
+  test "것이다" do
+    assert_value analyse("것이다") == [%{"것이다" => "것"}]
+  end
+
+  test "가라앉았다" do
+    assert_value analyse("가라앉았다") == [%{"가라앉았다" => "가라앉다"}]
+  end
+
+  test "타서" do
+    assert_value analyse("타서") == [%{"타서" => "타다"}]
+  end
+
+  test "받지" do
+    assert_value analyse("받지") == [%{"받지" => "받다"}]
+  end
+
+  test "것이었다" do
+    assert_value analyse("것이었다") == [%{"것이었다" => "것"}]
+  end
+
+  #    test "가져야" do
+  #      assert_value analyse_verbose("가져야")
+  #    end
+
+  #  test "왔는가를" do
+  #    assert_value analyse_verbose("왔는가를")
+  #  end
+  #  test "" do
+  #    assert_value analyse("")
+  #  end
+
   # 가져야
-  # 것이었다
+  #
   # 받지
   # 왔는가를
   # 주었다

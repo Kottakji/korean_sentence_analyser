@@ -1,7 +1,5 @@
 defmodule Ksa.Support.String do
-  @moduledoc """
-  Helper functions for strings
-  """
+  @moduledoc false
 
   @doc """
   Splits our word into all matchable parts

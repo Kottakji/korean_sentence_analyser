@@ -1,7 +1,5 @@
 defmodule Ksa.DataTypes.Adverb do
-  @moduledoc """
-  Find the adverb in the sentence
-  """
+  @moduledoc false
   alias Ksa.Support.String, as: StringHelper
   alias Ksa.Ets.DictFile
   alias Ksa.Structs.Adverb

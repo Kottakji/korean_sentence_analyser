@@ -1,8 +1,7 @@
 defmodule Ksa.Analyse do
-  @moduledoc """
-  Analyses the results
-  """
-  alias Ksa.Structs.{Match, Adverb, Auxiliary, Noun, Substantive, Verb, Conjugated}
+  @moduledoc false
+  use Ksa.Constants
+  alias Ksa.Structs.{Match, Adverb, Auxiliary, Noun, Substantive, Verb}
 
   @type matched :: Adverb.t() | Auxiliary.t() | Noun.t() | Substantive.t() | Verb.t()
 
@@ -40,33 +39,25 @@ defmodule Ksa.Analyse do
         0
       end
 
-    # If it ends with 아야, it's a verb
-    modifier =
-      if w == m <> "아야" do
-        modifier + 1
-      else
-        modifier
-      end
-
-    # If it ends with 아야, it's a most likely a verb
-    modifier =
-      if w == m <> "고" do
-        modifier + 0.5
-      else
-        modifier
-      end
+    modifier = modifier + get_ending_score(w, m)
 
     cond do
       String.starts_with?(w, m) ->
         %Match{
           child: match,
-          rating: (0.5 + modifier) * (match.base_rating * (String.length(m) / String.length(w))) * Verb.get_conjugation_score(match)
+          rating: (0.5 + modifier) * (match.base_rating * (String.length(m) / String.length(w))) * get_conjugation_score(match)
+        }
+
+      String.ends_with?(w, m) ->
+        %Match{
+          child: match,
+          rating: 0.09 * (match.base_rating * (String.length(m) / String.length(w)))
         }
 
       true ->
         %Match{
           child: match,
-          rating: 0.4 * (match.base_rating * (String.length(m) / String.length(w)))
+          rating: (0.4 + modifier) * (match.base_rating * (String.length(m) / String.length(w)))
         }
     end
   end
@@ -81,14 +72,6 @@ defmodule Ksa.Analyse do
         0
       end
 
-    # Words that are at the end should most likely not match
-    modifier =
-      if String.ends_with?(w, m) do
-        modifier - 0.2
-      else
-        modifier
-      end
-
     cond do
       String.starts_with?(w, m) ->
         %Match{
@@ -96,11 +79,50 @@ defmodule Ksa.Analyse do
           rating: (0.2 + modifier) * (match.base_rating * (String.length(m) / String.length(w)))
         }
 
+      String.ends_with?(w, m) ->
+        %Match{
+          child: match,
+          rating: 0.001 * (match.base_rating * (String.length(m) / String.length(w)))
+        }
+
       true ->
         %Match{
           child: match,
           rating: (0.05 + modifier) * (match.base_rating * (String.length(m) / String.length(w)))
         }
+    end
+  end
+
+  @doc false
+  @spec get_conjugation_score(Ksa.Structs.Verb.t()) :: float
+  def get_conjugation_score(_match = %Ksa.Structs.Verb{conjugated: %Ksa.Structs.Conjugated{tense: tense}}) do
+    case tense do
+      @present_tense -> 1
+      @present_formal_tense -> 1
+      @past_tense -> 0.95
+      @past_written_tense -> 0.9
+      @future_tense -> 0.9
+      @imperative_tense -> 0.85
+      @nominal_tense -> 0.86
+    end
+  end
+
+  @doc false
+  @spec get_conjugation_score(Ksa.Structs.Verb.t()) :: float
+  def get_conjugation_score(_match = %Ksa.Structs.Verb{}) do
+    1
+  end
+
+  @doc false
+  @spec get_ending_score(String.t(), String.t()) :: float
+  def get_ending_score(word, match) do
+    cond do
+      word == match <> "아야" -> 1
+      word == match <> "고" -> 0.5
+      word == match <> "니까" -> 0.5
+      word == match <> "서" -> 0.5
+      word == match <> "서" -> 0.5
+      true -> 0
     end
   end
 end

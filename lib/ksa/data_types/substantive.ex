@@ -1,7 +1,5 @@
 defmodule Ksa.DataTypes.Substantive do
-  @moduledoc """
-  Find the substantive in the sentence
-  """
+  @moduledoc false
   alias Ksa.Support.String, as: StringHelper
   alias Ksa.Ets.DictFile
   alias Ksa.Structs.Substantive

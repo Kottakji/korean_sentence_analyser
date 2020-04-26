@@ -4,7 +4,7 @@ defmodule Ksa.MixProject do
   def project do
     [
       app: :ksa,
-      version: "0.3.1",
+      version: "0.4.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -20,23 +20,18 @@ defmodule Ksa.MixProject do
         main: "Ksa",
         groups_for_modules: [
           Main: [Ksa],
-          DataTypes: [
-            Ksa.Adjective,
-            Ksa.Adverb,
-            Ksa.Conjunction,
-            Ksa.Determiner,
-            Ksa.Eomi,
-            Ksa.Josa,
-            Ksa.ModifiedNoun,
-            Ksa.Modifier,
-            Ksa.Noun,
-            Ksa.PreEomi,
-            Ksa.Substantive,
-            Ksa.Verb,
-            Ksa.Grammar
+          Special: [
+            Ksa.Structs.Match,
+            Ksa.Structs.Conjugated
           ],
-          ETS: [Ksa.DictFile],
-          Helpers: [Ksa.Formatter, Ksa.KoreanUnicode, Ksa.LocalDict, Ksa.SplitWord, Ksa.Stem, Ksa.Typo, Ksa.Word]
+          Types: [
+            Ksa.Structs.Adjective,
+            Ksa.Structs.Adverb,
+            Ksa.Structs.Auxiliary,
+            Ksa.Structs.Noun,
+            Ksa.Structs.Substantive,
+            Ksa.Structs.Verb
+          ]
         ],
         extras: ["README.md"]
       ]

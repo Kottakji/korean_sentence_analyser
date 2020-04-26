@@ -1,12 +1,5 @@
 defmodule Ksa.Support.Unicode do
-  @moduledoc """
-  Contains functions helpful in dealing with Hangul
-
-  Explanations can be found at: \n
-  https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode \n
-  https://en.wikipedia.org/wiki/Hangul_Jamo_(Unicode_block)
-
-  """
+  @moduledoc false
 
   @jamo_initial_start_location_in_unicode 4352
   @jamo_medial_start_location_in_unicode 4449

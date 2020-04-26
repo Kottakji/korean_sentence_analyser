@@ -1,7 +1,5 @@
 defmodule Ksa.DataTypes.Noun do
-  @moduledoc """
-  Find the nouns in the sentence
-  """
+  @moduledoc false
   alias Ksa.Support.String, as: StringHelper
   alias Ksa.Ets.DictFile
   alias Ksa.Structs.Noun

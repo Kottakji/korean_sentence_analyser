@@ -1,7 +1,5 @@
 defmodule Ksa.Ets.DictFile do
-  @moduledoc """
-  Use ETS to access dictionary files
-  """
+  @moduledoc false
 
   @doc """
   Initiate the dictionaries into ETS

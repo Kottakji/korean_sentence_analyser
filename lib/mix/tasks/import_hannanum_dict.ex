@@ -27,16 +27,27 @@ defmodule Mix.Tasks.ImportHannanumDict do
                   nil
               end
 
-            String.contains?(types, ["pvg"]) ->
-              case find(korean, "verb/verb.txt") do
+            String.contains?(types, ["mag"]) ->
+              case find(korean, "adverb/adverb.txt") do
                 nil ->
-                  {:ok, file} = File.open(Path.join(:code.priv_dir(:ksa), "verb/verb.txt"), [:append])
+                  {:ok, file} = File.open(Path.join(:code.priv_dir(:ksa), "adverb/adverb.txt"), [:append])
                   IO.binwrite(file, "#{korean}\n")
                   File.close(file)
 
                 _ ->
                   nil
               end
+
+            #            String.contains?(types, ["pvg"]) ->
+            #              case find(korean, "verb/verb.txt") do
+            #                nil ->
+            #                  {:ok, file} = File.open(Path.join(:code.priv_dir(:ksa), "verb/verb.txt"), [:append])
+            #                  IO.binwrite(file, "#{korean}\n")
+            #                  File.close(file)
+            #
+            #                _ ->
+            #                  nil
+            #              end
 
             true ->
               # Ignore others, just add the type(s) above
