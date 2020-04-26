@@ -6,7 +6,12 @@ otp_release:
 sudo: false
 before_script:
   - mix deps.get
+<<<<<<< HEAD
 env:
   - MIX_ENV=test
 script:
   - mix coveralls.travis
+=======
+script:
+  - mix test
+>>>>>>> develop

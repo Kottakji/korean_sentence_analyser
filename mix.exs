@@ -1,10 +1,19 @@
+<<<<<<< HEAD
 defmodule KoreanSentenceAnalyser.MixProject do
+=======
+defmodule Ksa.MixProject do
+>>>>>>> develop
   use Mix.Project
 
   def project do
     [
+<<<<<<< HEAD
       app: :korean_sentence_analyser,
       version: "0.3.1",
+=======
+      app: :ksa,
+      version: "0.4.0",
+>>>>>>> develop
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -17,6 +26,7 @@ defmodule KoreanSentenceAnalyser.MixProject do
       name: "Korean Sentence Analyser",
       source_url: "https://github.com/JorisKok/korean_sentence_analyser",
       docs: [
+<<<<<<< HEAD
         main: "KoreanSentenceAnalyser",
         groups_for_modules: [
           Main: [KoreanSentenceAnalyser],
@@ -37,6 +47,23 @@ defmodule KoreanSentenceAnalyser.MixProject do
           ],
           ETS: [KSA.DictFile],
           Helpers: [KSA.Formatter, KSA.KoreanUnicode, KSA.LocalDict, KSA.SplitWord, KSA.Stem, KSA.Typo, KSA.Word]
+=======
+        main: "Ksa",
+        groups_for_modules: [
+          Main: [Ksa],
+          Special: [
+            Ksa.Structs.Match,
+            Ksa.Structs.Conjugated
+          ],
+          Types: [
+            Ksa.Structs.Adjective,
+            Ksa.Structs.Adverb,
+            Ksa.Structs.Auxiliary,
+            Ksa.Structs.Noun,
+            Ksa.Structs.Substantive,
+            Ksa.Structs.Verb
+          ]
+>>>>>>> develop
         ],
         extras: ["README.md"]
       ]
@@ -59,7 +86,11 @@ defmodule KoreanSentenceAnalyser.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+<<<<<<< HEAD
       mod: {KoreanSentenceAnalyser, []},
+=======
+      mod: {Ksa, []},
+>>>>>>> develop
       extra_applications: [:logger]
     ]
   end
