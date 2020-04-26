@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/JorisKok/korean_sentence_analyser.svg?branch=master)](https://travis-ci.org/JorisKok/korean_sentence_analyser)
 [![Hex pm](http://img.shields.io/hexpm/v/korean_sentence_analyser.svg?style=flat)](https://hex.pm/packages/korean_sentence_analyser)
 
-Docs: [https://hexdocs.pm/korean_sentence_analyser](https://hexdocs.pm/korean_sentence_analyser).
+Docs: [https://hexdocs.pm/ksa](https://hexdocs.pm/ksa).
 
 
 ## Analyse Korean Text
@@ -17,7 +17,7 @@ Add to mix.exs
 ```elixir
 def deps do
   [
-    {:korean_sentence_analyser, "~> 0.4.0"}
+    {:ksa, "~> 0.4.0"}
   ]
 end
 ```
