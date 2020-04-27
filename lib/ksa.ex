@@ -29,7 +29,7 @@ defmodule Ksa do
     |> analyse_verbose
     |> filter
   end
-
+  
   @doc """
   Analyse a sentence and return it's type
   
@@ -55,17 +55,20 @@ defmodule Ksa do
   """
   @spec analyse_verbose(String.t()) :: list
   def analyse_verbose(sentence) when is_bitstring(sentence) do
-    [
-      Ksa.DataTypes.Adjective.match(sentence),
-      Ksa.DataTypes.Adverb.match(sentence),
-      Ksa.DataTypes.Auxiliary.match(sentence),
-      Ksa.DataTypes.Noun.match(sentence),
-      Ksa.DataTypes.Substantive.match(sentence),
-      Ksa.DataTypes.Verb.match(sentence)
-    ]
-    |> Enum.concat()
-    |> Ksa.Analyse.analyse()
-    |> Enum.sort(&(&1.rating >= &2.rating))
+    case String.match?(sentence, ~r/^[가-힣| ]+$/) do
+      true -> [
+                Ksa.DataTypes.Adjective.match(sentence),
+                Ksa.DataTypes.Adverb.match(sentence),
+                Ksa.DataTypes.Auxiliary.match(sentence),
+                Ksa.DataTypes.Noun.match(sentence),
+                Ksa.DataTypes.Substantive.match(sentence),
+                Ksa.DataTypes.Verb.match(sentence)
+              ]
+              |> Enum.concat()
+              |> Ksa.Analyse.analyse()
+              |> Enum.sort(&(&1.rating >= &2.rating))
+      false -> []
+    end
   end
   
   @spec filter(list) :: list

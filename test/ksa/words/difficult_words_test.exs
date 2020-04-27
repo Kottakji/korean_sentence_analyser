@@ -85,6 +85,10 @@ defmodule Words.DifficultWordsTest do
     assert_value analyse("것이었다") == [%{"것이었다" => "것"}]
   end
 
+  @tag :now
+  test "not" do
+    assert_value analyse("not") == []
+  end
   #    test "가져야" do
   #      assert_value analyse_verbose("가져야")
   #    end
