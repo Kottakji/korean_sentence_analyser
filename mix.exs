@@ -4,7 +4,7 @@ defmodule Ksa.MixProject do
   def project do
     [
       app: :ksa,
-      version: "0.4.1",
+      version: "0.5.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -62,8 +62,8 @@ defmodule Ksa.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.4.0"},
-      {:jason, "~> 1.1"},
+      {:httpoison, "~> 1.6.0"},
+      {:jason, "~> 1.2"},
       # Only :dev
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:assert_value, ">= 0.0.0", only: [:dev, :test]},
